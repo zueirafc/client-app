@@ -3,11 +3,12 @@ var app = express();
 var path = require('path');
 
 // scripts
-app.use('/scripts', express.static(__dirname + '/public/js'));
+app.use('/scripts', express.static(__dirname + '/resources/bower'));
+app.use('/styles', express.static(__dirname + '/resources/css'));
 app.use('/vendor', express.static(__dirname + '/node_modules'));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname + 'app/index.html'));
 });
 
 app.set('port', (process.env.PORT || 5000));
