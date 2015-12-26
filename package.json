@@ -5,12 +5,17 @@
   "description": "Angular.js starter application",
   "repository": "https://github.com/popularowl/angular-starter",
   "license": "MIT",
+  "dependencies": {
+    "bower": "1.3.x"
+  },
   "devDependencies": {
     "karma": "~0.10",
     "karma-junit-reporter":"latest",
     "protractor": "1.1.x",
-    "http-server": "0.6.x",
-    "bower": "1.3.x"
+    "http-server": "0.6.x"
+  },
+  "engines": {
+     "node": "4.1.1"
   },
   "scripts": {
     "postinstall": "bower install",
