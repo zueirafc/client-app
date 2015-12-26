@@ -20,124 +20,36 @@
 </head>
 <body class="site">
 
-    <div class="ui main"></div>
+  <div class="ui main"></div>
 
-    <!-- Toolbar Logada -->
-    <!-- <div class="ui borderless main menu">
-      <div class="ui container">
-        <a href="#" class="header item">
-          <img class="logo" src="images/logo-min.png">
-          Zueira FC
-        </a>
-
-        <div class="ui right menu text">
-          <!-- Notifications Icon -->
-          <!-- <div class="ui dropdown item">
-            <i class="black large alarm icon"></i>
-            <div class="app-floating right ui red circular mini label">2</div>
-
-            <div class="menu">
-              <div class="item">Mais uma zueira para o <a href="#">#palmares</a>...</div>
-              <div class="item"><a href="#">@fulanodetal</a> seguiu você!</div>
-            </div>
-          </div> -->
-
-          <!-- User place icon -->
-          <!-- <div class="ui floating dropdown item">
-            <img class="ui avatar image" src="images/matthew.png">
-            <span><i class="black dropdown icon"></i></span>
-
-            <div class="menu">
-              <a class="item">Perfil</a>
-              <a class="item">Configurações</a>
-              <a href="#" class="item">
-                <i class="sign out icon"></i>
-                Sair
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- Toolbar Logada -->
-
-    <!-- Toolbar DESLOGADA -->
-    <div class="ui borderless main menu">
-      <div class="ui container">
-        <a href="#" class="header item">
-          <img class="logo" src="images/logo-min.png">
-          Zueira FC
-        </a>
-
-        <div class="ui right menu text">
-          <a class="ui button green">Cadastre-se</a>
-          <a class="ui item" href="#/login">Login</a>
-        </div>
-      </div>
-    </div>
-    <!-- Toolbar DESLOGADA -->
+  <div ng-controller="ToolbarController">
+    <ng-include src="'components/templates/toolbar.html'"></ng-include>
+  </div>
 
   <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
   <div class="site-content">
     <div ng-view class="ui container"></div>
   </div>
 
-  <div class="ui inverted vertical footer segment">
-    <div class="ui center aligned container">
-      <div class="ui stackable inverted divided grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 1</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 2</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 3</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">ZueiraFC ®</h4>
-          <p>Porque a zueira não pode acabar!</p>
-        </div>
-      </div>
-      <div class="ui inverted section divider"></div>
-      <img src="images/logo-big.png" class="ui centered tiny image">
-      <div class="ui horizontal inverted small divided link list">
-        <a class="item" href="#">Site Map</a>
-        <a class="item" href="#">Contact Us</a>
-        <a class="item" href="#">Terms and Conditions</a>
-        <a class="item" href="#">Privacy Policy</a>
-      </div>
-    </div>
-  </div>
+  <ng-include src="'components/templates/footer.html'"></ng-include>
 
-  <script src="scripts/angular/angular.js"></script>
+  <!-- jquery -->
   <script src="scripts/jquery/dist/jquery.min.js"></script>
+  <!-- Angular -->
+  <script src="scripts/angular/angular.js"></script>
   <script src="scripts/angular-route/angular-route.min.js"></script>
+  <!-- Semantic UI -->
   <script src="scripts/semantic/dist/semantic.min.js"></script>
+  <!-- App -->
   <script src="scripts/core/app.js"></script>
+  <!-- Angular Controllers -->
   <script src="components/controllers/HomeController.js"></script>
   <script src="components/controllers/LoginController.js"></script>
+  <script src="components/controllers/ToolbarController.js"></script>
+
   <script src="scripts/core/global.js"></script>
 </body>
 </html>

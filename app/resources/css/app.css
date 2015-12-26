@@ -1,8 +1,8 @@
 /* Semantic UI - CSS used in menu */
 
 body {
-  /*background-color: #FFFFFF;*/
-  background-image: url("/images/bg-white.jpg");
+  background-color: #FFFFFF;
+  /*background-image: url("/images/bg-white.jpg");*/
 }
 
 .site {
