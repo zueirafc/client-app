@@ -34,7 +34,7 @@ node_modules
 
 # dependencies
 /node_modules
-/bower_components
+app/resources/bower
 
 # misc
 /.sass-cache
