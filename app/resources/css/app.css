@@ -49,3 +49,13 @@ body {
   padding: 5em 0em;
 }
 /* Semantic UI - CSS used in menu */
+
+/* Notification Stylization!*/
+.ui.app-floating.label {
+  position: absolute;
+  z-index: 100;
+  top: -1em;
+  left: 20%;
+  /*margin: 0em 0em 0em -1.5em !important;*/
+  margin: 0.3em 0em 0em -1.2em !important
+}
