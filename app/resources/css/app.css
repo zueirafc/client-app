@@ -1,7 +1,18 @@
 /* Semantic UI - CSS used in menu */
 
 body {
-  background-color: #FFFFFF;
+  /*background-color: #FFFFFF;*/
+  background-image: url("/images/bg-white.jpg");
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
 }
 
 .main.menu {
@@ -58,4 +69,12 @@ body {
   left: 20%;
   /*margin: 0em 0em 0em -1.5em !important;*/
   margin: 0.3em 0em 0em -1.2em !important
+}
+
+/* Blue color in logo */
+.ui.dark-blue.button {
+  background-color: #1F233D;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
 }
