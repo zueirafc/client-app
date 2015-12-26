@@ -1,10 +1,10 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var mostPopularListingsApp = angular.module('mostPopularListingsApp',['ngRoute',
-	'mostPopularListingsApp.home','mostPopularListingsApp.about','mostPopularListingsApp.login']);
+var App = angular.module('App',['ngRoute',
+	'App.home','App.about','App.login']);
 
-mostPopularListingsApp.config(function($routeProvider, $locationProvider, $httpProvider) {
+App.config(function($routeProvider, $locationProvider, $httpProvider) {
 
 	// Declaration of the default route if neither of the controllers
 	// is supporting the request path

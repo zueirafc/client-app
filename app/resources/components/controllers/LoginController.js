@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('mostPopularListingsApp.login', ['ngRoute'])
+angular.module('App.login', ['ngRoute'])
 
 // Routing configuration for this module
 .config(['$routeProvider',function($routeprovider){
@@ -62,9 +62,9 @@ angular.module('mostPopularListingsApp.login', ['ngRoute'])
 		};
 
 		this.message = "Login Time!";
-		
+
 		// // Adding small delay for IP address to be populated before loading the view
 		var filterTextTimeout = $timeout(function() {
-			loadUserIp();            
-        }, 500); // delay 500 ms		
+			loadUserIp();
+        }, 500); // delay 500 ms
 });

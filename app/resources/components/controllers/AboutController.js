@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('mostPopularListingsApp.about', ['ngRoute'])
+angular.module('App.about', ['ngRoute'])
 
 // Routing configuration for this module
 .config(['$routeProvider',function($routeprovider){

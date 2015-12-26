@@ -1,51 +1,51 @@
-/* app css stylesheet */
+/* Semantic UI - CSS used in menu */
 
 body {
-  font-family: Helvetica;
-  font-size: 14px;
+  background-color: #FFFFFF;
 }
 
-.menu {
-  margin: 0 auto;
-  width:350px;
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  padding: 0 0 0.5em;
+.main.menu {
+  margin-top: 2em;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition:
+    box-shadow 0.5s ease,
+    padding 0.5s ease
+  ;
+}
+.main.menu .item img.logo {
+  margin-right: 1.5em;
 }
 
-.menu:before {
-  content: "[";
+.overlay {
+  float: left;
+  margin: 0em 3em 1em 0em;
+}
+.overlay .menu {
+  position: relative;
+  left: 0;
+  transition: left 0.5s ease;
 }
 
-.menu:after {
-  content: "]";
+.main.menu.fixed {
+  background-color: #FFFFFF;
+  border: 1px solid #DDD;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.overlay.fixed .menu {
+  left: 800px;
 }
 
-.menu > li {
-  display: inline;
+.text.container .left.floated.image {
+  margin: 2em 2em 2em -4em;
+}
+.text.container .right.floated.image {
+  margin: 2em -4em 2em 2em;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.ui.footer.segment {
+  margin: 5em 0em 0em;
+  padding: 5em 0em;
 }
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-.center{
-  margin: 0 auto;
-  width:350px;
-  padding-top: 6px;
-}
-
-form { 
-margin: 0 auto; 
-width:220px;
-}
-
-input{
-  float: right;
-  height: 10px;
-}
+/* Semantic UI - CSS used in menu */

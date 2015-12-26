@@ -3,6 +3,7 @@ var app = express();
 var path = require('path');
 
 // scripts
+app.use('/images', express.static(__dirname + '/app/resources/images'));
 app.use('/scripts', express.static(__dirname + '/app/resources/bower'));
 app.use('/scripts/core', express.static(__dirname + '/app/resources/core'));
 app.use('/components', express.static(__dirname + '/app/resources/components'));

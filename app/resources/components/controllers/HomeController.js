@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('mostPopularListingsApp.home', ['ngRoute'])
+angular.module('App.home', ['ngRoute'])
 
 // Routing configuration for this module
 .config(['$routeProvider',function($routeprovider){
@@ -25,7 +25,7 @@ angular.module('mostPopularListingsApp.home', ['ngRoute'])
 	init();
 
 	function init(){
-	
+
 	};
 
 	this.message = "Hello Home!";
