@@ -2,7 +2,14 @@
   <div class="four wide column">
     <!-- seria uma sidebar? -->
     <div class="ui segment">
-      <img class="ui small circular bordered centered image" src="images/avatars/matthew.png">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <h2 class="ui inverted header">432 pontos</h2>
+          </div>
+        </div>
+      </div>
+      <img class="ui small circular bordered centered image profile" src="images/avatars/matthew.png">
       <h3 class="ui header center aligned">@brunoocasali</h3>
       <div class="ui column grid">
         <div class="two column row">
@@ -72,10 +79,131 @@
 
     <div class="ui segment">
       <h3 class="ui header center aligned">As zueiras mais recentes!</h3>
+      <div class="ui divided items">
+
+        <!-- ITEM (com título)-->
+        <div class="item">
+          <div class="content">
+            <a class="header">Mundial do Palmeiras</a>
+            <div class="description">
+              <p>E mais um ano se passou...</p>
+              <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
+              <br />
+            </div>
+            <div class="extra">
+              <div class="ui mini basic buttons">
+                <button class="ui button"><i class="share alternate icon"></i>5.4k</button>
+                <button class="ui button"><i class="leaf icon green"></i> plantar</button>
+              </div>
+              <div class="right floated">
+                <div class="ui column grid">
+                  <div class="two column row">
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/avatars/nan.jpg">
+                    </div>
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/clubes/palmares.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / ITEM (com título)-->
+
+        <!-- ITEM (sem título)-->
+        <div class="item">
+          <div class="content">
+            <div class="description">
+              <p>E mais um ano se passou...</p>
+              <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
+              <br />
+            </div>
+            <div class="extra">
+              <div class="ui mini basic buttons">
+                <button class="ui button"><i class="share alternate icon"></i>2.1k</button>
+                <button class="ui button"><i class="leaf icon green"></i> plantar</button>
+              </div>
+              <div class="right floated">
+                <div class="ui column grid">
+                  <div class="two column row">
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/avatars/nan.jpg">
+                    </div>
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/clubes/palmares.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / ITEM (sem título)-->
+
+        <!-- ITEM (imagem sem título)-->
+        <div class="item">
+          <div class="content">
+            <div class="description">
+              <img class="ui fluid image" src="images/placeholders/mundial.jpg">
+            </div>
+            <div class="extra">
+              <div class="ui mini basic buttons">
+                <button class="ui button"><i class="share alternate icon"></i>8k</button>
+                <button class="ui button"><i class="leaf icon green"></i> plantar</button>
+              </div>
+              <div class="right floated">
+                <div class="ui column grid">
+                  <div class="two column row">
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/avatars/nan.jpg">
+                    </div>
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/clubes/palmares.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ITEM (imagem sem título)-->
+
+        <!-- ITEM (imagem com título)-->
+        <div class="item">
+          <div class="content">
+            <a class="header">Mundial do Palmeiras</a>
+            <div class="description">
+              <img class="ui fluid image" src="images/placeholders/mundial2.jpg">
+            </div>
+            <div class="extra">
+              <div class="ui mini basic buttons">
+                <button class="ui button"><i class="share alternate icon"></i>5.4k</button>
+                <button class="ui button"><i class="leaf icon green"></i> plantar</button>
+              </div>
+              <div class="right floated">
+                <div class="ui column grid">
+                  <div class="two column row">
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/avatars/nan.jpg">
+                    </div>
+                    <div class="column">
+                      <img class="ui mini image circular" src="images/clubes/palmares.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ITEM (imagem com título)-->
+      </div>
     </div>
 
   </div>
 
+  <!-- SIDEBAR -->
   <div class="four wide column">
     <div class="ui segment">
       <div class="ui centered images">
@@ -84,8 +212,9 @@
       </div>
     </div>
   </div>
+  <!-- / SIDEBAR -->
 </div>
 
 <script>
-  $('.small.circular.bordered .image').dimmer({ on: 'hover' });
+  $('.profile img').dimmer({ on: 'hover' });
 </script>
