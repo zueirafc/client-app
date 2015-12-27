@@ -1,8 +1,12 @@
 /* Semantic UI - CSS used in menu */
 
 body {
-  background-color: #FFFFFF;
-  /*background-image: url("/images/bg-white.jpg");*/
+  /*background-color: #FFFFFF;*/
+  background: url("/images/bg-white.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .site {

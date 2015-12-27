@@ -1,5 +1,4 @@
 App.controller('LoginController', function($scope, $auth) {
-
 	$scope.form = {};
 
 	$scope.login = function() {
@@ -15,17 +14,3 @@ App.controller('LoginController', function($scope, $auth) {
 	};
 
 });
-//
-//
-// angular.module('App')
-//   .controller('LoginController', function($scope, $auth) {
-//     $scope.handleLoginBtnClick = function() {
-//       $auth.submitLogin($scope.loginForm)
-//         .then(function(resp) {
-//           // handle success response
-//         })
-//         .catch(function(resp) {
-//           // handle error response
-//         });
-//     };
-//   });

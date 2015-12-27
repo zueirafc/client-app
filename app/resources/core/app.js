@@ -8,6 +8,7 @@ App.constant("Api", 'https://zueira-fc.herokuapp.com/api/v1');
 
 App.config(function ($routeProvider) {
     $routeProvider.when('/', {
+        templateUrl: 'components/views/home.html',
         controller: 'HomeController'
     });
 
