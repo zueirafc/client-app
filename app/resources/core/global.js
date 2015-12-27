@@ -1,25 +1,23 @@
-setTimeout(function () {
-  $(document)
-    .ready(function() {
-      // fix main menu to page on passing
-      $('.main.menu').visibility({
-        type: 'fixed'
-      });
-      $('.overlay').visibility({
-        type: 'fixed',
-        offset: 80
-      });
+// fix main menu to page on passing
+$('.main.menu').visibility({
+  type: 'fixed'
+});
 
-      // lazy load images
-      $('.image').visibility({
-        type: 'image',
-        transition: 'vertical flip in',
-        duration: 500
-      });
+$('.overlay').visibility({
+  type: 'fixed',
+  offset: 80
+});
 
-      // show dropdown on hover
-      $('.main.menu .ui.dropdown').dropdown({
-        on: 'hover'
-      });
-    });
-}, 1000);
+// lazy load images
+$('.image').visibility({
+  type: 'image',
+  transition: 'vertical flip in',
+  duration: 500
+});
+
+// show dropdown on hover
+$('.main.menu .ui.dropdown').dropdown({
+  on: 'hover'
+});
+
+$('.ui.dropdown').dropdown();
