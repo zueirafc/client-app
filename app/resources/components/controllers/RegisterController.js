@@ -10,11 +10,7 @@ App.controller('RegisterController', function($scope, $auth, $http, Api) {
 	    username:        			 $scope.form.username,
 			club_id:							 $('#club_id').val()
 		}).then(function(resp) {
-	      // handle success response
-				alert('criado com SUCESSO!');
-	    })
-	    .catch(function(resp) {
-				console.log(resp);
+				$location.path('/');
 	    });
 	};
 
@@ -26,10 +22,8 @@ App.controller('RegisterController', function($scope, $auth, $http, Api) {
 	};
 
 	$scope.$on('auth:registration-email-error', function(ev, reason) {
-			console.log(ev);
-			console.log('------');
+			alert("Não foi possível criar um usuário. Tente novamente mais tarde!");
 			console.log(reason);
-			alert("Registration failed: " + reason);
 	});
 
 	$scope.getClubs();
