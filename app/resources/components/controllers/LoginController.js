@@ -9,7 +9,8 @@ App.controller('LoginController', function($scope, $auth) {
 				alert('logado com SUCESSO!');
 	    })
 	    .catch(function(resp) {
-	      alert('não deu!')
+				console.log(resp);
+	      // alert('não deu!')
 	    });
 	};
 

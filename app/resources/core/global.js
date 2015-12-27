@@ -14,10 +14,3 @@ $('.image').visibility({
   transition: 'vertical flip in',
   duration: 500
 });
-
-// show dropdown on hover
-$('.main.menu .ui.dropdown').dropdown({
-  on: 'hover'
-});
-
-$('.ui.dropdown').dropdown();
