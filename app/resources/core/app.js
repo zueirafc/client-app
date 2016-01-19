@@ -10,19 +10,16 @@ App.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'components/views/home.html',
         controller: 'HomeController'
-    });
-
-    $routeProvider.when('/login', {
+    }).when('/login', {
         templateUrl: 'components/views/login.html',
         controller: 'LoginController'
-    });
-
-    $routeProvider.when('/registro', {
+    }).when('/registro', {
         templateUrl: 'components/views/register.html',
         controller: 'RegisterController'
-    });
-
-    $routeProvider.otherwise({
+    }).when('/perfil', {
+        templateUrl: 'components/views/perfil.html',
+        controller: 'PerfilController'
+    }).otherwise({
         templateUrl: 'components/views/404.html'
     });
 });

@@ -3,6 +3,7 @@ App.controller('RegisterController', function($scope, $auth, $http, Api) {
 	$scope.form = { username: '', email: '', password: '', club_id: 0 };
 
 	$scope.login = function() {
+		
 	  $auth.submitRegistration({
 			email:                 $scope.form.email,
 	    password:              $scope.form.password,
