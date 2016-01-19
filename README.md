@@ -2,4 +2,4 @@
 
 **Built with AngularJS and NodeJS*
 
-by: [@brunoocasali](github.com/brunoocasali)
+by: [@brunoocasali](https://github.com/brunoocasali) and [@cleitonMigliorinii](https://github.com/cleitonMigliorinii)
