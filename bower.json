@@ -1,8 +1,8 @@
 {
-  "name": "angular-starter",
-  "description": "AngularJS app starter",
+  "name": "zueirafc-clientapp",
+  "description": "The zueira never ends!",
   "version": "0.0.2",
-  "homepage": "https://github.com/popularowl/angular-starter",
+  "homepage": "https://github.com/zueira/client-app",
   "license": "MIT",
   "dependencies": {
     "angular": "1.4.x",
