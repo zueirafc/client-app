@@ -1,7 +1,7 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var App = angular.module('App', ['ngRoute', 'ng-token-auth','firebase']);
+var App = angular.module('App', ['ngRoute', 'ng-token-auth']);
 
 App.constant("Api", 'https://zueira-fc.herokuapp.com/api/v1');
 // App.constant("Api", 'http://localhost:3000/api/v1');
