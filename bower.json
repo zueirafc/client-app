@@ -10,7 +10,7 @@
     "angular-mocks": "1.4.x",
     "semantic": "2.1",
     "ng-token-auth": "~0.0.28",
-    "kbwood_countdown": "2.0.2"
+    "kbwood_countdown": "2.0.1"
   },
   "resolutions": {
     "angular": "1.4.x"
