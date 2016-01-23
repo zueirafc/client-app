@@ -1,16 +1,16 @@
 /*------------------------------------------------*/
-/* Basic styles */ 
+/* Basic styles */
 /* Designed and coded by HeroWP.com*/
 /* Don't forget to visit us daily for tons of freebies:
-	-PSD Templates
-	-Wordpress Plugins
-	-Wordpess Themes
-	-HTML Designs
-	-& many more!
+-PSD Templates
+-Wordpress Plugins
+-Wordpess Themes
+-HTML Designs
+-& many more!
 */
 /*------------------------------------------------*/
 
-body{
+body {
 	font-family:'Oswald', Arial;
 	color:#fff;
 	background:url(/images/image_coming_soon/bg.jpg) top center no-repeat #000;
@@ -71,12 +71,12 @@ body{
 }
 
 .countdown-amount {
-    font-size: 60px;
+	font-size: 60px;
 	font-weight:700;
 	line-height:120px;
 }
 .countdown-period {
-    display: block;
+	display: block;
 	line-height:60px;
 	color:#ff9c00;
 	font-size:18px;
@@ -113,56 +113,14 @@ p{
 	font-family: verdana;
 }
 
-form{
-	margin:0 auto;
-	display:table;
-	margin-top:50px;
-}
-
-input[type="text"]{
-	background:rgba(255,255,255,.1);
-	-webkit-background-clip: padding-box !important;
-	background-clip: padding-box !important;
-	border:none;
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	height:53px;
-	color:#fff;
-	font-family:'Oswald', Arial;
-	font-size:16px;
-	padding-left:20px;
-	width:265px;
-}
-
-input[type="button"]{
-	font-family: 'Oswald', Arial;
-	background: #ff9c00;
-	color: #000;
-	border: none;
-	font-size: 22.5px;
-	font-weight: 500;
-	padding: 12px 30px;
-	position: relative;
-	top: 4px;
-	left: -2px;
-	-webkit-transition: all .3s ease;
-	-moz-transition: 	all .3s ease;
-	-ms-transition: 	all .3s ease;
-	-o-transition: 		all .3s ease;
-	transition: 		all .3s ease;
-}
-
-input[type="button"]:hover{
-	color: #FFF;
-}
-
 a{
-color:#fff;
-text-decoration:underline;
+	color:#fff;
+	text-decoration:underline;
 }
 
 p.copyright{
-font-size:13px;
-margin-top:30px;
+	font-size:13px;
+	margin-top:30px;
 }
 
 
@@ -171,7 +129,7 @@ margin-top:30px;
 /*------------------------------------------------*/
 
 @media (min-width: 561px) and (max-width: 720px) {
-	
+
 	.countdown-section {
 		margin:5px;
 	}
@@ -179,7 +137,7 @@ margin-top:30px;
 }
 
 @media (max-width: 600px){
-	
+
 	.countdown-section {
 		display: block;
 		float: left;
@@ -188,17 +146,17 @@ margin-top:30px;
 		height:75px;
 		margin:6px;
 	}
-	
+
 	.countdown-amount {
 		font-size: 32px;
 		font-weight:700;
 		line-height:74px;
 	}
-	
+
 }
 
 @media (max-width: 420px){
-	
+
 	.countdown-section {
 		display: block;
 		float: left;
@@ -207,35 +165,35 @@ margin-top:30px;
 		height:56px;
 		margin:2px;
 	}
-	
+
 	.countdown-amount {
 		font-size: 24px;
 		font-weight:700;
 		line-height:58px;
 	}
-	
+
 	.image-align{
 		padding-top: 15px;
 		width:30%;
 	}
-	
+
 	h1,.yellow{
 		font-size:32px;
-	}	
-	
-	h1 span{
-	font-size:18px;
 	}
-	
+
+	h1 span{
+		font-size:18px;
+	}
+
 	input[type="text"]{
 		width:150px;
 		font-size:14px;
 		padding-left:5px;
-	}	
-	
+	}
+
 	input[type="submit"]{
 		left:-3px;
 		top:5px;
 	}
-	
+
 }
