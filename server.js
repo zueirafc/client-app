@@ -10,6 +10,7 @@ app.use('/components', express.static(__dirname + '/app/resources/components'));
 app.use('/styles', express.static(__dirname + '/app/resources/css'));
 app.use('/vendor', express.static(__dirname + '/app/node_modules'));
 
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/index.html'));
 });
