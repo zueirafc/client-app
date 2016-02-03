@@ -20,7 +20,7 @@ App.config(function ($routeProvider) {
         controller: 'PerfilController'
     }).when('/admin/approvals', {
         templateUrl: 'components/views/admin/approvals.html',
-        controller: 'ApprovalController'
+        controller: 'ApprovalsController'
     }).otherwise({
         templateUrl: 'components/views/404.html'
     });
