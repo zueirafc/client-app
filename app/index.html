@@ -1,85 +1,59 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="App" class="no-js"><!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>Aguardem | Zueira Futebol Clube</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<!--CSS-->
-<link rel="stylesheet" href="styles/css_coming_soon/style.css">
-<link rel="stylesheet" href="styles/css_coming_soon/bootstrap-light.css">
-<link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
-<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-<!--/CSS-->
+  <title>ZueiraFC | never ends!</title>
 
-<!--JS-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-<script src="scripts/kbwood_countdown/jquery.plugin.min.js"></script>
-<script src="scripts/kbwood_countdown/jquery.countdown.min.js"></script>
-<script src="scripts/kbwood_countdown/jquery.countdown-pt-BR.js"></script>
-
-<script>
-$(function () {
-	$('#defaultCountdown').countdown({until: new Date(2016, 1, 10)});
-});
-</script>
-<!--/JS-->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-72772389-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
+  <link rel="stylesheet" href="scripts/semantic/dist/semantic.min.css"/>
+  <link rel="stylesheet" href="styles/app.css"/>
+  <link rel="stylesheet" href="styles/admin.css"/>
 </head>
+<body class="site">
 
-<body>
+  <div class="ui main"></div>
 
-<!--DARK OVERLAY-->
-<div class="overlay"></div>
-<!--/DARK OVERLAY-->
+  <div ng-controller="ToolbarController">
+    <ng-include src="'components/templates/toolbar.html'"></ng-include>
+  </div>
 
-<!--WRAP-->
-<div id="wrap">
-	<!--CONTAINER-->
-	<div class="container" >
-		<img src="images/image_coming_soon/rofl.png" alt="ROFL" class="image-align" />
-		<h1 style="margin-top:10px;">
-			<span>Porque a</span><br/>
-			Zueira <span class="yellow">não pode parar!</span>
-		</h1>
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-		<p class="quotes">
-			"Com toda certeza vamos pra cima deles em busca dos <strong>três pontos</strong>" - Bruno Casali (sobre terminar o site)
-			<br>
-			"Ah, esse juiz fd* tá de sacanagem só deu <strong>4 minutos de acréscimo</strong>" - Cleiton Migliorini (sobre o tempo restante)
-		</p>
+  <div class="site-content">
+    <div ng-view class="ui container"></div>
 
-		<div id="fb-root" style="margin-top:-100px"></div>
-				<script>(function(d, s, id) {
-					  var js, fjs = d.getElementsByTagName(s)[0];
-					  if (d.getElementById(id)) return;
-					  js = d.createElement(s); js.id = id;
-					  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5&appId=1661970344040611";
-					  fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));
-				</script>
+    <ng-include src="'components/templates/footer.html'"></ng-include>
+  </div>
 
-			<div class="fb-like" data-href="https://www.facebook.com/zueiraaFC/" data-layout="box_count" data-action="like"
-					data-colorscheme="dark" data-share="true"></div>
-		<div id="defaultCountdown"></div>
 
-		<p class="copyright">
-			Made by <a href="#" target="_blank">Zueira F.C.</a> &amp; designed  by <a href="https://herowp.com" target="_blank">HeroWP.com</a>
-		</p>
-	</div>
-	<!--/CONTAINER-->
-</div>
-<!--/WRAP-->
-
+  <!-- jquery -->
+  <script src="scripts/jquery/dist/jquery.min.js"></script>
+  <!-- Angular -->
+  <script src="scripts/angular/angular.min.js"></script>
+  <script src="scripts/angular-route/angular-route.min.js"></script>
+  <script src="scripts/angular-cookie/angular-cookie.min.js"></script>
+  <script src="scripts/ng-token-auth/dist/ng-token-auth.min.js"></script>
+  <!-- Semantic UI -->
+  <script src="scripts/semantic/dist/semantic.min.js"></script>
+  <!-- App -->
+  <script src="scripts/core/app.js"></script>
+  <!-- Angular Controllers -->
+  <script src="components/controllers/HomeController.js"></script>
+  <script src="components/controllers/LoginController.js"></script>
+  <script src="components/controllers/RegisterController.js"></script>
+  <script src="components/controllers/ToolbarController.js"></script>
+  <script src="components/controllers/admin/ApprovalsController.js"></script>
 </body>
 </html>

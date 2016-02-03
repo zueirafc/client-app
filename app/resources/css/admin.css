@@ -1,0 +1,29 @@
+/* Semantic UI - CSS used in menu for admin */
+.main-admin.menu {
+  background-color: #1b1c1d;
+  margin-top: 1.5em;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition:
+    box-shadow 0.5s ease,
+    padding 0.5s ease
+  ;
+}
+
+.main-admin.menu .item img.logo {
+  margin-right: 1.5em;
+}
+
+.main-admin.menu.fixed {
+  border: 1px solid #DDD;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fb-blue{
+  color: #3B5998;
+}
+
+.tw-blue{
+  color: #55ACEE;
+}

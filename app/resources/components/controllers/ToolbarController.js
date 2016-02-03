@@ -2,11 +2,13 @@ App.controller('ToolbarController', function($scope, $auth, $location) {
 	$scope.templateUrl = '';
 
   $scope.chooser = function(){
-    if ($auth.validateUser()) {
-      $scope.templateUrl = 'components/partials/toolbar/_logged.html';
-    } else {
-      $scope.templateUrl = 'components/partials/toolbar/_not_logged.html';
-    }
+		$scope.templateUrl = 'components/partials/toolbar/_admin.html';
+
+		// if ($auth.validateUser()) {
+    //   $scope.templateUrl = 'components/partials/toolbar/_logged.html';
+    // } else {
+    //   $scope.templateUrl = 'components/partials/toolbar/_not_logged.html';
+    // }
   };
 
 	$scope.logout = function(){

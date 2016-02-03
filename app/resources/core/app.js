@@ -18,6 +18,9 @@ App.config(function ($routeProvider) {
     }).when('/perfil', {
         templateUrl: 'components/views/perfil.html',
         controller: 'PerfilController'
+    }).when('/admin/approvals', {
+        templateUrl: 'components/views/admin/approvals.html',
+        controller: 'ApprovalController'
     }).otherwise({
         templateUrl: 'components/views/404.html'
     });
