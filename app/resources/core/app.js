@@ -3,7 +3,8 @@
 // Defining Angular app model with all other dependent modules
 var App = angular.module('App', ['ngRoute', 'ng-token-auth']);
 
-App.constant("Api", 'http://api.zueirafc.com/api/v1');
+App.constant("Api", 'http://localhost:3000/api/v1');
+// App.constant("Api", 'http://api.zueirafc.com/api/v1');
 
 App.config(function ($routeProvider) {
 
@@ -30,9 +31,18 @@ App.config(function ($routeProvider) {
     });
 });
 
+App.run(function($http) {
+  // process.env.API_AUTH_TOKEN
+  $http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
+});
+
 App.config(function($authProvider, Api) {
   $authProvider.configure({
-      apiUrl: Api
+      apiUrl: Api,
+
+      // tokenFormat: {
+      //   "Authorization": "Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6"
+      // },
   });
 });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="App" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="App" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="App" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="App" class="no-js"><!--<![endif]-->
 <head>
@@ -27,9 +27,16 @@
     .margin-top{
       margin-top: 10rem;
     }
+
+    .bg-full {
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
   </style>
 </head>
-<body>
+<body class="bg-full">
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -55,11 +62,9 @@
   setTimeout(newImage, 500);
 
   function newImage(){
-    var images = ['/images/bg/torcida-5.jpg', '/images/bg/torcida-4.jpg', '/images/bg/torcida-2.jpg'];
-    var selected = images[Math.floor(Math.random() * images.length)];
+    var selected = "/images/bg-fans/torcida-" + Math.floor(Math.random() * 26) + ".jpg";
 
-    console.log("url(" + selected + ") no-repeat center center fixed")
-    $('body').css("background-image", "url(" + selected + ")");
+    $('.bg-full').css("background-image", "url(" + selected + ")");
   }
   </script>
 </body>

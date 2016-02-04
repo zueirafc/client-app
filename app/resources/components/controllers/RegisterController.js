@@ -3,7 +3,7 @@ App.controller('RegisterController', function($scope, $auth, $http, Api) {
 	$scope.form = { username: '', email: '', password: '', club_id: 0 };
 
 	$scope.login = function() {
-		
+
 	  $auth.submitRegistration({
 			email:                 $scope.form.email,
 	    password:              $scope.form.password,
@@ -19,7 +19,9 @@ App.controller('RegisterController', function($scope, $auth, $http, Api) {
 		$http.get(Api + '/clubs.json')
 		.then(function successCallback(response) {
 			$scope.clubs = response.data.clubs;
-		});
+		}, function errorCallback(response) {
+    	console.log(response.headers);
+  	});
 	};
 
 	$scope.$on('auth:registration-email-error', function(ev, reason) {
