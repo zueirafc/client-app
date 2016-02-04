@@ -17,7 +17,6 @@
 
   <link rel="stylesheet" href="scripts/semantic/dist/semantic.min.css"/>
   <link rel="stylesheet" href="styles/app.css"/>
-  <link rel="stylesheet" href="styles/admin.css"/>
 </head>
 <body class="site">
 
@@ -32,11 +31,38 @@
   <![endif]-->
 
   <div class="site-content">
-    <div ng-view class="ui container"></div>
 
+    <div class="ui container">
+
+      <div class="ui stackable sixtenn grid">
+
+          <div class="four wide column">
+
+            <!--Include para adicionar painel lado esquerdo -->
+            <ng-include src="'components/templates/leftPanel.html'"></ng-include>
+
+          </div>
+          <div class="eight wide column">
+
+            <!--View principal -->
+            <div ng-view ></div>
+
+          </div>
+
+          <div class="four wide column">
+
+            <!--Include para adicionar painel lado direito -->
+            <ng-include src="'components/templates/rightPanel.html'"></ng-include>
+
+          </div>
+      </div>
+
+    </div>
+
+    <!--Include para adicionar footer -->
     <ng-include src="'components/templates/footer.html'"></ng-include>
-  </div>
 
+  </div>
 
   <!-- jquery -->
   <script src="scripts/jquery/dist/jquery.min.js"></script>
@@ -54,6 +80,5 @@
   <script src="components/controllers/LoginController.js"></script>
   <script src="components/controllers/RegisterController.js"></script>
   <script src="components/controllers/ToolbarController.js"></script>
-  <script src="components/controllers/admin/ApprovalsController.js"></script>
 </body>
 </html>
