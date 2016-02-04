@@ -6,19 +6,26 @@ var App = angular.module('App', ['ngRoute', 'ng-token-auth']);
 App.constant("Api", 'http://api.zueirafc.com/api/v1');
 
 App.config(function ($routeProvider) {
+
+    // normal paths
     $routeProvider.when('/', {
         templateUrl: 'components/views/home.html',
         controller: 'HomeController'
-    }).when('/login', {
+    }).when('/perfil', {
+        templateUrl: 'components/views/perfil.html',
+        controller: 'PerfilController'
+    });
+
+    // auth paths
+    $routeProvider.when('/login', {
         templateUrl: 'components/views/login.html',
         controller: 'LoginController'
     }).when('/registro', {
         templateUrl: 'components/views/register.html',
         controller: 'RegisterController'
-    }).when('/perfil', {
-        templateUrl: 'components/views/perfil.html',
-        controller: 'PerfilController'
-    }).otherwise({
+    });
+
+    $routeProvider.otherwise({
         templateUrl: 'components/views/404.html'
     });
 });

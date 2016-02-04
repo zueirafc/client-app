@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="App" class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Zueira F.C. | Entre!</title>
+
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="scripts/semantic/dist/semantic.min.css"/>
+
+  <style type="text/css">
+    body > .grid {
+      height: 100%;
+    }
+    .column {
+      max-width: 450px;
+    }
+    .margin-top{
+      margin-top: 10rem;
+    }
+  </style>
+</head>
+<body>
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div ng-view ></div>
+
+  <!-- jquery -->
+  <script src="scripts/jquery/dist/jquery.min.js"></script>
+  <!-- Angular -->
+  <script src="scripts/angular/angular.min.js"></script>
+  <script src="scripts/angular-route/angular-route.min.js"></script>
+  <script src="scripts/angular-cookie/angular-cookie.min.js"></script>
+  <script src="scripts/ng-token-auth/dist/ng-token-auth.min.js"></script>
+  <!-- Semantic UI -->
+  <script src="scripts/semantic/dist/semantic.min.js"></script>
+  <!-- App -->
+  <script src="scripts/core/app.js"></script>
+  <!-- Angular Controllers -->
+  <script src="components/controllers/LoginController.js"></script>
+  <script src="components/controllers/RegisterController.js"></script>
+
+  <script>
+  setTimeout(newImage, 500);
+
+  function newImage(){
+    var images = ['/images/bg/torcida-5.jpg', '/images/bg/torcida-4.jpg', '/images/bg/torcida-2.jpg'];
+    var selected = images[Math.floor(Math.random() * images.length)];
+
+    console.log("url(" + selected + ") no-repeat center center fixed")
+    $('body').css("background-image", "url(" + selected + ")");
+  }
+  </script>
+</body>
+</html>
