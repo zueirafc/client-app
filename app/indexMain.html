@@ -29,13 +29,40 @@
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-  
+
   <div class="site-content">
-    <div ng-view class="ui container"></div>
 
+    <div class="ui container">
+
+      <div class="ui stackable sixtenn grid">
+
+          <div class="four wide column">
+
+            <!--Include para adicionar painel lado esquerdo -->
+            <ng-include src="'components/templates/leftPanel.html'"></ng-include>
+
+          </div>
+          <div class="eight wide column">
+
+            <!--View principal -->
+            <div ng-view ></div>
+
+          </div>
+
+          <div class="four wide column">
+
+            <!--Include para adicionar painel lado direito -->
+            <ng-include src="'components/templates/rightPanel.html'"></ng-include>
+
+          </div>
+      </div>
+
+    </div>
+
+    <!--Include para adicionar footer -->
     <ng-include src="'components/templates/footer.html'"></ng-include>
-  </div>
 
+  </div>
 
   <!-- jquery -->
   <script src="scripts/jquery/dist/jquery.min.js"></script>

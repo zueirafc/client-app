@@ -9,7 +9,7 @@
     "angular-route": "1.4.x",
     "angular-mocks": "1.4.x",
     "semantic": "2.1",
-    "ng-token-auth": "~0.0.28",
+    "ng-token-auth": "0.0.29-beta1",
     "kbwood_countdown": "2.0.1"
   },
   "resolutions": {
