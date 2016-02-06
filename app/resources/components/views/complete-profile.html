@@ -19,6 +19,20 @@
   $("#upload-tag").change(function(){
       readURL(this);
   });
+
+  $('.ui.form')
+    .form({
+      fields: {
+        club: {
+          identifier: 'club_id',
+          rules: [ { type   : 'empty', prompt : 'Na boa, você não torce pra niguém?' } ]
+        },
+        username: {
+          identifier: 'username',
+          rules: [ { type   : 'empty', prompt : 'Um nome de usuário, pode ser o apelido!' } ]
+        }
+      }
+    });
 </script>
 
 <div class="ui middle aligned center aligned grid">
@@ -44,7 +58,7 @@
                 <input id="upload-tag" style="display:none" type="file" accept="image/*" />
               </div>
             </div>
-            <img ng-if="form.image" id="image-preview" src="{{form.image}}" class="ui image">
+            <img id="image-preview" src="{{form.image}}" class="ui image">
           </div>
         </div>
         <div class="field">
@@ -56,7 +70,7 @@
 
         <div class="field">
           <div class="ui search selection labeled dropdown">
-            <input type="hidden" id="club_id" />
+            <input type="hidden" name="club_id" id="club_id" />
 
             <i class="dropdown icon"></i>
             <div class="default text">
@@ -72,7 +86,7 @@
           </div>
         </div>
 
-				<a ng-click="login()" class="ui fluid large dark-blue submit button">Cair pra dentro</a>
+				<a ng-click="save()" class="ui fluid large dark-blue submit button">Cair pra dentro</a>
       </div>
 
 			<div class="ui error message"></div>
