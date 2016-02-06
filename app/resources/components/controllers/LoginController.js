@@ -1,26 +1,28 @@
-App.controller('LoginController', function($scope, $auth) {
+App.controller('LoginController', function($scope, $auth, $rootScope, $location) {
 	$scope.form = {};
 
 	$scope.login = function() {
 	  $auth.submitLogin($scope.form)
 	    .then(function(resp) {
-	      // handle success response
 				alert('logado com SUCESSO!');
 	    })
 	    .catch(function(resp) {
 				console.log(resp);
-	      // alert('não deu!')
 	    });
 	};
 
 	$scope.authenticate = function(provider) {
     $auth.authenticate(provider)
 			.then(function(resp) {
-				console.log(resp);
-        $location.path('/');
+        $location.path('#/');
       })
       .catch(function(resp) {
         console.log(resp);
       });
   };
+
+	$scope.$on('auth:oauth-registration', function(ev, user) {
+		$rootScope.user = user;
+		$location.path('/last-step');
+	});
 });
