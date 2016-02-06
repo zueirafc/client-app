@@ -1,49 +1,81 @@
+<script>
+  $('.ui.dropdown').dropdown();
+  $("#uploader").click(function() {
+    $('#upload-tag').trigger('click');
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          $('#image-preview').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#upload-tag").change(function(){
+      readURL(this);
+  });
+</script>
+
 <div class="ui middle aligned center aligned grid">
   <div class="column margin-top">
     <div class="ui message">
       <h2 class="ui header title-auth">
-        Só falta o contrato!
+        Só falta assinar!
   	  </h2>
     </div>
 
 	  <form role="form" class="ui large form">
       <div class="ui stacked segment">
         <div class="field profile-image">
-          <div class="ui small image">
+          <div class="ui small rounded image">
             <div class="ui blurring dimmer">
               <div class="content">
-                <a class="center" href="" title="Trocar Foto">
+                <a href id="uploader" class="center" title="Trocar Foto">
                   <i class="big icons">
                     <i class="photo inverted icon"></i>
                     <i class="corner inverted add icon"></i>
                   </i>
                 </a>
+                <input id="upload-tag" style="display:none" type="file" accept="image/*" />
               </div>
             </div>
-            <img class="ui rounded image" src="/images/avatars/elyse.png">
+            <img ng-if="form.image" id="image-preview" src="{{form.image}}" class="ui image">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="mail icon"></i>
-            <input type="text" name="email" placeholder="E-mail" ng-model="form.email" required="required">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Senha" ng-model="form.password" required="required">
+            <i class="user icon"></i>
+            <input type="text" name="username" title="Nome de Usuário" placeholder="Nome de Usuário" ng-model="form.username" required="required">
           </div>
         </div>
 
-				<a ng-click="login()" class="ui fluid large dark-blue submit button">Login</a>
+        <div class="field">
+          <div class="ui search selection labeled dropdown">
+            <input type="hidden" id="club_id" />
+
+            <i class="dropdown icon"></i>
+            <div class="default text">
+              Para qual time você torce?
+            </div>
+
+            <div class="menu">
+              <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+                <img ng-src="{{ club.shield }}" class="ui mini image">
+                {{club.short_name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+				<a ng-click="login()" class="ui fluid large dark-blue submit button">Cair pra dentro</a>
       </div>
 
 			<div class="ui error message"></div>
 		</form>
-
-		<div class="ui message">
-      Ah, você pode entrar com o <a ng-click="authenticate('facebook')" href="">facebook</a> ou <a href="#/registro"> criar uma conta</a> se for novato!
-    </div>
   </div>
 </div>

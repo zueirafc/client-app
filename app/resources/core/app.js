@@ -55,3 +55,20 @@ App.config(function($routeProvider, $locationProvider, $httpProvider) {
 	$httpProvider.defaults.useXDomain = true;
 	delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
+
+App.directive('previewUpload', function (){
+  return {
+    restrict: 'A',
+    link: function ($scope, elem, attrs) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $scope.image = e.target.result;
+          $scope.$apply();
+      }
+
+      elem.on('change', function() {
+          reader.readAsDataURL(elem[0].files[0]);
+      });
+    }
+  }
+});
