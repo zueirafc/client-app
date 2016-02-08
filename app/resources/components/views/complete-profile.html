@@ -43,7 +43,7 @@
   	  </h2>
     </div>
 
-	  <form role="form" class="ui large form">
+    <form ng-submit="update(update_form)" class="ui large form" role="form" ng-init="initialize()">
       <div class="ui stacked segment">
         <div class="field profile-image">
           <div class="ui small rounded image">
@@ -61,6 +61,7 @@
             <img id="image-preview" src="{{update_form.image}}" class="ui image">
           </div>
         </div>
+
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
@@ -86,7 +87,7 @@
           </div>
         </div>
 
-				<a ng-click="save()" class="ui fluid large dark-blue submit button">Cair pra dentro</a>
+        <button type="submit" class="ui fluid large dark-blue submit button">Cair pra dentro</button>
       </div>
 
 			<div class="ui error message"></div>

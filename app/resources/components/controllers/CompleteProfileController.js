@@ -1,42 +1,42 @@
-App.controller('CompleteProfileController', function($scope, $auth, $http, Api, $rootScope, $location) {
-  $scope.base_user = $rootScope.user;
-  $scope.update_form = { };
+App.controller('CompleteProfileController', function($scope, $auth, $http, Api, $location) {
+  var reader = new FileReader();
 
-  $scope.initialize = function() {
-  	$('.profile-image .image').dimmer({ on: 'hover' });
-    $scope.update_form.image = $scope.base_user.image ? $scope.base_user.image.url : '/images/avatars/elyse.png';
-  }
-
-  $scope.file_changed = function(element) {
+  $scope.file_changed = function(element){
      $scope.$apply(function(scope) {
          var photofile = element.files[0];
-         var reader = new FileReader();
 
          reader.onload = function(e) { };
          reader.readAsDataURL(photofile);
      });
    };
 
+  $scope.initialize = function(){
+    $('.profile-image .image').dimmer({ on: 'hover' });
+    $scope.update_form = {
+      club_id: null,
+      username: $scope.user.username,
+      image: ($scope.user.image ? $scope.user.image.url : '/images/avatars/elyse.png')
+    }
+  }
+
   $scope.getClubs = function(){
     $http.get(Api + '/clubs.json')
       .then(function successCallback(response) {
         $scope.clubs = response.data.clubs;
-      }, function errorCallback(response) {
-   });
+      }, function errorCallback(response) { });
   };
 
-  $scope.save = function(){
-    $auth.updateAccount({
-      username: $scope.update_form.username,
-      image: $scope.update_form.image,
-			club_id: $('#club_id').val()
-    }).then(function(resp) {
-      $location.path('#/');
+  $scope.update = function(obj){
+    obj.club_id = $('#club_id').val()
+    obj.image = ($("#upload-tag")[0].files ? reader.readAsDataURL($("#upload-tag")[0].files[0]) : null);
+
+    $auth.updateAccount(obj)
+    .then(function(resp) {
+      $location.path('');
     }).catch(function(resp) {
       console.log(resp);
     });
   };
 
-  $scope.initialize();
   $scope.getClubs();
 });
