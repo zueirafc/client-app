@@ -1,21 +1,15 @@
-<style type="text/css">
-	body > .grid {
-		height: 100%;
-	}
-	.column {
-		max-width: 450px;
-	}
-</style>
-
 <script>
-	$('.ui.dropdown').dropdown();
+  $('.ui.dropdown').dropdown();
 </script>
 
 <div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h1 class="ui  header">
-      Seja bem vindo ao time!
-	  </h1>
+  <div class="column margin-top">
+		<div class="ui message">
+			<h2 class="ui header title-auth">
+				Entre para o time!
+			</h2>
+			<span style="font-size: 9px">não se preocupe, não tem peneira ;)</span>
+		</div>
 
 	  <form role="form" class="ui large form">
       <div class="ui stacked segment">
@@ -65,7 +59,7 @@
 		</form>
 
 		<div class="ui message">
-      Pssst.. Já possui uma conta? <a href="#/login">Entre aqui!</a>
+      Pssst... Já está inscrito no bid? <a href="#/login">Entre aqui!</a> ou pelo <a ng-click="authenticate('facebook')" href="">facebook</a>
     </div>
   </div>
 </div>
