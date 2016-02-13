@@ -1,17 +1,10 @@
-<style type="text/css">
-	body > .grid {
-		height: 100%;
-	}
-	.column {
-		max-width: 450px;
-	}
-</style>
-
 <div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h1 class="ui image header">
-      Acesse sua conta!
-	  </h1>
+  <div class="column margin-top">
+    <div class="ui message">
+      <h2 class="ui header title-auth">
+        Acesse os vestiários!
+  	  </h2>
+    </div>
 
 	  <form role="form" class="ui large form">
       <div class="ui stacked segment">
@@ -35,7 +28,7 @@
 		</form>
 
 		<div class="ui message">
-      Novo por aqui? <a href="#/registro">Crie uma conta</a>
+      Ah, você pode entrar com o <a ng-click="authenticate('facebook')" href="">facebook</a> ou <a href="#/registro"> criar uma conta</a> se for novato!
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ App.controller('ToolbarController', function($scope, $auth, $location) {
         $location.path('/');
       })
       .catch(function(resp) {
-        // handle error response
+				console.log(resp);
       });
 	};
 

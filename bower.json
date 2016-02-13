@@ -10,7 +10,8 @@
     "angular-mocks": "1.4.x",
     "semantic": "2.1",
     "ng-token-auth": "0.0.29-beta1",
-    "kbwood_countdown": "2.0.1"
+    "kbwood_countdown": "2.0.1",
+    "angularjs-rails-resource": "2.0.0"
   },
   "resolutions": {
     "angular": "1.4.x"
