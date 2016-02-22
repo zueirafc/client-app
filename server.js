@@ -5,20 +5,14 @@ var admin = express();
 
 var path = require('path');
 
-// scripts
-app.use('/images', express.static(__dirname + '/app/resources/images'));
-app.use('/scripts', express.static(__dirname + '/app/resources/bower'));
-app.use('/scripts/core', express.static(__dirname + '/app/resources/core'));
-app.use('/components', express.static(__dirname + '/app/resources/components'));
-app.use('/styles', express.static(__dirname + '/app/resources/css'));
-app.use('/vendor', express.static(__dirname + '/app/node_modules'));
-
-auth.use('/images', express.static(__dirname + '/app/resources/images'));
-auth.use('/scripts', express.static(__dirname + '/app/resources/bower'));
-auth.use('/scripts/core', express.static(__dirname + '/app/resources/core'));
-auth.use('/components', express.static(__dirname + '/app/resources/components'));
-auth.use('/styles', express.static(__dirname + '/app/resources/css'));
-auth.use('/vendor', express.static(__dirname + '/app/node_modules'));
+[admin, auth, app].forEach(function(element, index, array){
+  element.use('/images', express.static(__dirname + '/app/resources/images'));
+  element.use('/scripts', express.static(__dirname + '/app/resources/bower'));
+  element.use('/scripts/core', express.static(__dirname + '/app/resources/core'));
+  element.use('/components', express.static(__dirname + '/app/resources/components'));
+  element.use('/styles', express.static(__dirname + '/app/resources/css'));
+  element.use('/vendor', express.static(__dirname + '/app/node_modules'));
+});
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/app/masters/home/index.html'));

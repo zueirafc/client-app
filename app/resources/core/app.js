@@ -29,7 +29,7 @@ App.config(function ($routeProvider) {
         controller: 'CompleteProfileController'
     });
 
-    $routeProvider.when('/admin/approvals', {
+    $routeProvider.when('/approvals', {
         templateUrl: 'components/views/admin/approvals.html',
         controller: 'ApprovalsController'
     });
