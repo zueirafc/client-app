@@ -19,8 +19,7 @@
   <link rel="stylesheet" href="styles/app.css"/>
   <link rel="stylesheet" href="styles/admin.css"/>
 </head>
-<body class="site">
-
+<body>
   <div class="ui main"></div>
 
   <div ng-controller="ToolbarController">
@@ -36,9 +35,6 @@
       <!--View principal -->
       <div ng-view ></div>
     </div>
-
-    <!--Include para adicionar footer -->
-    <ng-include src="'components/templates/footer.html'"></ng-include>
   </div>
 
   <!-- jquery -->
@@ -46,6 +42,7 @@
   <!-- Angular -->
   <script src="scripts/angular/angular.min.js"></script>
   <script src="scripts/angular-route/angular-route.min.js"></script>
+  <script src="scripts/angular-resource/angular-resource.min.js"></script>
   <script src="scripts/angular-cookie/angular-cookie.min.js"></script>
   <script src="scripts/ng-token-auth/dist/ng-token-auth.min.js"></script>
   <!-- Semantic UI -->
