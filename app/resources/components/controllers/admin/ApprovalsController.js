@@ -37,9 +37,9 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 	};
 
 	$scope.init = function(){
-    MicropostParticipant.query(function(data){
-      $scope.clubs = data.clubs;
-    });
+   		MicropostParticipant.query(function(data){
+      		$scope.clubs = data.clubs;
+   		});
 
 		setTimeout(function() {
 			$('.ui.modal').modal({ blurring: true }).modal();
@@ -49,13 +49,26 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 	};
 
 	$scope.approve = function(){
+		$scope.post.status = 2;
+
+		$('.ui.modal').modal('hide');
+
+	};
+
+	$scope.reprove = function(){
+		$scope.post.status = 3;
+
+
+			$('.ui.modal').modal('hide');
+	};
+
+	$scope.remove = function(){
 		$scope.post.status = 1;
 
-		$scope.post.$update(function(){
-			$scope.list();
-			$('.ui.modal').modal('hide');
-		});
-	}
+		$('.ui.modal').modal('hide');
+	
+	};
+	
 
 	$scope.init();
 });

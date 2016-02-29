@@ -2,10 +2,33 @@
 
 <div class="ui padded segment">
 	<div class="ui middle aligned divided list" infinite-scroll='api.nextPage()' infinite-scroll-distance='2'>
+		
+		<form class="ui form" style="height: 110px;">
+	  		<h4 class="ui dividing header">Filtros - ZueiraFC</h4>
+	  		<div class="field">
+	    			<label>Filtros</label>
+	   			<div class="two fields">
+	      				<div class="field">
+	        				<input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
+	      				</div>
+				
+	  				</div>
+	  			</div>
+	  	
+ 		</form>
+
 		<!-- Repeater -->
-		<a class="item" ng-click="open(post)" ng-repeat="post in api.items" ng-init="kind = post.source.kind">
+		<a class="item" ng-click="open(post)" ng-repeat="post in api.items | filter:search:strict" ng-init="kind = post.source.kind">
 			<div class="right floated content">
 				<div class="description">{{ post.created_time | date: 'dd/MM HH:mm' }}</div>
+			</div>
+
+			<div class="right floated content">
+				<div class="description" ng-if="post.status == 0">Descartar</div>
+				<div class="description" ng-if="post.status == 1">Banido</div>
+				<div class="description" ng-if="post.status == 2">Ativo</div>
+				<div class="description" ng-if="post.status == 3">Reprovado</div>
+				<div class="description" ng-if="post.status == 4">Aguardando</div>
 			</div>
 
 			<i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
@@ -20,6 +43,7 @@
 					{{ post.title ? post.title : post.text }}
 				</div>
 			</div>
+
 		</a>
 		<div class="item" ng-show='api.busy'>
 			<div class="ui content">
