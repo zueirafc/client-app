@@ -11,7 +11,7 @@ App.factory('ZueiraAPI', function($http, Micropost, Api) {
 
     Micropost.pending({page: this.nextPageNumber}, function(data){
       var items = data.microposts;
-    
+
       for (var i = 0; i < items.length; i++) {
         this.items.push(items[i]);
       }

@@ -16,18 +16,21 @@
 				<div class="{{ post.text ? 'header' : 'grey-meta' }}">
 					{{ post.source.name }}
 				</div>
-				<div class="meta grey-meta" ng-if="post.text">
-					{{ post.text }}
+				<div class="meta grey-meta">
+					{{ post.title ? post.title : post.text }}
 				</div>
 			</div>
 		</a>
-
-		<div class="item" ng-show='!api.busy'>Loading data...</div>
+		<div class="item" ng-show='api.busy'>
+		  <div class="ui active segment">
+		   	<div class="ui medium text loader inline"> Carregando...</div>
+		  </div>
+		</div>
 		<!-- / Repeater -->
 	</div>
 </div>
 
-<div class="ui modal">
+<div class="ui modal scrolling">
 	<div class="sub header">
 		<div class="ui large form">
 			<div class="field">
@@ -35,9 +38,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="video content">
-		<div class="ui embed">
-			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/F2ezSmCb-M0" frameborder="0" allowfullscreen></iframe> -->
+	<div class="ui content">
+		<div class="ui centered large image" ng-repeat="medium in post.media">
+			<img ng-src="{{medium.file}}">	
 		</div>
 		<div class="text content">
 			<br>
