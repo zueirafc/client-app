@@ -6,7 +6,7 @@
   "repository": "https://github.com/zueirafc/client-app",
   "license": "MIT",
   "dependencies": {
-    "bower": "1.7.4",
+    "bower": "1.7.5",
     "express": "~4.9.8"
   },
   "engines": {
