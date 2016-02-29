@@ -6,21 +6,45 @@
     </a>
 
     <div class="ui center aligned container text">
-      <div class="ui equal width center aligned padded grid">
-        <div class="row">
-          <div class="column">
-            <span style="margin-right:10px">Sou</span>
-            <select class="ui dropdown compact">
-              <option value="">Eu sou...</option>
-              <option value="1">Corinthians</option>
-              <option value="0">São Paulo</option>
-            </select>
-            <span style="margin-left: 10px;margin-right:10px">e quero zuar</span>
-            <select class="ui dropdown compact">
-              <option value="">Esse freguês</option>
-              <option value="1">Palmares</option>
-              <option value="0">São Paulo</option>
-            </select>
+      <div class="justified content" style="padding-top: 15px;">
+        Sou
+        <div class="ui inline search dropdown">
+          <input type="hidden" id="troller_id" />
+          <div class="text">.............</div>
+          <i class="dropdown icon"></i>
+
+          <div class="menu">
+            <!-- <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+              {{club.short_name}}
+            </div> -->
+
+            <div class="item">corintiano</div>
+            <div class="item">flamenguista</div>
+            <div class="item">santista</div>
+            <div class="item">colorado</div>
+            <div class="item">gremista</div>
+            <div class="item">palmeirense</div>
+            <div class="item">são paulino</div>
+          </div>
+        </div>
+        e quero zuar
+        <div class="ui inline search dropdown">
+          <input type="hidden" id="target_id" />
+          <div class="text">.............</div>
+          <i class="dropdown icon"></i>
+
+          <div class="menu">
+            <!-- <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+              {{club.short_name}}
+            </div> -->
+
+            <div class="item">corintianos</div>
+            <div class="item">flamenguistas</div>
+            <div class="item">santistas</div>
+            <div class="item">colorados</div>
+            <div class="item">gremistas</div>
+            <div class="item">palmeirenses</div>
+            <div class="item">são paulinos</div>
           </div>
         </div>
       </div>
@@ -43,3 +67,4 @@
     on: 'hover'
   });
 </script>
+
