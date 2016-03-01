@@ -1,0 +1,124 @@
+<h1 style="margin-top:0.9em">Mineração de Posts</h1>
+
+<div class="ui padded segment">
+	<div class="ui middle aligned divided list" infinite-scroll='api.nextPage()' infinite-scroll-distance='2'>
+		<!-- Repeater -->
+		<a class="item" ng-click="open(post)" ng-repeat="post in api.items" ng-init="kind = post.source.kind">
+			<div class="right floated content">
+				<div class="description">{{ post.created_time | date: 'dd/MM HH:mm' }}</div>
+			</div>
+
+			<i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
+			<i class="ui avatar large twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
+			<i class="ui avatar large rss rs square icon" ng-show="kind == 3 || kind == 4"></i>
+
+			<div class="content">
+				<div class="{{ post.text ? 'header' : 'grey-meta' }}">
+					{{ post.source.name }}
+				</div>
+				<div class="meta grey-meta">
+					{{ post.title ? post.title : post.text }}
+				</div>
+			</div>
+		</a>
+		<div class="item" ng-show='api.busy'>
+			<div class="ui content">
+				<img class="ui centered medium image" src="images/utils/loader.gif">
+			</div>
+		</div>
+		<!-- / Repeater -->
+	</div>
+</div>
+
+<div class="ui modal scrolling">
+	<div class="sub header">
+		<div class="ui large form">
+			<div class="field">
+				<input type="text" ng-model="post.title" placeholder="Título dessa zoeira">
+			</div>
+		</div>
+	</div>
+	<div class="ui content">
+		<div class="ui centered large image" ng-repeat="medium in post.media">
+			<img ng-src="{{medium.file}}">	
+		</div>
+		<div class="text content">
+			<br>
+			<div class="ui form">
+				<div class="ui column">
+					<label>Mensagem / Descrição</label>
+					<textarea ng-model="post.text" rows="2"></textarea>
+				</div>
+			</div>
+			<br>
+			<div class="ui form">
+				<div class="ui two column very relaxed grid">
+					<div class="column">
+						<label>Zueiros</label>
+						
+						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''">
+							<input name="country" type="hidden">
+							<i class="dropdown icon"></i>
+							<div class="default text">Zueiros</div>
+							<div class="menu">
+								<div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+									<img ng-src="{{club.shield.thumb.url}}" />
+									{{club.short_name}}
+								</div>
+
+								<div class="divider"></div>
+
+								<div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+									<img ng-src="{{league.shield}}" class="ui mini image">
+									{{league.short_name}}
+								</div>
+							</div>
+						</div>
+
+						<div class="ui checkbox" style="margin-top: 7px;">
+							<input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
+							<label>Todo Mundo!</label>
+						</div>
+					</div>
+					<div class="ui vertical divider">
+						vs
+					</div>
+					<div class="column">
+						<label>Zuados</label>
+
+						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
+							<input name="country" type="hidden">
+							<i class="dropdown icon"></i>
+							<div class="default text">Zuados</div>
+							<div class="menu">
+								<div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+									<img ng-src="{{club.shield.thumb.url}}" class="ui mini image">
+									{{club.short_name}}
+								</div>
+
+								<div class="divider"></div>
+
+								<div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+									<img ng-src="{{league.shield}}" class="ui mini image">
+									{{league.short_name}}
+								</div>
+							</div>
+						</div>
+
+						<div class="ui checkbox" style="margin-top: 7px;">
+							<input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
+							<label>Todo Mundo!</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui buttons">
+			<button class="ui deny button" ng-click="remove()">Não é zueira</button>
+			<button class="ui red button" ng-click="reprove()">Reprovar</button>
+			<button class="ui positive button" ng-click="approve()">Aprovar</button>
+		</div>
+	</div>
+</div>

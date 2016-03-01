@@ -1,23 +1,11 @@
-App.controller('ToolbarController', function($scope, $auth, $location) {
-	$scope.templateUrl = '';
+App.controller('ToolbarController', function($scope, $location, $http, Api) {
+  $scope.templateUrl = 'components/partials/toolbar/_logged.html';
 
-  $scope.chooser = function(){
-    if ($auth.validateUser()) {
-      $scope.templateUrl = 'components/partials/toolbar/_logged.html';
-    } else {
-      $scope.templateUrl = 'components/partials/toolbar/_not_logged.html';
-    }
+  $scope.getClubs = function(){
+    $http.get(Api + '/clubs.json').then(function successCallback(response) {
+        $scope.clubs = response.data.clubs;
+    });
   };
 
-	$scope.logout = function(){
-		$auth.signOut()
-      .then(function(resp) {
-        $location.path('/');
-      })
-      .catch(function(resp) {
-				console.log(resp);
-      });
-	};
-
-  $scope.chooser();
+  $scope.getClubs();
 });
