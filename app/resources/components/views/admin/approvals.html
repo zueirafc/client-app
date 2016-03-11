@@ -1,12 +1,27 @@
 <h1 style="margin-top:0.9em">Mineração de Posts</h1>
 
 <div class="ui padded segment">
-	<div class="ui middle aligned divided list" infinite-scroll='api.nextPage()' infinite-scroll-distance='2'>
+	<div class="ui middle aligned divided list" infinite-scroll='api.nextPage(typePost)' infinite-scroll-distance='2'>
 		
-		<form class="ui form" style="height: 110px;">
-	  		<h4 class="ui dividing header">Filtros - ZueiraFC</h4>
+		<form class="ui form" style="height: 200px;">
+
+			<h4 class="ui dividing header">Buscar as zueirar</h4>
+			<div class="ui five buttons">
+  				<button class="ui pending button active" ng-click="mudarTypePost(4)">Em aprovação</button>
+  					<div class="or" data-text="ou"></div>
+ 				<button class="ui positive button" ng-click="mudarTypePost(2)">Ativas</button>
+ 				<div class="or" data-text="ou"></div>
+   					<button class="ui deleted button" ng-click="mudarTypePost(0)">Descartadas</button>
+   					<div class="or" data-text="ou"></div>
+  				<button class="ui banned button" ng-click="mudarTypePost(1)">Banidas</button>
+  					<div class="or" data-text="ou"></div>
+   				<button class="ui negative button" ng-click="mudarTypePost(3)">Reprovadas</button>
+			</div>
+			
+
+
+	  		<h4 class="ui dividing header">Filtrar as zueiras</h4>
 	  		<div class="field">
-	    			<label>Filtros</label>
 	   			<div class="two fields">
 	      				<div class="field">
 	        				<input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
@@ -115,7 +130,7 @@
 							<i class="dropdown icon"></i>
 							<div class="default text">Zuados</div>
 							<div class="menu">
-								<div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+								<div class="item" data-value="{{club.id}}" ng-click="add(club)" ng-repeat="club in clubs">
 									<img ng-src="{{club.shield.thumb.url}}" class="ui mini image">
 									{{club.short_name}}
 								</div>
@@ -133,6 +148,8 @@
 							<input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
 							<label>Todo Mundo!</label>
 						</div>
+
+
 					</div>
 				</div>
 			</div>
