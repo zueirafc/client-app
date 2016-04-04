@@ -42,6 +42,7 @@ App.config(function ($routeProvider) {
 App.run(function($http) {
 	// process.env.API_AUTH_TOKEN
 	$http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
+
 });
 
 App.config(function($routeProvider, $locationProvider, $httpProvider) {

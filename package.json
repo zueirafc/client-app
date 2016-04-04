@@ -1,12 +1,12 @@
 {
   "name": "client-app",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ZueiraFC Client Application ",
   "repository": "https://github.com/zueirafc/client-app",
   "license": "MIT",
   "dependencies": {
-    "bower": "1.7.5",
+    "bower": "1.7.7",
     "express": "~4.9.8"
   },
   "engines": {

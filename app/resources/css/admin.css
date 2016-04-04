@@ -35,3 +35,184 @@ i.rs.icon {
 .grey-meta{
   color: #65554A;
 }
+
+
+/*---------------
+     Aguardando
+----------------*/
+
+.ui.pending.buttons .button,
+.ui.pending.button {
+  background-color:#f0e32a !important;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.pending.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.pending.buttons .button:hover,
+.ui.pending.button:hover {
+  background-color: #f9d400 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .button:focus,
+.ui.pending.button:focus {
+  background-color: #f9d400 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .button:active,
+.ui.pending.button:active {
+  background-color: #f0e32a !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .active.button,
+.ui.pending.active.button,
+.ui.pending.buttons .active.button:active {
+  background-color: #f0e32a;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/*---------------
+     Aguardando
+----------------*/
+
+.ui.pending.buttons .button,
+.ui.pending.button {
+  background-color:#f0e32a !important;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.pending.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.pending.buttons .button:hover,
+.ui.pending.button:hover {
+  background-color: #f9d400 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .button:focus,
+.ui.pending.button:focus {
+  background-color: #f9d400 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .button:active,
+.ui.pending.button:active {
+  background-color: #f0e32a !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.pending.buttons .active.button,
+.ui.pending.active.button,
+.ui.pending.buttons .active.button:active {
+  background-color: #f0e32a;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/*---------------
+     Aguardando
+----------------*/
+
+.ui.banned.buttons .button,
+.ui.banned.button {
+  background-color:#745d67 !important;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.banned.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.banned.buttons .button:hover,
+.ui.banned.button:hover {
+  background-color: #391826 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.banned.buttons .button:focus,
+.ui.banned.button:focus {
+  background-color: #391826 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.banned.buttons .button:active,
+.ui.banned.button:active {
+  background-color: #745d67 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.banned.buttons .active.button,
+.ui.banned.active.button,
+.ui.banned.buttons .active.button:active {
+  background-color: #745d67;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/*---------------
+     deleted
+----------------*/
+
+.ui.deleted.buttons .button,
+.ui.deleted.button {
+  background-color:#FF8C00 !important;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.deleted.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.deleted.buttons .button:hover,
+.ui.deleted.button:hover {
+  background-color: #FF4500 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.deleted.buttons .button:focus,
+.ui.deleted.button:focus {
+  background-color: #FF4500 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.deleted.buttons .button:active,
+.ui.deleted.button:active {
+  background-color: #FF8C00 !important;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.deleted.buttons .active.button,
+.ui.deleted.active.button,
+.ui.deleted.buttons .active.button:active {
+  background-color: #FF8C00;
+  color: #ffffff;
+  text-shadow: none;
+}
