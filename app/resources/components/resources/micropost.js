@@ -4,6 +4,10 @@ App.factory('Micropost', function($resource, Api) {
 	{
 		update: { method: 'PUT' },
 		query: { method: 'GET', isArray: false },
+        delete: { 
+            method: 'DELETE', 
+            isArray: false
+        },
         deleted: { 
             url: Api + '/microposts/deleted', 
             method: 'GET', 
@@ -28,8 +32,26 @@ App.factory('Micropost', function($resource, Api) {
             url: Api + '/microposts/pending', 
             method: 'GET', 
             isArray: false
-        }
+        },
+        
+
 	});
+
+    return resource;
+
+});
+
+App.factory('Delete_Micropost', function($resource, Api,$log) {
+
+    var resource = $resource(Api + '/microposts/:micropost_id/media/:id_medium.json', { micropost_id: '@micropost_id',id_medium :'@id_medium' },
+    {
+       
+        delete: { 
+            method: 'DELETE', 
+            isArray: false
+        }   
+
+    });
 
     return resource;
 

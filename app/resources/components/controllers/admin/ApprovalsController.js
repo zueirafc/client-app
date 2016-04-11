@@ -1,6 +1,7 @@
 App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
+  
   var ZueiraAPI = function() {
-    this.items = [];
+    this.items = new Array();
     this.busy = false;
     this.nextPageNumber = 1;
   };
@@ -8,7 +9,6 @@ App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
   ZueiraAPI.prototype.nextPage = function(typePost) {
     if (this.busy) return;
     this.busy = true;
-
 
 	if(typePost == 0){
 
@@ -68,7 +68,7 @@ App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
 	    Micropost.pending({page: this.nextPageNumber}, function(data){
 	      var items = data.microposts;
 
-
+	     
 	      for (var i = 0; i < items.length; i++) {
 	        this.items.push(items[i]);
 	      }
@@ -85,7 +85,7 @@ App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
 });
 
 
-App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, MicropostParticipant, $http,$log) {
+App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropost, ZueiraAPI, MicropostParticipant, $http,$log) {
 	// deleted: 0, banned: 1, active: 2, reproved: 3, pending: 4
 
 	$scope.api = new ZueiraAPI();
@@ -97,10 +97,9 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 		$('.ui.modal').modal('show');
 	};
 
-	$scope.mudarTypePost = function (typePost) {
+	$scope.refreshTypePost = function (typePost) {
 		$scope.typePost = typePost;
-		$scope.api.items = [];
-		$scope.api.nextPageNumber = 1;
+		$scope.api = new ZueiraAPI();
 		$scope.api.nextPage($scope.typePost);
 	};
 
@@ -123,11 +122,18 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 		$scope.micropostJson = {
     		"micropost" :$scope.post
     	};
-    	
+
+    	 var _timezueiro = $('.ui.fluid.multiple.search')
+  				.search('behavior show results');
+
+
+			$log.info(_timezueiro)
+
+
 		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
-
+		$scope.refreshTypePost($scope.typePost);
 	};
 
 	$scope.reprove = function(){
@@ -140,6 +146,10 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
+
+		$scope.refreshTypePost($scope.typePost)
+
+
 	};
 
 	$scope.remove = function(){
@@ -152,6 +162,37 @@ App.controller('ApprovalsController', function($scope, Micropost, ZueiraAPI, Mic
 		Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
+
+		$scope.refreshTypePost($scope.typePost)
+	
+	};
+
+	$scope.deletePost = function(typePost){
+
+		$scope.micropostJson = {
+    		"micropost" :$scope.post
+    	};
+    	
+		Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
+
+		$('.ui.modal').modal('hide');
+
+		$scope.refreshTypePost(typePost)
+	
+	};
+
+	$scope.deleteSources = function(post,source,typePost){
+		$scope.post = post;
+
+		$scope.micropostJson = {
+    		"micropost" :$scope.post
+    	};
+    	
+		Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
+
+		$('.ui.modal').modal('hide');
+
+		$scope.refreshTypePost($scope.typePost)
 	
 	};
 

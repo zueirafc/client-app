@@ -5,17 +5,17 @@
 		
 		<form class="ui form" style="height: 200px;">
 
-			<h4 class="ui dividing header">Buscar as zueirar</h4>
+			<h4 class="ui dividing header">Buscar as zueiras</h4>
 			<div class="ui five buttons">
-  				<button class="ui pending button active" ng-click="mudarTypePost(4)">Em aprovação</button>
+  				<button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
   					<div class="or" data-text="ou"></div>
- 				<button class="ui positive button" ng-click="mudarTypePost(2)">Ativas</button>
+ 				<button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
  				<div class="or" data-text="ou"></div>
-   					<button class="ui deleted button" ng-click="mudarTypePost(0)">Descartadas</button>
+   					<button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
    					<div class="or" data-text="ou"></div>
-  				<button class="ui banned button" ng-click="mudarTypePost(1)">Banidas</button>
+  				<button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
   					<div class="or" data-text="ou"></div>
-   				<button class="ui negative button" ng-click="mudarTypePost(3)">Reprovadas</button>
+   				<button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
 			</div>
 			
 
@@ -77,12 +77,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="ui content">
-		<div class="ui centered large image" ng-repeat="medium in post.media">
-			<img ng-src="{{medium.file}}">	
+	<div class="image content">
+		<div class="ui medium image" ng-repeat="medium in post.media">
+			<img ng-src="{{medium.file}}">
+
+			<button class="ui red button" ng-click="deleteSources(post, medium.id)" >Excluir Foto</button>	
+
 		</div>
-		<div class="text content">
-			<br>
+		</div>
+			<div class="image center content">
+		<div class="ui large image" style=" margin-left: 20px;">
 			<div class="ui form">
 				<div class="ui column">
 					<label>Mensagem / Descrição</label>
@@ -91,12 +95,12 @@
 			</div>
 			<br>
 			<div class="ui form">
-				<div class="ui two column very relaxed grid">
+				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zueiros</label>
 						
 						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''">
-							<input name="country" type="hidden">
+							<input name="time_zueiro" type="hidden">
 							<i class="dropdown icon"></i>
 							<div class="default text">Zueiros</div>
 							<div class="menu">
@@ -119,9 +123,10 @@
 							<label>Todo Mundo!</label>
 						</div>
 					</div>
-					<div class="ui vertical divider">
-						vs
 					</div>
+				</div>
+				<div class="ui form">
+				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zuados</label>
 
@@ -130,7 +135,7 @@
 							<i class="dropdown icon"></i>
 							<div class="default text">Zuados</div>
 							<div class="menu">
-								<div class="item" data-value="{{club.id}}" ng-click="add(club)" ng-repeat="club in clubs">
+								<div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
 									<img ng-src="{{club.shield.thumb.url}}" class="ui mini image">
 									{{club.short_name}}
 								</div>
@@ -158,8 +163,9 @@
 	<div class="actions">
 		<div class="ui buttons">
 			<button class="ui deny button" ng-click="remove()">Não é zueira</button>
-			<button class="ui red button" ng-click="reprove()">Reprovar</button>
+			<button class="ui dark-blue button" ng-click="reprove()">Reprovar</button>
 			<button class="ui positive button" ng-click="approve()">Aprovar</button>
+			<button class="ui red button" ng-click="deletePost(typePost)" >Excluir</button>	
 		</div>
 	</div>
 </div>
