@@ -3,8 +3,8 @@
 // Defining Angular app model with all other dependent modules
 var App = angular.module('App', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
-App.constant("Api", 'http://localhost:3000/v1');
-// App.constant("Api", 'http://api.zueirafc.com/v1');
+// App.constant("Api", 'http://localhost:3000/v1');
+App.constant("Api", 'http://api.zueirafc.com/v1');
 
 App.config(function ($routeProvider) {
 
