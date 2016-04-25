@@ -82,3 +82,9 @@ body {
   text-shadow: none;
   background-image: none;
 }
+
+
+/* items dentro do menu de escolha dos alvos */
+.min-item{
+   min-width: 240px
+}
