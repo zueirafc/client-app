@@ -55,7 +55,7 @@
 					{{ post.source.name }}
 				</div>
 				<div class="meta grey-meta">
-					{{ post.title ? post.title : post.text }}
+					{{ post.title ? post.title : post.text | limitTo:letterLimit}}
 				</div>
 			</div>
 

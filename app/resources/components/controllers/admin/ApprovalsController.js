@@ -90,6 +90,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
 	$scope.api = new ZueiraAPI();
 	$scope.typePost = 4;
+	 $scope.letterLimit = 85;
 
 	$scope.open = function (post) {
 		$scope.post = post;
