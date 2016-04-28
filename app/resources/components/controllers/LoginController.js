@@ -1,25 +1,40 @@
-App.controller('LoginController', function($scope, $auth, $location, $rootScope) {
+App.controller('LoginController', function($scope, $auth, $location, $rootScope, IsLogged) {
   $scope.form = {};
 
   $scope.login = function() {
     if($('form').form('is valid')){
       $auth.submitLogin($scope.form)
         .then(function(resp) {
-          alert('logado com SUCESSO!');
+          IsLogged = true;
+          window.location.href = '/admin/#/approvals';
         })
         .catch(function(resp) {
+          IsLogged = false;
           console.log(resp);
         });
     }
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-      alert('Welcome ', user.email);
+      alert('Welcome');
   });
 
   $rootScope.$on('auth:login-error', function(ev, reason) {
       alert('auth failed because ' + reason.errors[0]);
   });
+
+
+  $rootScope.$on('auth:validation-success', function(ev, user) {
+    alert('sucesso');
+    IsLogged = true;
+    alert("IsLogged: " + IsLogged);
+  });
+
+  $rootScope.$on('auth:validation-error', function(ev, user) {
+    alert('error');
+    IsLogged = false;
+  });
+
 
   $scope.load = function() {
     $('.ui.form')
