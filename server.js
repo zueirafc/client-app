@@ -1,12 +1,11 @@
 var express = require('express');
 var app = express();
-// var auth = express();
+var auth = express();
 var admin = express();
 
 var path = require('path');
 
-// , auth,
-[admin, app].forEach(function(element, index, array){
+[admin, auth, app].forEach(function(element, index, array){
 	element.use('/images', express.static(__dirname + '/app/resources/images'));
 	element.use('/scripts', express.static(__dirname + '/app/resources/bower'));
 	element.use('/scripts/core', express.static(__dirname + '/app/resources/core'));
@@ -22,13 +21,12 @@ app.get('/', function(req, res) {
 admin.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/app/masters/admin/index.html'));
 });
-//
-// auth.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname + '/app/masters/auth/index.html'));
-// });
-//
-//
-// app.use(['/auth'], auth);
+
+auth.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/app/masters/auth/index.html'));
+});
+
+app.use(['/auth'], auth);
 app.use(['/admin'], admin);
 
 app.set('port', (process.env.PORT || 5000));
