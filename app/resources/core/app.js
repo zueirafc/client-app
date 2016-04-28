@@ -3,8 +3,8 @@
 // Defining Angular app model with all other dependent modules
 var App = angular.module('App', ['ngRoute', 'ngResource', 'infinite-scroll', 'ng-token-auth']);
 
-App.constant("Api", 'http://localhost:3000/v1');
-// App.constant("Api", 'http://api.zueirafc.com/v1');
+// App.constant("Api", 'http://localhost:3000/v1');
+App.constant("Api", 'http://api.zueirafc.com/v1');
 
 App.config(function($routeProvider, $authProvider, Api) {
     // normal paths
@@ -25,9 +25,18 @@ App.config(function($routeProvider, $authProvider, Api) {
         needsAuth: false
     });
 
+    // admin
     $routeProvider.when('/approvals', {
         templateUrl: 'components/views/admin/approvals.html',
         controller: 'ApprovalsController',
+        needsAuth: true
+    }).when('/dash', {
+        templateUrl: 'components/views/admin/dash.html',
+        controller: 'DashController',
+        needsAuth: true
+    }).when('/sources', {
+        templateUrl: 'components/views/admin/sources.html',
+        controller: 'SourcesController',
         needsAuth: true
     });
 
@@ -49,6 +58,14 @@ App.run(function($rootScope, $location, $auth, $http) {
 
   $rootScope.$on('auth:validation-error', function (ev, error) {
     alert('You need to be logged in!');
+  });
+
+  $rootScope.$on('auth:logout-success', function(ev) {
+    alert('goodbye');
+  });
+
+  $rootScope.$on('auth:logout-error', function(ev, reason) {
+    alert('logout failed because ' + reason.errors[0]);
   });
 
   $rootScope.$on("$routeChangeStart", function(event, next, current) {

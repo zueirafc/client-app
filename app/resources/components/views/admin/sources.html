@@ -1,0 +1,24 @@
+<h1 style="margin-top:0.9em">Sources</h1>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Situação</th>
+      <th>Tipo</th>
+      <th>Chave</th>
+      <th>Pró?</th>
+      <th>Zoa?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="source in sources">
+      <td>{{source.name}}</td>
+      <td>{{source.status == 1 ? 'Ativo' : 'Inativo' }}</td>
+      <td>{{source.kind}}</td>
+      <td>{{source.key}}</td>
+      <td>{{source.troller_id}}</td>
+      <td>{{source.target_id}}</td>
+    </tr>
+  </tbody>
+</table>
