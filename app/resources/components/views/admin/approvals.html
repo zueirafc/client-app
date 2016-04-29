@@ -101,26 +101,32 @@
 					<div class="column">
 						<label>Zueiros</label>
 
-						<select name="skills" multiple="" class="ui fluid dropdown" >
-						<option  ng-repeat="club in clubs" ng-model="clubs_selection">
+						<select name="mySelect" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_zueiros"  id="mySelect" 
+								 ng-multiple="true" ng-options="club.short_name for club in clubs">
+					
+						</select>
 
-								<span style="margin-left: 3px"> <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important"> {{club.short_name}}</span>
+					</div>
+				</div>
+			</div>
+{{clubs_selection_zueiros}}
 
-							</option>}
+			<div class="ui form">
+				<div class="ui one column very relaxed grid">
+					<div class="column">
+						<label>Zuados</label>
 
+						<select name="skills" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_zuados" 
+								 ng-multiple="true" ng-options="club.short_name for club in clubs">
+					
 						</select>
 
 					</div>
 				</div>
 			</div>
 
-{{clubs_selection}}
 
-
-
-
-
-			<div class="ui form">
+			<!--<div class="ui form">
 				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zueiros</label>
@@ -184,7 +190,7 @@
 
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 	<div class="actions">

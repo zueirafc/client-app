@@ -124,11 +124,8 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 			"micropost" :$scope.post
 		};
 
-		var _timezueiro = $('.ui.multiple.dropdown').dropdown();
 
-
-		$log.info(_timezueiro)
-
+$(dropdown).empty();
 
 		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
