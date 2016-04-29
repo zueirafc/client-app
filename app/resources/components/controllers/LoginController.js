@@ -1,4 +1,4 @@
-App.controller('LoginController', function($scope, $auth, $location, $rootScope) {
+App.controller('LoginController', function($scope, $auth, $location, $rootScope, SweetAlert) {
   $scope.form = {};
 
   $scope.login = function() {
@@ -14,11 +14,23 @@ App.controller('LoginController', function($scope, $auth, $location, $rootScope)
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-      alert('Welcome');
+    SweetAlert.swal({
+      title: "Prepare-se, você vai entrar em campo!",
+      text: "Está escutando a torcida, gritando teu nome?",
+      type: "success",
+      confirmButtonColor: "#21ba45",
+      confirmButtonText: "Continuar"
+    });
   });
 
   $rootScope.$on('auth:login-error', function(ev, reason) {
-      alert('auth failed because ' + reason.errors[0]);
+    SweetAlert.swal({
+      title: "Ops, sua autenticação falhou!",
+      text: reason.errors[0],
+      type: "warning",
+      confirmButtonColor: "#db2828",
+      confirmButtonText: "Voltar"
+    });
   });
 
   $scope.load = function() {

@@ -1,7 +1,7 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var App = angular.module('App', ['ngRoute', 'ngResource', 'infinite-scroll', 'ng-token-auth']);
+var App = angular.module('App', ['ngRoute', 'ngResource', 'infinite-scroll', 'ng-token-auth', 'oitozero.ngSweetAlert']);
 
 // App.constant("Api", 'http://localhost:3000/v1');
 App.constant("Api", 'http://api.zueirafc.com/v1');
@@ -11,6 +11,9 @@ App.config(function($routeProvider, $authProvider, Api) {
     $routeProvider.when('/', {
         templateUrl: 'components/views/home.html',
         controller: 'HomeController',
+        needsAuth: false
+    }).when('/open-source', {
+        templateUrl: 'components/views/home/open-source.html',
         needsAuth: false
     });
 
@@ -52,12 +55,20 @@ App.config(function($routeProvider, $authProvider, Api) {
 });
 
 
-App.run(function($rootScope, $location, $auth, $http) {
+App.run(function($rootScope, $location, $auth, $http, SweetAlert) {
   // process.env.API_AUTH_TOKEN
   $http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
 
   $rootScope.$on('auth:validation-error', function (ev, error) {
-    alert('You need to be logged in!');
+    SweetAlert.swal({
+      title: "Are you sure?",
+      text: "Your will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false
+    });
   });
 
   $rootScope.$on('auth:logout-success', function(ev) {
@@ -65,7 +76,16 @@ App.run(function($rootScope, $location, $auth, $http) {
   });
 
   $rootScope.$on('auth:logout-error', function(ev, reason) {
-    alert('logout failed because ' + reason.errors[0]);
+    // alert('logout failed because ' + reason.errors[0]);
+    SweetAlert.swal({
+      title: "Are you sure?",
+      text: "Your will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false
+    });
   });
 
   $rootScope.$on("$routeChangeStart", function(event, next, current) {

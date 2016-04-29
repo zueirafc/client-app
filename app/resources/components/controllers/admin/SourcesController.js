@@ -1,10 +1,9 @@
-App.controller('SourcesController', function($scope, $http, Api) {
-  $scope.getSources = function(){
-    $http.get(Api + '/sources.json').then(function successCallback(response) {
-        console.log(response.data.sources);
-        $scope.sources = response.data.sources;
-    });
-  };
+App.controller('SourcesController', function($scope, $http, SourceFactory) {
+  SourceFactory.query(function (data){
+    $scope.sources = data.sources;
+  });
 
-  $scope.getSources();
+  $scope.changeStatus = function(status, id) {
+    SourceFactory.update({ id: id, }, { source: { status: status } });
+  };
 });

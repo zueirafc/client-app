@@ -1,171 +1,168 @@
 <h1 style="margin-top:0.9em">Mineração de Posts</h1>
 
 <div class="ui padded segment">
-	<div class="ui middle aligned divided list" infinite-scroll='api.nextPage(typePost)' infinite-scroll-distance='2'>
+  <div class="ui middle aligned divided list" infinite-scroll='api.nextPage(typePost)' infinite-scroll-distance='2'>
 
-		<form class="ui form" style="height: 200px;">
+    <form class="ui form" style="height: 200px;">
 
-			<h4 class="ui dividing header">Buscar as zueiras</h4>
-			<div class="ui five buttons">
-  				<button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
-  					<div class="or" data-text="ou"></div>
- 				<button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
- 				<div class="or" data-text="ou"></div>
-   					<button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
-   					<div class="or" data-text="ou"></div>
-  				<button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
-  					<div class="or" data-text="ou"></div>
-   				<button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
-			</div>
+      <h4 class="ui dividing header">Buscar as zueiras</h4>
+      <div class="ui five buttons">
+          <button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
+            <div class="or" data-text="ou"></div>
+        <button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
+        <div class="or" data-text="ou"></div>
+            <button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
+            <div class="or" data-text="ou"></div>
+          <button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
+            <div class="or" data-text="ou"></div>
+          <button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
+      </div>
 
+        <h4 class="ui dividing header">Filtrar as zueiras</h4>
+        <div class="field">
+          <div class="two fields">
+            <div class="field">
+              <input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
+            </div>
+          </div>
+        </div>
 
+    </form>
 
-	  		<h4 class="ui dividing header">Filtrar as zueiras</h4>
-	  		<div class="field">
-	   			<div class="two fields">
-	      				<div class="field">
-	        				<input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
-	      				</div>
+    <!-- Repeater -->
+    <a class="item" ng-click="open(post)" ng-repeat="post in api.items | filter:search:strict" ng-init="kind = post.source.kind">
+      <div class="right floated content">
+        <div class="description">{{ post.created_time | date: 'dd/MM HH:mm' }}</div>
+      </div>
 
-	  				</div>
-	  			</div>
+      <div class="right floated content">
+        <div class="description" ng-if="post.status == 0">Descartar</div>
+        <div class="description" ng-if="post.status == 1">Banido</div>
+        <div class="description" ng-if="post.status == 2">Ativo</div>
+        <div class="description" ng-if="post.status == 3">Reprovado</div>
+        <div class="description" ng-if="post.status == 4">Aguardando</div>
+      </div>
 
- 		</form>
+      <i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
+      <i class="ui avatar large twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
+      <i class="ui avatar large rss rs square icon" ng-show="kind == 3 || kind == 4"></i>
 
-		<!-- Repeater -->
-		<a class="item" ng-click="open(post)" ng-repeat="post in api.items | filter:search:strict" ng-init="kind = post.source.kind">
-			<div class="right floated content">
-				<div class="description">{{ post.created_time | date: 'dd/MM HH:mm' }}</div>
-			</div>
+      <div class="content">
+        <div class="{{ post.text ? 'header' : 'grey-meta' }}">
+          {{ post.source.name }}
+        </div>
+        <div class="meta grey-meta">
+          {{ post.title ? post.title : post.text }}
+        </div>
+      </div>
 
-			<div class="right floated content">
-				<div class="description" ng-if="post.status == 0">Descartar</div>
-				<div class="description" ng-if="post.status == 1">Banido</div>
-				<div class="description" ng-if="post.status == 2">Ativo</div>
-				<div class="description" ng-if="post.status == 3">Reprovado</div>
-				<div class="description" ng-if="post.status == 4">Aguardando</div>
-			</div>
-
-			<i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
-			<i class="ui avatar large twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
-			<i class="ui avatar large rss rs square icon" ng-show="kind == 3 || kind == 4"></i>
-
-			<div class="content">
-				<div class="{{ post.text ? 'header' : 'grey-meta' }}">
-					{{ post.source.name }}
-				</div>
-				<div class="meta grey-meta">
-					{{ post.title ? post.title : post.text }}
-				</div>
-			</div>
-
-		</a>
-		<div class="item" ng-show='api.busy'>
-			<div class="ui content">
-				<img class="ui centered medium image" src="images/utils/loader.gif">
-			</div>
-		</div>
-		<!-- / Repeater -->
-	</div>
+    </a>
+    <div class="item" ng-show='api.busy'>
+      <div class="ui content">
+        <img class="ui centered medium image" src="images/utils/loader.gif">
+      </div>
+    </div>
+    <!-- / Repeater -->
+  </div>
 </div>
 
 <div class="ui modal scrolling">
-	<div class="sub header">
-		<div class="ui large form">
-			<div class="field">
-				<input type="text" ng-model="post.title" placeholder="Título dessa zoeira">
-			</div>
-		</div>
-	</div>
-	<div class="image content">
-		<div class="ui medium image" ng-repeat="medium in post.media">
-			<img ng-src="{{medium.file}}">
+  <div class="sub header">
+    <div class="ui large form">
+      <div class="field">
+        <input type="text" ng-model="post.title" placeholder="Título dessa zoeira">
+      </div>
+    </div>
+  </div>
+  <div class="image content">
+    <div class="ui medium image" ng-repeat="medium in post.media">
+      <img ng-src="{{medium.file}}">
 
-			<button class="ui red button" ng-click="deleteSources(post, medium.id)" >Excluir Foto</button>
+      <button class="ui red button" ng-click="deleteSources(post, medium.id)" >Excluir Foto</button>
 
-		</div>
-		</div>
-			<div class="image center content">
-		<div class="ui large image" style=" margin-left: 20px;">
-			<div class="ui form">
-				<div class="ui column">
-					<label>Mensagem / Descrição</label>
-					<textarea ng-model="post.text" rows="2"></textarea>
-				</div>
-			</div>
-			<br>
-			<div class="ui form">
-				<div class="ui one column very relaxed grid">
-					<div class="column">
-						<label>Zueiros</label>
+    </div>
+    </div>
+      <div class="image center content">
+    <div class="ui large image" style=" margin-left: 20px;">
+      <div class="ui form">
+        <div class="ui column">
+          <label>Mensagem / Descrição</label>
+          <textarea ng-model="post.text" rows="2"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="ui form">
+        <div class="ui one column very relaxed grid">
+          <div class="column">
+            <label>Zueiros</label>
 
-						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''">
-							<input name="time_zueiro" type="hidden">
-							<i class="dropdown icon"></i>
-							<div class="default text">Zueiros</div>
-							<div class="menu">
-								<div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
-									<img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
-									<span style="margin-left: 3px">{{club.short_name}}</span>
-								</div>
+            <div class="ui fluid multiple search selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''">
+              <input name="time_zueiro" type="hidden">
+              <i class="dropdown icon"></i>
+              <div class="default text">Zueiros</div>
+              <div class="menu">
+                <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+                  <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
+                  <span style="margin-left: 3px">{{club.short_name}}</span>
+                </div>
 
-								<div class="divider"></div>
+                <div class="divider"></div>
 
-								<div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-									<img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-									{{league.short_name}}
-								</div>
-							</div>
-						</div>
+                <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+                  <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+                  {{league.short_name}}
+                </div>
+              </div>
+            </div>
 
-						<div class="ui checkbox" style="margin-top: 7px;">
-							<input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
-							<label>Todo Mundo!</label>
-						</div>
-					</div>
-					</div>
-				</div>
-				<div class="ui form">
-				<div class="ui one column very relaxed grid">
-					<div class="column">
-						<label>Zuados</label>
+            <div class="ui checkbox" style="margin-top: 7px;">
+              <input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
+              <label>Todo Mundo!</label>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="ui form">
+        <div class="ui one column very relaxed grid">
+          <div class="column">
+            <label>Zuados</label>
 
-						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
-							<input name="country" type="hidden">
-							<i class="dropdown icon"></i>
-							<div class="default text">Zuados</div>
-							<div class="menu">
-								<div class="item" data-value="{{club.id}}" ng-click="add(club)" ng-repeat="club in clubs">
-									<img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
-									<span style="margin-left: 3px">{{club.short_name}}</span>
-								</div>
+            <div class="ui fluid multiple search selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
+              <input name="country" type="hidden">
+              <i class="dropdown icon"></i>
+              <div class="default text">Zuados</div>
+              <div class="menu">
+                <div class="item" data-value="{{club.id}}" ng-click="add(club)" ng-repeat="club in clubs">
+                  <img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
+                  <span style="margin-left: 3px">{{club.short_name}}</span>
+                </div>
 
-								<div class="divider"></div>
+                <div class="divider"></div>
 
-								<div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-									<img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-									{{league.short_name}}
-								</div>
-							</div>
-						</div>
+                <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+                  <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+                  {{league.short_name}}
+                </div>
+              </div>
+            </div>
 
-						<div class="ui checkbox" style="margin-top: 7px;">
-							<input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
-							<label>Todo Mundo!</label>
-						</div>
+            <div class="ui checkbox" style="margin-top: 7px;">
+              <input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
+              <label>Todo Mundo!</label>
+            </div>
 
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="actions">
-		<div class="ui buttons">
-			<button class="ui deny button" ng-click="remove()">Não é zueira</button>
-			<button class="ui dark-blue button" ng-click="reprove()">Reprovar</button>
-			<button class="ui positive button" ng-click="approve()">Aprovar</button>
-			<button class="ui red button" ng-click="deletePost(typePost)" >Excluir</button>
-		</div>
-	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui buttons">
+      <button class="ui deny button" ng-click="remove()">Não é zueira</button>
+      <button class="ui dark-blue button" ng-click="reprove()">Reprovar</button>
+      <button class="ui positive button" ng-click="approve()">Aprovar</button>
+      <button class="ui red button" ng-click="deletePost(typePost)" >Excluir</button>
+    </div>
+  </div>
 </div>
