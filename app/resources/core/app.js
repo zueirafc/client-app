@@ -15,6 +15,10 @@ App.config(function($routeProvider, $authProvider, Api) {
     }).when('/open-source', {
         templateUrl: 'components/views/home/open-source.html',
         needsAuth: false
+    }).when('/fontes', {
+        templateUrl: 'components/views/home/sources.html',
+        controller: 'SourcesController',
+        needsAuth: false
     });
 
     // auth paths
