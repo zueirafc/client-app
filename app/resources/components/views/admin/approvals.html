@@ -7,30 +7,30 @@
 
 			<h4 class="ui dividing header">Buscar as zueiras</h4>
 			<div class="ui five buttons">
-  				<button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
-  					<div class="or" data-text="ou"></div>
- 				<button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
- 				<div class="or" data-text="ou"></div>
-   					<button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
-   					<div class="or" data-text="ou"></div>
-  				<button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
-  					<div class="or" data-text="ou"></div>
-   				<button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
+				<button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
+				<div class="or" data-text="ou"></div>
+				<button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
+				<div class="or" data-text="ou"></div>
+				<button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
+				<div class="or" data-text="ou"></div>
+				<button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
+				<div class="or" data-text="ou"></div>
+				<button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
 			</div>
 
 
 
-	  		<h4 class="ui dividing header">Filtrar as zueiras</h4>
-	  		<div class="field">
-	   			<div class="two fields">
-	      				<div class="field">
-	        				<input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
-	      				</div>
+			<h4 class="ui dividing header">Filtrar as zueiras</h4>
+			<div class="field">
+				<div class="two fields">
+					<div class="field">
+						<input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
+					</div>
 
-	  				</div>
-	  			</div>
+				</div>
+			</div>
 
- 		</form>
+		</form>
 
 		<!-- Repeater -->
 		<a class="item" ng-click="open(post)" ng-repeat="post in api.items | filter:search:strict" ng-init="kind = post.source.kind">
@@ -84,8 +84,8 @@
 			<button class="ui red button" ng-click="deleteSources(post, medium.id)" >Excluir Foto</button>
 
 		</div>
-		</div>
-			<div class="image center content">
+	</div>
+	<div class="image center content">
 		<div class="ui large image" style=" margin-left: 20px;">
 			<div class="ui form">
 				<div class="ui column">
@@ -94,12 +94,38 @@
 				</div>
 			</div>
 			<br>
+
+
 			<div class="ui form">
 				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zueiros</label>
 
-						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''">
+						<select name="skills" multiple="" class="ui fluid dropdown" >
+						<option  ng-repeat="club in clubs" ng-model="clubs_selection">
+
+								<span style="margin-left: 3px"> <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important"> {{club.short_name}}</span>
+
+							</option>}
+
+						</select>
+
+					</div>
+				</div>
+			</div>
+
+{{clubs_selection}}
+
+
+
+
+
+			<div class="ui form">
+				<div class="ui one column very relaxed grid">
+					<div class="column">
+						<label>Zueiros</label>
+
+						<div class="ui fluid multiple selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''" id="times_zueiros">
 							<input name="time_zueiro" type="hidden">
 							<i class="dropdown icon"></i>
 							<div class="default text">Zueiros</div>
@@ -118,24 +144,25 @@
 							</div>
 						</div>
 
+						{{time_zueiro}}
 						<div class="ui checkbox" style="margin-top: 7px;">
 							<input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
 							<label>Todo Mundo!</label>
 						</div>
 					</div>
-					</div>
 				</div>
-				<div class="ui form">
+			</div>
+			<div class="ui form">
 				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zuados</label>
 
-						<div class="ui fluid multiple search selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
+						<div class="ui fluid multiple selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
 							<input name="country" type="hidden">
 							<i class="dropdown icon"></i>
 							<div class="default text">Zuados</div>
 							<div class="menu">
-								<div class="item" data-value="{{club.id}}" ng-click="add(club)" ng-repeat="club in clubs">
+								<div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
 									<img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
 									<span style="margin-left: 3px">{{club.short_name}}</span>
 								</div>
