@@ -6,9 +6,6 @@ App.controller('LoginController', function($scope, $auth, $location, $rootScope,
       $auth.submitLogin($scope.form)
         .then(function(resp) {
           window.location.href = '/admin/#/approvals';
-        })
-        .catch(function(resp) {
-          console.log(resp);
         });
     }
   };

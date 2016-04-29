@@ -1,6 +1,7 @@
 App.controller('ToolbarController', function($scope, $location, $http, Api, $auth) {
   var template = '';
   var isAdmin = $location.absUrl().indexOf('/admin/') > -1;
+  var isHome = $location.absUrl().indexOf('/home/') > -1;
 
   $scope.getClubs = function(){
     $http.get(Api + '/clubs.json').then(function successCallback(response) {
@@ -27,6 +28,8 @@ App.controller('ToolbarController', function($scope, $location, $http, Api, $aut
   if(isAdmin){
     template = 'components/partials/toolbar/_admin.html';
     $scope.getClubs();
+  } else if(isHome) {
+    template = 'components/partials/toolbar/_home.html';
   } else {
     template = 'components/partials/toolbar/_logged.html';
     $scope.getNicks();

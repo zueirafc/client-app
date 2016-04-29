@@ -61,30 +61,28 @@ App.run(function($rootScope, $location, $auth, $http, SweetAlert) {
 
   $rootScope.$on('auth:validation-error', function (ev, error) {
     SweetAlert.swal({
-      title: "Are you sure?",
-      text: "Your will not be able to recover this imaginary file!",
-      type: "warning",
-      showCancelButton: true,
+      title: "Problemas na verificação de identidade!",
+      text: "Aparentemente não conseguimos identificar que você está logado!",
+      type: "error",
       confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Yes, delete it!",
-      closeOnConfirm: false
+      confirmButtonText: "Continuar"
     });
   });
 
   $rootScope.$on('auth:logout-success', function(ev) {
-    alert('goodbye');
+    SweetAlert.swal({
+      title: "Até breve!",
+      confirmButtonColor: "#db2828",
+      confirmButtonText: "Continuar"
+    });
   });
 
   $rootScope.$on('auth:logout-error', function(ev, reason) {
-    // alert('logout failed because ' + reason.errors[0]);
     SweetAlert.swal({
-      title: "Are you sure?",
-      text: "Your will not be able to recover this imaginary file!",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Yes, delete it!",
-      closeOnConfirm: false
+      title: "Ops! Problemas impediram que você deslogasse!",
+      confirmButtonColor: "#db2828",
+      type: "error",
+      confirmButtonText: "Ok"
     });
   });
 
@@ -101,8 +99,7 @@ App.config(function($httpProvider) {
     return {
       'responseError' : function(rejection) {
         if (rejection.status == 401 || rejection.status == 403) {
-          console.log("error code: " + rejection.status);
-          $location.path("/login");
+          window.location.href = '/auth/#/login';
         }
         return $q.reject(rejection);
       }
