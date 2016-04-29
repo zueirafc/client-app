@@ -1,41 +1,41 @@
 App.factory('Micropost', function($resource, Api) {
 
     var resource = $resource(Api + '/microposts/:id.json', { id: '@id' },
-	{
-		update: { method: 'PUT' },
-		query: { method: 'GET', isArray: false },
-        delete: { 
-            method: 'DELETE', 
+  {
+    update: { method: 'PUT' },
+    query: { method: 'GET', isArray: false },
+        delete: {
+            method: 'DELETE',
             isArray: false
         },
-        deleted: { 
-            url: Api + '/microposts/deleted', 
-            method: 'GET', 
+        deleted: {
+            url: Api + '/microposts/deleted',
+            method: 'GET',
             isArray: false
         },
-        banned: { 
-            url: Api + '/microposts/banned', 
-            method: 'GET', 
+        banned: {
+            url: Api + '/microposts/banned',
+            method: 'GET',
             isArray: false
         },
-        active: { 
-            url: Api + '/microposts/active', 
-            method: 'GET', 
+        active: {
+            url: Api + '/microposts/active',
+            method: 'GET',
             isArray: false
         },
-        reproved: { 
-            url: Api + '/microposts/reproved', 
-            method: 'GET', 
+        reproved: {
+            url: Api + '/microposts/reproved',
+            method: 'GET',
             isArray: false
         },
-        pending: { 
-            url: Api + '/microposts/pending', 
-            method: 'GET', 
+        pending: {
+            url: Api + '/microposts/pending',
+            method: 'GET',
             isArray: false
         },
-        
 
-	});
+
+  });
 
     return resource;
 
@@ -45,11 +45,11 @@ App.factory('Delete_Micropost', function($resource, Api,$log) {
 
     var resource = $resource(Api + '/microposts/:micropost_id/media/:id_medium.json', { micropost_id: '@micropost_id',id_medium :'@id_medium' },
     {
-       
-        delete: { 
-            method: 'DELETE', 
+
+        delete: {
+            method: 'DELETE',
             isArray: false
-        }   
+        }
 
     });
 

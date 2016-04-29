@@ -1,0 +1,47 @@
+<div class="ui two column centered grid">
+  <div class="eight column">
+    <div class="ui sub header">
+      <h2>Fontes de Dados!</h3>
+      é daqui que a zueira vem!
+    </div>
+
+    <p style="font-size: 18px; margin-top: 1em">
+      <img src="http://gestaonati.com.br/wp-content/uploads/2013/10/ideia_667x563.png" class="ui centered image medium"> <br/>
+      Essas são as fontes que estamos consultando para extração de dados.
+    </p>
+
+    <div class="ui sub header">COMO ASSIM FONTES DE DADOS?</div>
+    <p style="font-size: 18px;">
+      O <b>Zueira Futebol Clube</b> nada mais é do que um robô que encontra na internet imagens relacionadas a piadas/zueiras do futebol brasileiro (sim só <i alt="Brasil" class="br flag"></i>por enquanto!). Depois de recuperados, esses dados são analisados por <b>humanos futebolísticos</b> (ou melhor, uma galera que defende seu time até morrer!) e adicionado algumas informações como quem é o zueiro, e quem está sendo zuado! Só então ela é aprovada e aparece para quem acessa a nossa  <a href="/#/">home page</a>!
+    </p>
+
+    <div class="ui sub header">SOU DONO DE UMA PÁGINA DESTAS E AGORA?</div>
+    <p style="font-size: 18px;">
+      Se você se sentir magoado por estarmos usando o seu conteúdo para divulgação aqui, e quiser que retiremos a sua fonte de dados do nosso sistema, sem problemas! A gente retira ela! Mas saiba que você estará perdendo e muito, pois sempre referenciamos o autor do conteúdo e então podemos aumentar o tráfego de sua página! Todos ganham!
+    </p>
+
+    <p style="font-size: 18px;">
+      Abaixo estão os links de onde você poderá (e deve) consultar individualmente se quiser!!
+    </p>
+
+    <div class="ui relaxed divided list"  style="font-size: 15px;">
+      <div class="item" ng-repeat="source in sources" ng-init="kind = source.kind">
+
+        <i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
+        <i class="ui avatar large twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
+        <i class="ui avatar large rss rs square icon" ng-show="kind == 3 || kind == 4"></i>
+
+        <div class="content">
+          <a class="header" title="Visitar página" href="http://{{source.root_url}}">{{source.name}}</a>
+          <div class="description" ng-show="source.troller">Esta página defende o
+            <a style="font-weight: bold; color: black;" href="http://{{source.troller.official_website}}">{{source.troller.short_name}}</a>
+          </div>
+          <div class="description" ng-show="source.target">Esta página é especialista em zoar o
+          <a style="font-weight: bold; color: black;" href="http://{{source.target.official_website}}">{{source.target.short_name}}</a>
+          </div>
+          <div class="description" ng-show="!source.target && !source.troller">Esta página zoa todo mundo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

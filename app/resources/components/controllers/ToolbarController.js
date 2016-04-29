@@ -1,11 +1,7 @@
-App.controller('ToolbarController', function($scope, $location, $http, Api) {
-  var template = 'components/partials/toolbar/_logged.html';
+App.controller('ToolbarController', function($scope, $location, $http, Api, $auth) {
+  var template = '';
   var isAdmin = $location.absUrl().indexOf('/admin/') > -1;
-
-  if(isAdmin)
-    template = 'components/partials/toolbar/_admin.html';
-
-  $scope.templateUrl = template;
+  var isHome = $location.absUrl().indexOf('/home/') > -1;
 
   $scope.getClubs = function(){
     $http.get(Api + '/clubs.json').then(function successCallback(response) {
@@ -19,8 +15,25 @@ App.controller('ToolbarController', function($scope, $location, $http, Api) {
     });
   };
 
-  $scope.getClubs();
+  $scope.signOut = function(){
+    $auth.signOut()
+      .then(function(resp) {
+        window.location.href = '/#/';
+      })
+      .catch(function(resp) {
+        console.log(resp);
+      });
+  };
 
-  if(!isAdmin)
+  if(isAdmin){
+    template = 'components/partials/toolbar/_admin.html';
+    $scope.getClubs();
+  } else if(isHome) {
+    template = 'components/partials/toolbar/_home.html';
+  } else {
+    template = 'components/partials/toolbar/_logged.html';
     $scope.getNicks();
+  }
+
+  $scope.templateUrl = template;
 });

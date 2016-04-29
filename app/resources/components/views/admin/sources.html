@@ -1,0 +1,31 @@
+<h1 style="margin-top:0.9em">Sources</h1>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th class="center aligned">Tipo</th>
+      <th>Nome</th>
+      <th class="center aligned">Situação</th>
+      <th>Chave</th>
+      <th class="center aligned">Pró?</th>
+      <th class="center aligned">Zoa?</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="source in sources" ng-init="kind = source.kind">
+      <td class="center aligned"><i class="ui avatar large facebook fb square icon" ng-show="kind == 1"></i>
+      <i class="ui avatar large twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
+      <i class="ui avatar large rss rs square icon" ng-show="kind == 3 || kind == 4"></i></td>
+      <td><a title="Visitar página" href="http://{{source.root_url}}">{{source.name}}</a></td>
+      <td class="center aligned">{{source.status == 1 ? 'Ativo' : 'Inativo' }}</td>
+      <td>{{source.key}}</td>
+      <td><img class="ui centered image" title="{{source.troller.short_name}}" alt="{{source.troller.short_name}}" ng-src="{{source.troller.shield.thumb.url}}" style="height: 1.6686em" /></td>
+      <td><img class="ui centered image" title="{{source.target.short_name}}" alt="{{source.target.short_name}}" ng-src="{{source.target.shield.thumb.url}}" style="height: 1.6686em" /></td>
+      <td class="center aligned">
+        <a ng-show="source.status == 0" class="mini positive ui button" ng-click="changeStatus(1, source.id)">Aprovar</a>
+        <a ng-show="source.status == 1" class="mini negative ui button" ng-click="changeStatus(0, source.id)">Inativar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
