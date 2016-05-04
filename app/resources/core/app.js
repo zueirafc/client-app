@@ -19,6 +19,10 @@ App.config(function($routeProvider, $authProvider, Api) {
         templateUrl: 'components/views/home/sources.html',
         controller: 'SourcesController',
         needsAuth: false
+    }).when('/contato', {
+        templateUrl: 'components/views/home/contact.html',
+        controller: 'ContactsController',
+        needsAuth: false
     });
 
     // auth paths
