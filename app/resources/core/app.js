@@ -63,8 +63,9 @@ App.config(function($routeProvider, $authProvider, Api) {
     });
 });
 
-
 App.run(function($rootScope, $location, $auth, $http, SweetAlert) {
+  $http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
+
   $rootScope.$on('auth:validation-error', function (ev, error) {
     SweetAlert.swal({
       title: "Problemas na verificação de identidade!",
@@ -118,13 +119,13 @@ App.config(function($locationProvider, $httpProvider) {
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-App.config(function($httpProvider) {
-  $httpProvider.interceptors.push(function() {
-    return {
-        response: function(config) {
-          $httpProvider.defaults.headers.common.Authorization = config.headers().authorization;
-          return config;
-        }
-    };
-  });
-});
+// App.config(function($httpProvider) {
+//   $httpProvider.interceptors.push(function() {
+//     return {
+//         response: function(config) {
+           // set header
+//           return config;
+//         }
+//     };
+//   });
+// });
