@@ -13,6 +13,13 @@ var path = require('path');
 	element.use('/components', express.static(__dirname + '/app/resources/components'));
 	element.use('/styles', express.static(__dirname + '/app/resources/css'));
 	element.use('/vendor', express.static(__dirname + '/app/node_modules'));
+
+  element.use(function(req, res, next) {
+    res.setHeader('Authorization', 'Token token="' + process.env.API_TOKEN_AUTH + '"');
+
+    next();
+  });
+
 });
 
 app.get('/', function(req, res) {

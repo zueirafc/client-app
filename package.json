@@ -7,14 +7,15 @@
   "license": "MIT",
   "dependencies": {
     "bower": "1.7.7",
-    "express": "~4.9.8"
+    "express": "~4.9.8",
+    "express-header-token-auth": "^1.0.1",
+    "express-session": "^1.13.0"
   },
   "engines": {
-     "node": "5.5.0"
+    "node": "5.5.0"
   },
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
     "start": "node server.js"
   }
