@@ -1,7 +1,8 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var App = angular.module('App', ['ngRoute', 'ngResource', 'infinite-scroll', 'ng-token-auth', 'oitozero.ngSweetAlert']);
+var App = angular.module('App', ['ngRoute', 'ngResource', 'ipCookie', 'infinite-scroll', 'ng-token-auth',
+                                 'oitozero.ngSweetAlert']);
 
 // App.constant("Api", 'http://localhost:3000/v1');
 App.constant("Api", 'http://api.zueirafc.com/v1');
@@ -64,9 +65,6 @@ App.config(function($routeProvider, $authProvider, Api) {
 
 
 App.run(function($rootScope, $location, $auth, $http, SweetAlert) {
-  // process.env.API_AUTH_TOKEN
-  $http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
-
   $rootScope.$on('auth:validation-error', function (ev, error) {
     SweetAlert.swal({
       title: "Problemas na verificação de identidade!",
@@ -118,4 +116,15 @@ App.config(function($httpProvider) {
 App.config(function($locationProvider, $httpProvider) {
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
+
+App.config(function($httpProvider) {
+  $httpProvider.interceptors.push(function() {
+    return {
+        response: function(config) {
+          $httpProvider.defaults.headers.common.Authorization = config.headers().authorization;
+          return config;
+        }
+    };
+  });
 });
