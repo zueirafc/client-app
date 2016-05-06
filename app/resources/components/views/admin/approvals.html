@@ -7,13 +7,13 @@
 
 			<h4 class="ui dividing header">Buscar as zueiras</h4>
 			<div class="ui five buttons">
-				<button class="ui pending button active" ng-click="refreshTypePost(4)">Em aprovação</button>
+				<button class="ui pending button active" ng-click="refreshTypePost('pending')">Em aprovação</button>
 				<div class="or" data-text="ou"></div>
-				<button class="ui positive button" ng-click="refreshTypePost(2)">Ativas</button>
+				<button class="ui positive button" ng-click="refreshTypePost('active')">Ativas</button>
 				<div class="or" data-text="ou"></div>
-				<button class="ui deleted button" ng-click="refreshTypePost(0)">Descartadas</button>
+				<button class="ui deleted button" ng-click="refreshTypePost('deleted')">Descartadas</button>
 				<div class="or" data-text="ou"></div>
-				<button class="ui banned button" ng-click="refreshTypePost(1)">Banidas</button>
+				<button class="ui banned button" ng-click="refreshTypePost('banned')">Banidas</button>
 				<div class="or" data-text="ou"></div>
 				<button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
 			</div>
@@ -101,25 +101,22 @@
 					<div class="column">
 						<label>Zueiros</label>
 
-						<select name="mySelect" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_zueiros"  id="mySelect" 
-								 ng-multiple="true" ng-options="club.short_name for club in clubs">
+						<select name="mySelect" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_trollers"  id="mySelect" 
+								 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs">
 					
 						</select>
 
 					</div>
 				</div>
 			</div>
-{{clubs_selection_zueiros}}
 
 			<div class="ui form">
 				<div class="ui one column very relaxed grid">
 					<div class="column">
 						<label>Zuados</label>
 
-						<select name="skills" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_zuados" 
-								 ng-multiple="true" ng-options="club.short_name for club in clubs">
-					
-						</select>
+						<select name="skills" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_targets" 
+								 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs"></select>
 
 					</div>
 				</div>

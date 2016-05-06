@@ -1,95 +1,8 @@
-App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
-	
-	var ZueiraAPI = function() {
-		this.items = new Array();
-		this.busy = false;
-		this.nextPageNumber = 1;
-	};
-
-	ZueiraAPI.prototype.nextPage = function(typePost) {
-		if (this.busy) return;
-		this.busy = true;
-
-		if(typePost == 0){
-
-			Micropost.deleted({page: this.nextPageNumber}, function(data){
-				items = data.microposts;
-				for (var i = 0; i < items.length; i++) {
-					this.items.push(items[i]);
-				}
-
-				this.nextPageNumber += 1;
-				this.busy = false;
-			}.bind(this));
-		};
-
-
-		if(typePost == 1){
-
-			Micropost.banned({page: this.nextPageNumber}, function(data){
-				items = data.microposts;
-				for (var i = 0; i < items.length; i++) {
-					this.items.push(items[i]);
-				}
-
-				this.nextPageNumber += 1;
-				this.busy = false;
-			}.bind(this));
-		};
-
-		if(typePost == 2){
-
-			Micropost.active({page: this.nextPageNumber}, function(data){
-				items = data.microposts;
-				for (var i = 0; i < items.length; i++) {
-					this.items.push(items[i]);
-				}
-
-				this.nextPageNumber += 1;
-				this.busy = false;
-			}.bind(this));
-		};
-
-
-		if(typePost == 3){
-
-			Micropost.reproved({page: this.nextPageNumber}, function(data){
-				items = data.microposts;
-				for (var i = 0; i < items.length; i++) {
-					this.items.push(items[i]);
-				}
-
-				this.nextPageNumber += 1;
-				this.busy = false;
-			}.bind(this));
-		};
-
-		if(typePost == 4){
-			Micropost.pending({page: this.nextPageNumber}, function(data){
-				var items = data.microposts;
-
-				
-				for (var i = 0; i < items.length; i++) {
-					this.items.push(items[i]);
-				}
-
-				this.nextPageNumber += 1;
-				this.busy = false;
-			}.bind(this));
-		};
-
-
-	};
-
-	return ZueiraAPI;
-});
-
-
-App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropost, ZueiraAPI, MicropostParticipant, $http,$log) {
+App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropost, ZueiraAPI, MicropostParticipant, $http,$log , Micropost_Utils) {
 	// deleted: 0, banned: 1, active: 2, reproved: 3, pending: 4
 
 	$scope.api = new ZueiraAPI();
-	$scope.typePost = 4;
+	$scope.typePost = 'pending';
 	$scope.letterLimit = 85;
 
 	$scope.open = function (post) {
@@ -124,13 +37,17 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 			"micropost" :$scope.post
 		};
 
-
-$(dropdown).empty();
+		$scope.micropostJson.micropost.trollers = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,$scope.clubs_selection_trollers,'Club','trollerable','trollers');
+		$scope.micropostJson.micropost.targets  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,$scope.clubs_selection_targets,'Club','targetable','targets');
 
 		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
 		$scope.refreshTypePost($scope.typePost);
 	};
+
+
+	
+
 
 	$scope.reprove = function(){
 		$scope.post.status = 3;
