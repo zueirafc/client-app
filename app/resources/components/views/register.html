@@ -1,0 +1,60 @@
+<script>
+$('.ui.dropdown').dropdown();
+</script>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column margin-top">
+		<div class="ui message">
+			<h2 class="ui header title-auth">
+				Entre para o time!
+			</h2>
+			<span style="font-size: 9px">você foi aprovado na peneira ;P</span>
+		</div>
+
+	  <form role="form" class="ui large form">
+      <!-- <input type="hidden" name="token-field" value="{{token}}"> -->
+
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="mail icon"></i>
+            <input type="text" name="email" placeholder="E-mail" ng-model="form.email" required="required">
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Senha" ng-model="form.password" required="required">
+          </div>
+        </div>
+
+				<div class="field">
+					<div class="ui search selection labeled dropdown">
+						<input type="hidden" id="club_id" />
+
+						<i class="dropdown icon"></i>
+					  <div class="default text">
+							Para qual time você torce?
+						</div>
+
+					  <div class="menu">
+					    <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+								<img ng-src="{{ club.shield }}" class="ui mini image">
+								{{club.short_name}}
+							</div>
+					  </div>
+					</div>
+				</div>
+
+				<a ng-click="register()" class="ui fluid large dark-blue submit button">Criar</a>
+      </div>
+
+			<div class="ui error message"></div>
+		</form>
+
+		<div class="ui message">
+      <!-- Pssst... Já está inscrito no bid? <a href="#/login">Entre aqui!</a> ou pelo <a ng-click="authenticate('facebook')" href="">facebook</a> -->
+    </div>
+  </div>
+</div>

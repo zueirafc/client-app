@@ -1,119 +1,110 @@
 App.factory('Micropost', function($resource, Api) {
 
-    var resource = $resource(Api + '/microposts/:id.json', { id: '@id' },
-    {
-      update: { method: 'PUT' },
-      query: { method: 'GET', isArray: false },
-      delete: { 
-        method: 'DELETE', 
-        isArray: false
+  var resource = $resource(Api + '/microposts/:id.json', { id: '@id' },
+  {
+    update: { method: 'PUT' },
+    query: { method: 'GET', isArray: false },
+    delete: {
+      method: 'DELETE',
+      isArray: false
     },
-    deleted: { 
-        url: Api + '/microposts/deleted', 
-        method: 'GET', 
-        isArray: false
+    deleted: {
+      url: Api + '/microposts/deleted',
+      method: 'GET',
+      isArray: false
     },
-    banned: { 
-        url: Api + '/microposts/banned', 
-        method: 'GET', 
-        isArray: false
+    banned: {
+      url: Api + '/microposts/banned',
+      method: 'GET',
+      isArray: false
     },
-    active: { 
-        url: Api + '/microposts/active', 
-        method: 'GET', 
-        isArray: false
+    active: {
+      url: Api + '/microposts/active',
+      method: 'GET',
+      isArray: false
     },
-    reproved: { 
-        url: Api + '/microposts/reproved', 
-        method: 'GET', 
-        isArray: false
+    reproved: {
+      url: Api + '/microposts/reproved',
+      method: 'GET',
+      isArray: false
     },
-    pending: { 
-        url: Api + '/microposts/pending', 
-        method: 'GET', 
-        isArray: false
-    },
+    pending: {
+      url: Api + '/microposts/pending',
+      method: 'GET',
+      isArray: false
+    }
+  });
 
-
+  return resource;
 });
 
-    return resource;
+App.factory('Delete_Micropost', function($resource, Api, $log) {
 
-});
+  var resource = $resource(Api + '/microposts/:micropost_id/media/:id_medium.json', { micropost_id: '@micropost_id',id_medium :'@id_medium' },
+  {
+    delete: {
+      method: 'DELETE',
+      isArray: false
+    }
+  });
 
-App.factory('Delete_Micropost', function($resource, Api,$log) {
-
-    var resource = $resource(Api + '/microposts/:micropost_id/media/:id_medium.json', { micropost_id: '@micropost_id',id_medium :'@id_medium' },
-    {
-
-        delete: { 
-            method: 'DELETE', 
-            isArray: false
-        }   
-
-    });
-
-    return resource;
-
+  return resource;
 });
 
 App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
 
-    var ZueiraAPI = function() {
-        this.items = new Array();
-        this.busy = false;
-        this.nextPageNumber = 1;
-    };
+  var ZueiraAPI = function() {
+    this.items = new Array();
+    this.busy = false;
+    this.nextPageNumber = 1;
+  };
 
-    ZueiraAPI.prototype.nextPage = function(typePost) {
-        if (this.busy) return;
-        this.busy = true;
+  ZueiraAPI.prototype.nextPage = function(typePost) {
+    if (this.busy) return;
+    this.busy = true;
 
-        Micropost[typePost]({page: this.nextPageNumber}, function(data){
-            items = data.microposts;
-            for (var i = 0; i < items.length; i++) {
-                this.items.push(items[i]);
-            }
+    Micropost[typePost]({page: this.nextPageNumber}, function(data){
+      items = data.microposts;
+      for (var i = 0; i < items.length; i++) {
+        this.items.push(items[i]);
+      }
 
-            this.nextPageNumber += 1;
-            this.busy = false;
-        }.bind(this));
+      this.nextPageNumber += 1;
+      this.busy = false;
+    }.bind(this));
 
-    };
+  };
 
-    return ZueiraAPI;
+  return ZueiraAPI;
 });
 
 App.factory('Micropost_Utils', function(Micropost) {
 
   return{
 
-      addTrollersAndTargets : function(micropost,newList,type,varAdd,addType){
+    addTrollersAndTargets : function(micropost,newList,type,varAdd,addType){
 
-        var _type = type;
-        var _addType = addType;
-        var _index =  micropost[_addType].length;
-        var _newList = newList;
+      var _type = type;
+      var _addType = addType;
+      var _index =  micropost[_addType].length;
+      var _newList = newList;
 
-        angular.forEach(_newList, function(item,key){
+      angular.forEach(_newList, function(item,key){
 
-            _index += 1;
+        _index += 1;
 
-            micropost[_addType][_index] = {
+        micropost[_addType][_index] = {
 
-                [varAdd + "_id"] : item,
-                [varAdd + "_type"]  : _type
+          [varAdd + "_id"] : item,
+          [varAdd + "_type"]  : _type
 
-            }
+        }
 
-        });
+      });
 
-        return micropost[_addType];
+      return micropost[_addType];
     },
-    
-
-
-}
+  }
 });
 
 /*

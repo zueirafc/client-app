@@ -18,30 +18,23 @@
   <link rel="stylesheet" href="scripts/semantic/dist/semantic.min.css"/>
   <link rel="stylesheet" href="scripts/sweetalert/dist/sweetalert.css"/>
   <link rel="stylesheet" href="styles/app.css"/>
-  <link rel="stylesheet" href="styles/admin.css"/>
 
   <style type="text/css">
+    body > .grid {
+      height: 100%;
+    }
+    .column {
+      max-width: 450px;
+    }
+    .margin-top{
+      margin-top: 10rem;
+    }
+
     .bg-full {
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: center;
       background-size: cover;
-    }
-
-    html {
-      position: relative;
-      min-height: 100%;
-    }
-
-    body {
-      /* Margin bottom by footer height */
-      margin-bottom: 60px;
-    }
-
-    .footer-home {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
     }
   </style>
 </head>
@@ -50,14 +43,7 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-controller="ToolbarController">
-    <ng-include src="'components/templates/toolbar.html'"></ng-include>
-  </div>
-
   <div ng-view ></div>
-
-  <!--Include para adicionar footer -->
-  <ng-include src="'components/templates/footer.html'"></ng-include>
 
   <!-- jquery -->
   <script src="scripts/jquery/dist/jquery.min.js"></script>
@@ -77,13 +63,14 @@
   <!-- Angular Controllers -->
   <script src="components/controllers/LoginController.js"></script>
   <script src="components/controllers/RegisterController.js"></script>
-  <script src="components/controllers/ToolbarController.js"></script>
-  <script src="components/controllers/admin/SourcesController.js"></script>
-  <script src="components/controllers/ContactsController.js"></script>
+  <script>
+  setTimeout(newImage, 500);
 
-  <!-- Angular Resources -->
-  <script src="components/resources/source.js"></script>
-  <script src="components/resources/contact.js"></script>
-  <script src="components/resources/contact_category.js"></script>
+  function newImage(){
+    var selected = "/images/bg-fans/torcida-" + Math.floor(Math.random() * 27) + ".jpg";
+
+    $('.bg-full').css("background-image", "url(" + selected + ")");
+  }
+  </script>
 </body>
 </html>

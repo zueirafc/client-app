@@ -1,0 +1,35 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column margin-top">
+    <div class="ui segment">
+      <h2 class="ui header title-auth">
+        Acesse os vestiários!
+      </h2>
+    </div>
+
+    <form role="form" class="ui large form">
+      <div class="ui segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="mail icon"></i>
+            <input type="text" name="email" placeholder="E-mail" ng-model="form.email" require>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Senha" ng-model="form.password" required>
+          </div>
+        </div>
+
+        <a ng-click="login()" class="ui fluid large dark-blue submit button">Login</a>
+      </div>
+
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui info message">
+      <!-- Ah, você pode entrar com o <a ng-click="authenticate('facebook')" href="">facebook</a> ou <a href="#/registro"> criar uma conta</a> se for novato! -->
+      Por enquanto, o login é apenas para a <b>diretoria :P</b>, mas se você quiser fazer parte da comissão técnica, <a href="/#/contato"> envie um email </a>!
+    </div>
+  </div>
+</div>
