@@ -5,7 +5,7 @@ var App = angular.module('App', ['ngRoute', 'ngResource', 'ipCookie', 'infinite-
                                  'oitozero.ngSweetAlert']);
 
 // App.constant("Api", 'http://localhost:3000/v1');
-App.constant("Api", 'http://api.zueirafc.com/v1');
+App.constant("Api", 'https://api.zueirafc.com/v1');
 
 App.config(function($routeProvider, $authProvider, Api) {
     // normal paths
