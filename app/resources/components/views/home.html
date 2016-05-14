@@ -1,159 +1,22 @@
-<!-- feed principal-->
-<div>
-  <!-- SLIDER COMPONENT IMAGE FRIENDS -->
+<div class="ui middle aligned divided list" infinite-scroll="api.nextPage('pending')" infinite-scroll-distance='2'>
   <div class="ui segment">
     <h3 class="ui header center aligned">As zueiras mais recentes!</h3>
-
     <div class="ui divided items">
-
-      <!-- ITEM (imagem sem título)-->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 15 min. </span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/mundial.jpg">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>8k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
+      <!-- REPEATER -->
+      <div class="item" ng-repeat="post in api.items | filter:search:strict" ng-init="length = post.media.length">
+        <div ng-if="length == 0" ng-include="'components/partials/home/_text.html'"></div>
+        <div ng-if="length > 0" ng-include="'components/partials/home/_image.html'"></div>
       </div>
-      <!-- / ITEM (imagem sem título)-->
-
-      <!-- ITEM (vídeo com título 2) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">GOL DA ALEMANHA - ITAQUERA EDITION</a>
-          <span class="ui sub header right floated grey"> 24 dez. </span>
-          <div class="description">
-            <div class="ui embed" data-icon="video" data-source="youtube" data-id="F2ezSmCb-M0"></div>
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>452k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (vídeo com título 2) -->
-
-      <!-- ITEM (texto com título)-->
-      <div class="item">
-        <div class="content">
-          <a class="header">Mundial do Palmeiras</a>
-          <span class="ui sub header right floated grey"> 35 seg. </span>
-          <div class="description">
-            <p>E mais um ano se passou...</p>
-            <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
-            <br />
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>188</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (texto com título)-->
-
-      <!-- ITEM (gif com título) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">Gol do Timão</a>
-          <span class="ui sub header right floated grey"> 25 dez. </span>
-          <div class="description">
-            <img class="ui fluid image" data-gifffer="images/placeholders/timao-bambis.gif">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>8k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (gif com título) -->
-
-      <!-- ITEM (texto sem título)-->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 14 min. </span>
-          <div class="description">
-            <p>E mais um ano se passou...</p>
-            <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
-            <br />
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>2.1k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (texto sem título)-->
-
-      <!-- ITEM (imagem com título)-->
-      <div class="item">
-        <div class="content">
-          <a class="header">Mundial do Palmeiras</a>
-          <span class="ui sub header right floated grey"> 39 min.</span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/mundial2.jpg">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>13.9k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (imagem com título)-->
-
-      <!-- ITEM (vídeo com título 1) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">BAILE DE ITAQUERA</a>
-          <span class="ui sub header right floated grey"> ontem. </span>
-          <div class="description">
-            <div class="ui embed" data-icon="video" data-source="youtube" data-id="UVWG30S1-qQ"></div>
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>134k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ITEM (vídeo com título 1) -->
-
-      <!-- ITEM (gif sem título) -->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 25 dez. </span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/atletico-mg-palmares.gif">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>1k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (gif sem título) -->
+      <!-- / REPEATER -->
 
       <!-- LOADER -->
-      <div class="ui active centered inline loader"></div>
-      <!-- LOADER -->
+      <div class="item" ng-show='api.busy'>
+        <div class="ui content">
+          <img class="ui centered medium image" src="images/utils/john.gif">
+          <!-- <div class="ui active centered inline loader"></div> -->
+        </div>
+      </div>
+      <!-- / LOADER -->
     </div>
   </div>
 </div>

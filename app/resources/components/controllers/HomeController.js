@@ -1,4 +1,8 @@
-App.controller('HomeController', function($scope) {
+App.controller('HomeController', function($scope, Micropost, ZueiraAPI, MicropostParticipant, $http) {
+
+  $scope.api = new ZueiraAPI();
+  $scope.api.nextPage('pending');
+
   $scope.load = function(){
     $('.ui.embed').embed();
     $('.profile img').dimmer({ on: 'hover' });

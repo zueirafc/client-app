@@ -1,0 +1,14 @@
+<div class="content">
+  <a class="header" ng-show="post.title">{{ post.title }}</a>
+
+  <span class="ui sub header right floated grey"> 25 dez. </span>
+  <div class="description">
+    <img class="ui fluid image" data-gifffer="{{medium.file}}" ng-repeat="medium in post.media">
+  </div>
+  <div class="extra">
+    <div class="ui mini basic buttons">
+      <button class="ui button"><i class="share alternate icon"></i>1k</button>
+      <button class="ui button"><i class="leaf icon green"></i> plantar</button>
+    </div>
+  </div>
+</div>
