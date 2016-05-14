@@ -13,7 +13,8 @@
     "ng-token-auth": "0.0.29",
     "semantic": "2.1",
     "ngInfiniteScroll": "^1.2.2",
-    "angular-sweetalert": "latest"
+    "angular-sweetalert": "latest",
+    "gifffer": "latest"
   },
   "resolutions": {
     "angular": "1.4.x"
