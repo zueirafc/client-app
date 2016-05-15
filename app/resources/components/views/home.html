@@ -1,265 +1,67 @@
-<!-- feed principal-->
-<div>
-  <!-- SLIDER COMPONENT IMAGE FRIENDS -->
+<div class="ui middle aligned divided list" infinite-scroll="api.nextPage('active')" infinite-scroll-distance='2' infinite-scroll-disabled="scrollTrigger">
   <div class="ui segment">
     <h3 class="ui header center aligned">As zueiras mais recentes!</h3>
-
     <div class="ui divided items">
-
-      <!-- ITEM (imagem sem título)-->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 15 min. </span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/mundial.jpg">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>8k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/palmares.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
+      <!-- REPEATER -->
+      <div class="item" ng-repeat="post in api.items" ng-init="length = post.media.length; kind = post.source.kind">
+        <div ng-if="length == 0" ng-include="'components/partials/home/_text.html'"></div>
+        <div ng-if="length > 0" ng-include="'components/partials/home/_image.html'"></div>
       </div>
-      <!-- / ITEM (imagem sem título)-->
-
-      <!-- ITEM (vídeo com título 2) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">GOL DA ALEMANHA - ITAQUERA EDITION</a>
-          <span class="ui sub header right floated grey"> 24 dez. </span>
-          <div class="description">
-            <div class="ui embed" data-icon="video" data-source="youtube" data-id="F2ezSmCb-M0"></div>
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>452k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/corinthians.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (vídeo com título 2) -->
-
-      <!-- ITEM (texto com título)-->
-      <div class="item">
-        <div class="content">
-          <a class="header">Mundial do Palmeiras</a>
-          <span class="ui sub header right floated grey"> 35 seg. </span>
-          <div class="description">
-            <p>E mais um ano se passou...</p>
-            <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
-            <br />
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>188</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/palmares.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (texto com título)-->
-
-      <!-- ITEM (gif com título) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">Gol do Timão</a>
-          <span class="ui sub header right floated grey"> 25 dez. </span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/timao-bambis.gif">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>8k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/saopaulo.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (gif com título) -->
-
-      <!-- ITEM (texto sem título)-->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 14 min. </span>
-          <div class="description">
-            <p>E mais um ano se passou...</p>
-            <p>E o <a href="#">#palmares</a> continua sem mundial!</p>
-            <br />
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>2.1k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/palmares.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (texto sem título)-->
-
-      <!-- ITEM (imagem com título)-->
-      <div class="item">
-        <div class="content">
-          <a class="header">Mundial do Palmeiras</a>
-          <span class="ui sub header right floated grey"> 39 min.</span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/mundial2.jpg">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>13.9k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/palmares.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (imagem com título)-->
-
-      <!-- ITEM (vídeo com título 1) -->
-      <div class="item">
-        <div class="content">
-          <a class="header">BAILE DE ITAQUERA</a>
-          <span class="ui sub header right floated grey"> ontem. </span>
-          <div class="description">
-            <div class="ui embed" data-icon="video" data-source="youtube" data-id="UVWG30S1-qQ"></div>
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>134k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/corinthians.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- ITEM (vídeo com título 1) -->
-
-      <!-- ITEM (gif sem título) -->
-      <div class="item">
-        <div class="content">
-          <span class="ui sub header right floated grey"> 25 dez. </span>
-          <div class="description">
-            <img class="ui fluid image" src="images/placeholders/atletico-mg-palmares.gif">
-          </div>
-          <div class="extra">
-            <div class="ui mini basic buttons">
-              <button class="ui button"><i class="share alternate icon"></i>1k</button>
-              <button class="ui button"><i class="leaf icon green"></i> plantar</button>
-            </div>
-            <!-- <div class="right floated">
-              <div class="ui column grid">
-                <div class="two column row">
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/avatars/nan.jpg">
-                  </div>
-                  <div class="column">
-                    <img class="ui mini image circular" src="images/clubes/palmares.png">
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- / ITEM (gif sem título) -->
+      <!-- / REPEATER -->
 
       <!-- LOADER -->
-      <div class="ui active centered inline loader"></div>
-      <!-- LOADER -->
+      <div class="item" ng-show='api.busy'>
+        <div class="ui content">
+          <h4 class="ui sub header">John procurando a zueira...</h4>
+          <img class="ui centered medium image" src="images/utils/john.gif">
+        </div>
+      </div>
+      <!-- / LOADER -->
     </div>
   </div>
 </div>
 
+<!-- SHARING MODAL -->
+<div class="ui small modal">
+  <div class="header">
+    <h3 class="ui center aligned header">
+      Plante a discórdia entre os amigos! :P
+    </h3>
+  </div>
+  <div class="content">
+    <div class="ui basic segment">
+      <img class="ui centered large image" ng-src="{{ medium.file }}" ng-repeat="medium in post.media">
+      <br />
+      <p ng-bind-html="post.text | sanitized_html"></p>
+    </div>
+
+    <div class="three ui large buttons">
+      <button class="ui facebook button" ng-click="shareFB(post)">
+        <i class="facebook icon"></i>
+        Facebook
+      </button>
+      <a class="ui tw button" href="https://twitter.com/intent/tweet?text={{post.provider_url}} {{post.text}} via: @zueiraafc">
+        <i class="twitter icon"></i>
+        Twitter
+      </a>
+
+      <a href="https://plus.google.com/share?url={{post.provider_url}}" class="ui google plus button"
+        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+        <i class="google plus icon"></i> Google Plus
+      </a>
+    </div>
+  </div>
+</div>
+<!-- / SHARING MODAL -->
+
+<a ng-click="scrollTrigger = !scrollTrigger" data-position="top right" data-content="{{ scrollTrigger ? 'H' : 'Des' }}abilitar a rolagem infinita"
+    class="ui dark-blue button tooltip" style="width: 52px !important; position: fixed; z-index: 999; right: 20px;  bottom: 20px;">
+  <i ng-show="scrollTrigger" class="inverted play icon"></i>
+  <i ng-hide="scrollTrigger" class="white pause icon"></i>
+</a>
+
 <script>
-  $('.ui.embed').embed();
-  $('.profile img').dimmer({ on: 'hover' });
-  $('.items .image img').visibility({
-    type       : 'image',
-    transition : 'fade in',
-    duration   : 1000
-  });
+  setTimeout(function() {
+    $('.tooltip').popup();
+  }, 1500);
 </script>

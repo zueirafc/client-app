@@ -15,15 +15,53 @@
   <meta name="bbx-domain-token" content="691c469e69d8c2bc3033ba407131ad508e2c9c06"/>
   -->
 
-  <title>ZueiraFC | never ends!</title>
+  <title>Zueira F.C. | Aqui a zoação não tem limites!</title>
 
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="scripts/semantic/dist/semantic.min.css"/>
+  <link rel="stylesheet" href="scripts/sweetalert/dist/sweetalert.css"/>
   <link rel="stylesheet" href="styles/app.css"/>
+
+  <link rel="canonical" href="https://zueirafc.com/#/" />
 </head>
 <body class="site">
+  <div id="fb-root"></div>
+  <script>
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '1661970344040611',
+        xfbml: true,
+        version: 'v2.5'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/pt_BR/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
 
   <div class="ui main"></div>
 
@@ -66,9 +104,14 @@
   <script src="scripts/angular-route/angular-route.min.js"></script>
   <script src="scripts/angular-resource/angular-resource.min.js"></script>
   <script src="scripts/angular-cookie/angular-cookie.min.js"></script>
+  <script src="scripts/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="scripts/ng-token-auth/dist/ng-token-auth.min.js"></script>
   <script src="scripts/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+  <script src="scripts/sweetalert/dist/sweetalert.min.js"></script>
   <script src="scripts/angular-sweetalert/SweetAlert.min.js"></script>
+  <script src="scripts/gifffer/build/gifffer.min.js"></script>
+  <script src="scripts/moment/moment.js"></script>
+  <script src="scripts/angular-moment/angular-moment.js"></script>
   <!-- Semantic UI -->
   <script src="scripts/semantic/dist/semantic.min.js"></script>
   <!-- App -->
@@ -77,8 +120,11 @@
   <script src="components/controllers/HomeController.js"></script>
   <script src="components/controllers/ToolbarController.js"></script>
   <script src="components/controllers/LeftPanelController.js"></script>
-  <!-- Angular Controllers -->
+  <!-- Angular Resources -->
   <script src="components/resources/micropost.js"></script>
   <script src="components/resources/micropost_participants.js"></script>
+  <!-- Angular Filters -->
+  <script src="components/filters/sanitized_html.js"></script>
+  <script src="components/vendors/moment/locales/pt-br.js"></script>
 </body>
 </html>

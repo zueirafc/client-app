@@ -1,8 +1,8 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var App = angular.module('App', ['ngRoute', 'ngResource', 'ipCookie', 'infinite-scroll', 'ng-token-auth',
-                                 'oitozero.ngSweetAlert']);
+var App = angular.module('App', ['ngRoute', 'ngResource', 'ngSanitize', 'ipCookie', 'angularMoment',
+                                 'infinite-scroll', 'ng-token-auth', 'oitozero.ngSweetAlert']);
 
 // App.constant("Api", 'http://localhost:3000/v1');
 App.constant("Api", 'https://api.zueirafc.com/v1');
@@ -63,7 +63,9 @@ App.config(function($routeProvider, $authProvider, Api) {
     });
 });
 
-App.run(function($rootScope, $location, $auth, $http, SweetAlert) {
+App.run(function($rootScope, $location, $auth, $http, SweetAlert, amMoment) {
+  amMoment.changeLocale('pt-br');
+
   $http.defaults.headers.common.Authorization = 'Token token=5da9ba35945eaa739ff25784a556b48b126108e208a34c5bc2662506fd90fab6';
 
   $rootScope.$on('auth:validation-error', function (ev, error) {
