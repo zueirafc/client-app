@@ -1,4 +1,4 @@
-App.controller('HomeController', function($scope, Micropost, ZueiraAPI, MicropostParticipant, SweetAlert) {
+App.controller('HomeController', function($scope, $sce, Micropost, ZueiraAPI, MicropostParticipant, SweetAlert) {
   $scope.scrollTrigger = false;
   $scope.api = new ZueiraAPI();
   $scope.api.nextPage('active');
