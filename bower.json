@@ -14,7 +14,9 @@
     "semantic": "2.1",
     "ngInfiniteScroll": "^1.2.2",
     "angular-sweetalert": "latest",
-    "gifffer": "latest"
+    "gifffer": "latest",
+    "angular-sanitize": "latest",
+    "angular-moment": "latest"
   },
   "resolutions": {
     "angular": "1.4.x"

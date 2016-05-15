@@ -1,9 +1,9 @@
-<div class="ui middle aligned divided list" infinite-scroll="api.nextPage('pending')" infinite-scroll-distance='2'>
+<div class="ui middle aligned divided list" infinite-scroll="api.nextPage('active')" infinite-scroll-distance='2' infinite-scroll-disabled="scrollTrigger">
   <div class="ui segment">
     <h3 class="ui header center aligned">As zueiras mais recentes!</h3>
     <div class="ui divided items">
       <!-- REPEATER -->
-      <div class="item" ng-repeat="post in api.items | filter:search:strict" ng-init="length = post.media.length">
+      <div class="item" ng-repeat="post in api.items" ng-init="length = post.media.length; kind = post.source.kind">
         <div ng-if="length == 0" ng-include="'components/partials/home/_text.html'"></div>
         <div ng-if="length > 0" ng-include="'components/partials/home/_image.html'"></div>
       </div>
@@ -12,11 +12,56 @@
       <!-- LOADER -->
       <div class="item" ng-show='api.busy'>
         <div class="ui content">
+          <h4 class="ui sub header">John procurando a zueira...</h4>
           <img class="ui centered medium image" src="images/utils/john.gif">
-          <!-- <div class="ui active centered inline loader"></div> -->
         </div>
       </div>
       <!-- / LOADER -->
     </div>
   </div>
 </div>
+
+<!-- SHARING MODAL -->
+<div class="ui small modal">
+  <div class="header">
+    <h3 class="ui center aligned header">
+      Plante a discórdia entre os amigos! :P
+    </h3>
+  </div>
+  <div class="content">
+    <div class="ui basic segment">
+      <img class="ui centered large image" ng-src="{{ medium.file }}" ng-repeat="medium in post.media">
+      <br />
+      <p ng-bind-html="post.text | sanitized_html"></p>
+    </div>
+
+    <div class="three ui large buttons">
+      <button class="ui facebook button" ng-click="shareFB(post)">
+        <i class="facebook icon"></i>
+        Facebook
+      </button>
+      <a class="ui tw button" href="https://twitter.com/intent/tweet?text={{post.provider_url}} {{post.text}} via: @zueiraafc">
+        <i class="twitter icon"></i>
+        Twitter
+      </a>
+
+      <a href="https://plus.google.com/share?url={{post.provider_url}}" class="ui google plus button"
+        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+        <i class="google plus icon"></i> Google Plus
+      </a>
+    </div>
+  </div>
+</div>
+<!-- / SHARING MODAL -->
+
+<a ng-click="scrollTrigger = !scrollTrigger" data-position="top right" data-content="{{ scrollTrigger ? 'H' : 'Des' }}abilitar a rolagem infinita"
+    class="ui dark-blue button tooltip" style="width: 52px !important; position: fixed; z-index: 999; right: 20px;  bottom: 20px;">
+  <i ng-show="scrollTrigger" class="inverted play icon"></i>
+  <i ng-hide="scrollTrigger" class="white pause icon"></i>
+</a>
+
+<script>
+  setTimeout(function() {
+    $('.tooltip').popup();
+  }, 1500);
+</script>

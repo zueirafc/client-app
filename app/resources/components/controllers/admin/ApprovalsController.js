@@ -46,7 +46,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 	};
 
 
-	
+
 
 
 	$scope.reprove = function(){
@@ -71,13 +71,13 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 		$scope.micropostJson = {
 			"micropost" :$scope.post
 		};
-		
+
 		Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
 
 		$scope.refreshTypePost($scope.typePost)
-		
+
 	};
 
 	$scope.deletePost = function(typePost){
@@ -85,13 +85,13 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 		$scope.micropostJson = {
 			"micropost" :$scope.post
 		};
-		
+
 		Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
 
 		$scope.refreshTypePost(typePost)
-		
+
 	};
 
 	$scope.deleteSources = function(post,source,typePost){
@@ -100,13 +100,13 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 		$scope.micropostJson = {
 			"micropost" :$scope.post
 		};
-		
+
 		Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
 
 		$('.ui.modal').modal('hide');
 
 		$scope.refreshTypePost($scope.typePost)
-		
+
 	};
 
 
