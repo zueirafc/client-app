@@ -9,7 +9,25 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
     $scope.post = post;
 
     setTimeout(function() {
-      $('.ui.modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+      $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+    }, 500);
+
+    setTimeout(function() {
+      $('.special.cards .image').dimmer({
+        on: 'hover'
+      });
+    }, 500);
+  };
+
+  $scope.openImage = function(file) {
+    $('#image-zoom').attr('src', file);
+
+    setTimeout(function(){
+      $('#modal-zoom').modal({
+        onHidden: function(){
+          $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+        }
+      }).modal('show');
     }, 500);
   };
 
@@ -26,10 +44,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
     });
 
     setTimeout(function() {
-      $('.ui.modal').modal({ blurring: true }).modal();
-      $('.special.cards .image').dimmer({
-        on: 'hover'
-      });
+      $('#approvals-modal').modal({ allowMultiple: true }).modal();
       $('.ui.dropdown').dropdown();
       $('.ui.checkbox').checkbox();
     }, 3000);
@@ -61,7 +76,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
-    $('.ui.modal').modal('hide');
+    $('#approvals-modal').modal('hide');
 
     $scope.refreshTypePost($scope.typePost)
   };
@@ -75,7 +90,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
 
-    $('.ui.modal').modal('hide');
+    $('#approvals-modal').modal('hide');
 
     $scope.refreshTypePost($scope.typePost)
   };
@@ -88,7 +103,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
 
-    $('.ui.modal').modal('hide');
+    $('#approvals-modal').modal('hide');
 
     $scope.refreshTypePost(typePost)
   };
@@ -102,7 +117,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
 
-    $('.ui.modal').modal('hide');
+    $('#approvals-modal').modal('hide');
 
     $scope.refreshTypePost($scope.typePost)
   };

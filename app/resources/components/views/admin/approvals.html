@@ -62,7 +62,7 @@
 </div>
 
 <!-- APPROVALS MODAL -->
-<div class="ui long modal">
+<div class="ui long modal" id="approvals-modal">
   <div class="sub header">
     <div class="ui large form">
       <div class="field">
@@ -73,9 +73,18 @@
   <div class="image content">
     <div class="ui basic segment">
       <div class="ui special fluid cards">
-        <div class="ui card" ng-repeat="medium in post.media">
-          <div style="max-height: 280px; overflow: hidden;">
-            <img class="ui medium image" ng-src="{{ medium.file }}"/>
+        <div class="card" ng-repeat="medium in post.media">
+          <div class="blurring dimmable image">
+            <div class="ui dimmer">
+              <div class="content">
+                <div class="center">
+                  <button class="ui inverted small button" ng-click="openImage(medium.file)">
+                    <i class="zoom icon"></i> Zoom
+                  </button>
+                </div>
+              </div>
+            </div>
+            <img class="ui medium image" style="max-height: 280px; overflow: hidden;" ng-src="{{ medium.file }}"/>
           </div>
           <div class="ui bottom red attached button" ng-click="deleteSources(post, medium.id)">
             <i class="trash icon"></i>
@@ -124,6 +133,17 @@
   </div>
 </div>
 <!-- / APPROVALS MODAL -->
+
+
+<!-- SHOW MODAL -->
+<div class="ui small zoom modal" id="modal-zoom">
+  <div class="content">
+    <div class="ui basic segment">
+      <img class="ui centered image" id="image-zoom" src="#"/>
+    </div>
+  </div>
+</div>
+<!-- / SHOW MODAL -->
 
 
 <!--<div class="ui form">
