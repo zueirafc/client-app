@@ -18,18 +18,10 @@
         <button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
       </div>
 
-
-
       <h4 class="ui dividing header">Filtrar as zueiras</h4>
       <div class="field">
-        <div class="two fields">
-          <div class="field">
-            <input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
-          </div>
-
-        </div>
+        <input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
       </div>
-
     </form>
 
     <!-- Repeater -->
@@ -69,7 +61,8 @@
   </div>
 </div>
 
-<div class="ui modal scrolling">
+<!-- APPROVALS MODAL -->
+<div class="ui long modal">
   <div class="sub header">
     <div class="ui large form">
       <div class="field">
@@ -78,116 +71,47 @@
     </div>
   </div>
   <div class="image content">
-    <div class="ui medium image" ng-repeat="medium in post.media">
-      <img ng-src="{{medium.file}}">
-
-      <button class="ui red button" ng-click="deleteSources(post, medium.id)" >Excluir Foto</button>
-
+    <div class="ui basic segment">
+      <div class="ui special fluid cards">
+        <div class="ui card" ng-repeat="medium in post.media">
+          <div style="max-height: 280px; overflow: hidden;">
+            <img class="ui medium image" ng-src="{{ medium.file }}"/>
+          </div>
+          <div class="ui bottom red attached button" ng-click="deleteSources(post, medium.id)">
+            <i class="trash icon"></i>
+            Excluir Foto
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="image center content">
-    <div class="ui large image" style=" margin-left: 20px;">
+    <div class="description">
       <div class="ui form">
         <div class="ui column">
           <label>Mensagem / Descrição</label>
           <textarea ng-model="post.text" rows="2"></textarea>
         </div>
       </div>
-      <br>
 
+      <br />
 
       <div class="ui form">
         <div class="ui one column very relaxed grid">
           <div class="column">
             <label>Zueiros</label>
-
             <select name="mySelect" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_trollers"  id="mySelect"
                  ng-multiple="true" ng-options="club.id as club.short_name for club in clubs">
-
             </select>
-
           </div>
         </div>
-      </div>
-
-      <div class="ui form">
         <div class="ui one column very relaxed grid">
           <div class="column">
             <label>Zuados</label>
-
             <select name="skills" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_targets"
-                 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs"></select>
-
+                 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs">
+            </select>
           </div>
         </div>
       </div>
-
-
-      <!--<div class="ui form">
-        <div class="ui one column very relaxed grid">
-          <div class="column">
-            <label>Zueiros</label>
-
-            <div class="ui fluid multiple selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''" id="times_zueiros">
-              <input name="time_zueiro" type="hidden">
-              <i class="dropdown icon"></i>
-              <div class="default text">Zueiros</div>
-              <div class="menu">
-                <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
-                  <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
-                  <span style="margin-left: 3px">{{club.short_name}}</span>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-                  <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-                  {{league.short_name}}
-                </div>
-              </div>
-            </div>
-
-            {{time_zueiro}}
-            <div class="ui checkbox" style="margin-top: 7px;">
-              <input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
-              <label>Todo Mundo!</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ui form">
-        <div class="ui one column very relaxed grid">
-          <div class="column">
-            <label>Zuados</label>
-
-            <div class="ui fluid multiple selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
-              <input name="country" type="hidden">
-              <i class="dropdown icon"></i>
-              <div class="default text">Zuados</div>
-              <div class="menu">
-                <div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
-                  <img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
-                  <span style="margin-left: 3px">{{club.short_name}}</span>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-                  <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-                  {{league.short_name}}
-                </div>
-              </div>
-            </div>
-
-            <div class="ui checkbox" style="margin-top: 7px;">
-              <input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
-              <label>Todo Mundo!</label>
-            </div>
-
-
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
   <div class="actions">
@@ -199,3 +123,71 @@
     </div>
   </div>
 </div>
+<!-- / APPROVALS MODAL -->
+
+
+<!--<div class="ui form">
+  <div class="ui one column very relaxed grid">
+    <div class="column">
+      <label>Zueiros</label>
+
+      <div class="ui fluid multiple selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''" id="times_zueiros">
+        <input name="time_zueiro" type="hidden">
+        <i class="dropdown icon"></i>
+        <div class="default text">Zueiros</div>
+        <div class="menu">
+          <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+            <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
+            <span style="margin-left: 3px">{{club.short_name}}</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+            <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+            {{league.short_name}}
+          </div>
+        </div>
+      </div>
+
+      {{time_zueiro}}
+      <div class="ui checkbox" style="margin-top: 7px;">
+        <input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
+        <label>Todo Mundo!</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui form">
+  <div class="ui one column very relaxed grid">
+    <div class="column">
+      <label>Zuados</label>
+
+      <div class="ui fluid multiple selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
+        <input name="country" type="hidden">
+        <i class="dropdown icon"></i>
+        <div class="default text">Zuados</div>
+        <div class="menu">
+          <div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
+            <img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
+            <span style="margin-left: 3px">{{club.short_name}}</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+            <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+            {{league.short_name}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui checkbox" style="margin-top: 7px;">
+        <input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
+        <label>Todo Mundo!</label>
+      </div>
+
+
+    </div>
+  </div>
+</div>-->

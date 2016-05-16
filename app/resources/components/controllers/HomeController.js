@@ -6,7 +6,7 @@ App.controller('HomeController', function($scope, Micropost, ZueiraAPI, Micropos
   $scope.openShareModal = function (post) {
     $scope.post = post;
 
-    $('.ui.modal').modal({ detachable:false, observeChanges:true }).modal('show').modal('refresh');
+    $('.ui.modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
   };
 
   $scope.load = function(){
