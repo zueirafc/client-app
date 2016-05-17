@@ -4,13 +4,18 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   $scope.api = new ZueiraAPI();
   $scope.typePost = 'pending';
   $scope.letterLimit = 85;
+  $scope.canClear = true;
 
   $scope.open = function (post) {
     $scope.post = post;
 
-    setTimeout(function() {
-      $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
-    }, 500);
+    $('#approvals-modal').modal({
+      detachable: false,
+      observeChanges: true,
+      onHidden: function(){
+        $scope.clearFilledData();
+      }
+    }).modal('show').modal('refresh');
 
     setTimeout(function() {
       $('.special.cards .image').dimmer({
@@ -20,18 +25,23 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   };
 
   $scope.openImage = function(file) {
+    $scope.canClear = false;
+
     $('#image-zoom').attr('src', file);
 
     setTimeout(function(){
       $('#modal-zoom').modal({
         onHidden: function(){
           $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+          $scope.canClear = true;
         }
       }).modal('show');
     }, 500);
   };
 
   $scope.openVideo = function(url) {
+    $scope.canClear = false;
+
     var container = $('#video-container');
 
     container.append("<div class=\"fb-video\" data-href=\""+ url
@@ -44,6 +54,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       onHidden: function(){
         container.empty();
         $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+        $scope.canClear = true;
       }
     }).modal('show').modal('refresh');
   };
@@ -60,11 +71,21 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
     });
 
     setTimeout(function() {
-      $('#approvals-modal').modal({ allowMultiple: true }).modal();
+      $('#approvals-modal').modal({
+        allowMultiple: true
+      }).modal();
       $('.ui.dropdown').dropdown();
       $('.ui.checkbox').checkbox();
     }, 1000);
   };
+
+  $scope.clearFilledData = function(){
+    if ($scope.canClear) {
+      $scope.post = {};
+
+      $('.ui.fluid.dropdown').dropdown('restore defaults');
+    }
+  }
 
   $scope.approve = function(){
     $scope.post.status = 2;
@@ -114,7 +135,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   $scope.deletePost = function(typePost){
 
     $scope.micropostJson = {
-      "micropost" :$scope.post
+      "micropost": $scope.post
     };
 
     Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
