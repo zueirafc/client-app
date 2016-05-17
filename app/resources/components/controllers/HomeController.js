@@ -18,7 +18,15 @@ App.controller('HomeController', function($scope, Micropost, ZueiraAPI, Micropos
       duration   : 1000
     });
 
-    window.onload = function() { Gifffer(); }
+    window.setInterval(function(){
+      $('.fb-video').not('.fb_iframe_widget, .fb_iframe_widget_fluid_desktop').each(function(){
+        FB.XFBML.parse($(this).parent().get(0));
+      });
+
+      if ($('img[src$=".gif"]').not('.not-select').length > 0)
+        Gifffer();
+
+    }, 1);
   };
 
 
