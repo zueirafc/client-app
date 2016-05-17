@@ -31,6 +31,22 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
     }, 500);
   };
 
+  $scope.openVideo = function(url) {
+    var container = $('#video-container');
+
+    if (container.children().length == 0 ){
+      container.append("<div class=\"fb-video\" data-href=\""+ url + "\" data-width=\"800\"><div class=\"fb-xfbml-parse-ignore\"></div></div>");
+      FB.XFBML.parse();
+    }
+
+    $('#see-video').modal({
+      observeChanges: true,
+      onHidden: function(){
+        $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+      }
+    }).modal('show').modal('refresh');
+  };
+
   $scope.refreshTypePost = function (typePost) {
     $scope.typePost = typePost;
     $scope.api = new ZueiraAPI();
@@ -47,7 +63,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       $('#approvals-modal').modal({ allowMultiple: true }).modal();
       $('.ui.dropdown').dropdown();
       $('.ui.checkbox').checkbox();
-    }, 3000);
+    }, 1000);
   };
 
   $scope.approve = function(){

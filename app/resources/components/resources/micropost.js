@@ -72,7 +72,6 @@ App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
       this.nextPageNumber += 1;
       this.busy = false;
     }.bind(this));
-
   };
 
   return ZueiraAPI;

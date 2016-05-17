@@ -3,25 +3,23 @@
 <div class="ui padded segment">
   <div class="ui middle aligned divided list" infinite-scroll='api.nextPage(typePost)' infinite-scroll-distance='2'>
 
-    <form class="ui form" style="height: 200px;">
-
-      <h4 class="ui dividing header">Buscar as zueiras</h4>
-      <div class="ui five buttons">
-        <button class="ui pending button active" ng-click="refreshTypePost('pending')">Em aprovação</button>
-        <div class="or" data-text="ou"></div>
-        <button class="ui positive button" ng-click="refreshTypePost('active')">Ativas</button>
-        <div class="or" data-text="ou"></div>
-        <button class="ui deleted button" ng-click="refreshTypePost('deleted')">Descartadas</button>
-        <div class="or" data-text="ou"></div>
-        <button class="ui banned button" ng-click="refreshTypePost('banned')">Banidas</button>
-        <div class="or" data-text="ou"></div>
-        <button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
-      </div>
-
+    <form class="ui form">
       <h4 class="ui dividing header">Filtrar as zueiras</h4>
       <div class="field">
-        <input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???">
+        <div class="ui five buttons">
+          <button class="ui pending button active" ng-click="refreshTypePost('pending')">Em aprovação</button>
+          <div class="or" data-text="ou"></div>
+          <button class="ui positive button" ng-click="refreshTypePost('active')">Ativas</button>
+          <div class="or" data-text="ou"></div>
+          <button class="ui deleted button" ng-click="refreshTypePost('deleted')">Descartadas</button>
+          <div class="or" data-text="ou"></div>
+          <button class="ui banned button" ng-click="refreshTypePost('banned')">Banidas</button>
+          <div class="or" data-text="ou"></div>
+          <button class="ui negative button" ng-click="refreshTypePost(3)">Reprovadas</button>
+        </div>
       </div>
+
+      <input type="text" ng-model='search.$' placeholder="O que deseja filtrar no post???" style="margin-bottom: 10px">
     </form>
 
     <!-- Repeater -->
@@ -50,8 +48,8 @@
           {{ post.title ? post.title : post.text | limitTo:letterLimit}}
         </div>
       </div>
-
     </a>
+
     <div class="item" ng-show='api.busy'>
       <div class="ui content">
         <img class="ui centered medium image" src="images/utils/loader.gif">
@@ -78,8 +76,12 @@
             <div class="ui dimmer">
               <div class="content">
                 <div class="center">
-                  <button class="ui inverted small button" ng-click="openImage(medium.file)">
+                  <button class="ui inverted small button" ng-click="openImage(medium.file)" ng-show="medium.kind == 2">
                     <i class="zoom icon"></i> Zoom
+                  </button>
+
+                  <button class="ui inverted small button" ng-click="openVideo(medium.url)" ng-show="medium.kind == 1">
+                    <i class="video icon"></i> Assistir Vídeo
                   </button>
                 </div>
               </div>
@@ -88,7 +90,7 @@
           </div>
           <div class="ui bottom red attached button" ng-click="deleteSources(post, medium.id)">
             <i class="trash icon"></i>
-            Excluir Foto
+            Excluir Mídia
           </div>
         </div>
       </div>
@@ -135,7 +137,7 @@
 <!-- / APPROVALS MODAL -->
 
 
-<!-- SHOW MODAL -->
+<!-- SHOW IMAGE MODAL -->
 <div class="ui small zoom modal" id="modal-zoom">
   <div class="content">
     <div class="ui basic segment">
@@ -143,7 +145,16 @@
     </div>
   </div>
 </div>
-<!-- / SHOW MODAL -->
+<!-- / SHOW IMAGE MODAL -->
+
+<!-- SHOW IMAGE MODAL -->
+<div class="ui small see-video modal" id="see-video" style="height: 450px">
+  <div class="content">
+    <div class="ui basic segment" id="video-container">
+    </div>
+  </div>
+</div>
+<!-- / SHOW IMAGE MODAL -->
 
 
 <!--<div class="ui form">
