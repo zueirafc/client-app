@@ -29,7 +29,6 @@ App.controller('HomeController', function($scope, Micropost, ZueiraAPI, Micropos
     }, 1);
   };
 
-
   // Share methods:
   $scope.shareFB = function(post){
     var url = post.provider_url ? post.provider_url : 'https://zueirafc.com';
