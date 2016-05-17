@@ -34,14 +34,15 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   $scope.openVideo = function(url) {
     var container = $('#video-container');
 
-    if (container.children().length == 0 ){
-      container.append("<div class=\"fb-video\" data-href=\""+ url + "\" data-width=\"800\"><div class=\"fb-xfbml-parse-ignore\"></div></div>");
-      FB.XFBML.parse();
-    }
+    container.append("<div class=\"fb-video\" data-href=\""+ url
+      + "\" data-width=\"800\"><div class=\"fb-xfbml-parse-ignore\"></div></div>");
+
+    FB.XFBML.parse();
 
     $('#see-video').modal({
       observeChanges: true,
       onHidden: function(){
+        container.empty();
         $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
       }
     }).modal('show').modal('refresh');
@@ -52,7 +53,6 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
     $scope.api = new ZueiraAPI();
     $scope.api.nextPage($scope.typePost);
   };
-
 
   $scope.init = function(){
     MicropostParticipant.query(function(data){
@@ -137,7 +137,6 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     $scope.refreshTypePost($scope.typePost)
   };
-
 
   $scope.init();
 });
