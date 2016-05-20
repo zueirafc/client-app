@@ -94,10 +94,11 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       "micropost" :$scope.post
     };
 
-    $scope.micropostJson.micropost.trollers = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_trollers,'Club','trollerable','trollers');
-    $scope.micropostJson.micropost.targets  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_targets,'Club','targetable','targets');
+    $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+      $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
+    
+    $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+      $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
 
     Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 

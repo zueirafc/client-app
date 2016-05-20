@@ -81,12 +81,14 @@ App.factory('Micropost_Utils', function(Micropost) {
 
   return{
 
-    addTrollersAndTargets : function(micropost,newList,type,varAdd,addType){
+    addTrollersAndTargets : function(micropost,newList,type,varAdd,addType,addGetType){
 
       var _type = type;
       var _addType = addType;
-      var _index =  micropost[_addType].length;
+      var _addGetType = addGetType;
+      var _index =  micropost[_addGetType].length;
       var _newList = newList;
+      micropost[_addType] = new Array();
 
       angular.forEach(_newList, function(item,key){
 
