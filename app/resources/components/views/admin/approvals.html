@@ -105,24 +105,74 @@
 
       <br />
 
-      <div class="ui form">
-        <div class="ui one column very relaxed grid">
-          <div class="column">
+
+        <div class="ui form">
+          <div class="ui one column very relaxed grid">
+            <div class="column">
             <label>Zueiros</label>
-            <select name="mySelect" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_trollers" id="mySelect"
-                 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs">
-            </select>
+
+              <div class="ui fluid multiple selection dropdown" name="selection_trollers" ng-class="post.all_trollers ? 'disabled' : ''" id="times_zueiros">
+                <input name="time_zueiro" type="hidden">
+                <i class="dropdown icon"></i>
+                <div class="default text">Zueiros</div>
+                <div class="menu">
+                  <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
+                    <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
+                    <span style="margin-left: 3px">{{club.short_name}}</span>
+                  </div>
+
+                  <div class="divider"></div>
+
+                  <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+                    <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+                    {{league.short_name}}
+                  </div>
+                </div>
+              </div>
+
+              {{time_zueiro}}
+              <div class="ui checkbox" style="margin-top: 7px;">
+                <input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
+                <label>Todo Mundo!</label>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="ui one column very relaxed grid">
-          <div class="column">
-            <label>Zuados</label>
-            <select name="skills" multiple="" class="ui fluid dropdown" ng-model="clubs_selection_targets"
-                 ng-multiple="true" ng-options="club.id as club.short_name for club in clubs">
-            </select>
+
+        <div class="ui form">
+          <div class="ui one column very relaxed grid">
+            <div class="column">
+              <label>Zuados</label>
+
+              <div class="ui fluid multiple selection dropdown" name="selection_targets" ng-class="post.all_targets ? 'disabled' : ''">
+                <input name="country" type="hidden">
+                <i class="dropdown icon"></i>
+                <div class="default text">Zuados</div>
+                <div class="menu">
+                  <div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
+                    <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important">
+                    <span style="margin-left: 3px">{{club.short_name}}</span>
+                  </div>
+
+                  <div class="divider"></div>
+
+                  <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
+                    <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
+                    {{league.short_name}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui checkbox" style="margin-top: 7px;">
+                <input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
+                <label>Todo Mundo!</label>
+              </div>
+
+
+            </div>
           </div>
         </div>
-      </div>
+
     </div>
   </div>
   <div class="actions">
@@ -157,68 +207,3 @@
 <!-- / SHOW IMAGE MODAL -->
 
 
-<!--<div class="ui form">
-  <div class="ui one column very relaxed grid">
-    <div class="column">
-      <label>Zueiros</label>
-
-      <div class="ui fluid multiple selection dropdown" ng-class="post.all_trollers ? 'disabled' : ''" id="times_zueiros">
-        <input name="time_zueiro" type="hidden">
-        <i class="dropdown icon"></i>
-        <div class="default text">Zueiros</div>
-        <div class="menu">
-          <div class="item" data-value="{{club.id}}" ng-repeat="club in clubs">
-            <img ng-src="{{club.shield.thumb.url}}" class="left" style="height: 1.3686em !important" />
-            <span style="margin-left: 3px">{{club.short_name}}</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-            <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-            {{league.short_name}}
-          </div>
-        </div>
-      </div>
-
-      {{time_zueiro}}
-      <div class="ui checkbox" style="margin-top: 7px;">
-        <input type="checkbox" ng-model="post.all_trollers" tabindex="0" class="hidden">
-        <label>Todo Mundo!</label>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="ui form">
-  <div class="ui one column very relaxed grid">
-    <div class="column">
-      <label>Zuados</label>
-
-      <div class="ui fluid multiple selection dropdown" ng-class="post.all_targets ? 'disabled' : ''">
-        <input name="country" type="hidden">
-        <i class="dropdown icon"></i>
-        <div class="default text">Zuados</div>
-        <div class="menu">
-          <div class="item" data-value="{{club.id}}"  ng-repeat="club in clubs">
-            <img ng-src="{{club.shield.thumb.url}}" class="ui mini image" style="height: 1.3686em !important">
-            <span style="margin-left: 3px">{{club.short_name}}</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="item" data-value="{{league.id}}" ng-repeat="league in leagues">
-            <img ng-src="{{league.shield}}" style="height: 1.3686em !important">
-            {{league.short_name}}
-          </div>
-        </div>
-      </div>
-
-      <div class="ui checkbox" style="margin-top: 7px;">
-        <input type="checkbox" ng-model="post.all_targets" tabindex="0" class="hidden">
-        <label>Todo Mundo!</label>
-      </div>
-
-
-    </div>
-  </div>
-</div>-->

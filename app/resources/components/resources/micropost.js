@@ -81,12 +81,19 @@ App.factory('Micropost_Utils', function(Micropost) {
 
   return{
 
-    addTrollersAndTargets : function(micropost,newList,type,varAdd,addType){
+    addTrollersAndTargets : function(micropost,newList,type,varAdd,addType,addGetType){
 
       var _type = type;
       var _addType = addType;
-      var _index =  micropost[_addType].length;
+      var _addGetType = addGetType;
+      var _index =  micropost[_addGetType].length;
       var _newList = newList;
+
+      _newList = _newList.split(",");
+
+      micropost[_addType] = new Array();
+
+      console.log(_newList);
 
       angular.forEach(_newList, function(item,key){
 
@@ -103,6 +110,20 @@ App.factory('Micropost_Utils', function(Micropost) {
 
       return micropost[_addType];
     },
+    getTrollersAndTargets : function(list,type){
+
+      var _return = new Array();
+      var _newList = list;
+
+
+      angular.forEach(_newList, function(item,key){
+
+        _return[key] =  item[type].toString();
+      });
+
+      return _return;
+
+    }
   }
 });
 

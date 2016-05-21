@@ -6,8 +6,21 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   $scope.letterLimit = 85;
   $scope.canClear = true;
 
+
+
+
   $scope.open = function (post) {
     $scope.post = post;
+
+      var selection_trollers = Micropost_Utils.getTrollersAndTargets($scope.post.trollers,'trollerable_id');
+      var selection_targets = Micropost_Utils.getTrollersAndTargets($scope.post.targets,'targetable_id');
+
+      $('.ui.fluid.dropdown').dropdown('refresh');
+   
+      setTimeout(function () {
+        $('[name=selection_trollers]').dropdown('set selected',selection_trollers);
+        $('[name=selection_targets]').dropdown('set selected',selection_targets);
+      }, 1);
 
     $('#approvals-modal').modal({
       detachable: false,
@@ -94,13 +107,22 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       "micropost" :$scope.post
     };
 
-    $scope.micropostJson.micropost.trollers = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_trollers,'Club','trollerable','trollers');
-    $scope.micropostJson.micropost.targets  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_targets,'Club','targetable','targets');
+    $scope.clubs_selection_trollers = $('[name=selection_trollers]').dropdown('get value');
+
+    $scope.clubs_selection_targets = $('[name=selection_targets]').dropdown('get value');
+
+    $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+      $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
+    
+    $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+      $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
 
     Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
+    $log.info( $scope.micropostJson)
+    
+   $('.ui.fluid.dropdown').dropdown('refresh');
+   
     $scope.refreshTypePost($scope.typePost);
   };
 
