@@ -111,16 +111,18 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     $scope.clubs_selection_targets = $('[name=selection_targets]').dropdown('get value');
 
-    $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
+    if($scope.clubs_selection_trollers != ""){
+        $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+        $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
+    }
     
-    $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
-      $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
+    if($scope.clubs_selection_targets != ""){
+        $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+        $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
+    }
 
     Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
-    $log.info( $scope.micropostJson)
-    
    $('.ui.fluid.dropdown').dropdown('refresh');
    
     $scope.refreshTypePost($scope.typePost);
