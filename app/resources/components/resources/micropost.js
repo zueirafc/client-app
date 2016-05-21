@@ -93,8 +93,6 @@ App.factory('Micropost_Utils', function(Micropost) {
 
       micropost[_addType] = new Array();
 
-      console.log(_newList);
-
       angular.forEach(_newList, function(item,key){
 
         _index += 1;
