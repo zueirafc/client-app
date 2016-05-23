@@ -6,9 +6,6 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
   $scope.letterLimit = 85;
   $scope.canClear = true;
 
-
-
-
   $scope.open = function (post) {
     $scope.post = post;
 
@@ -16,10 +13,10 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       var selection_targets = Micropost_Utils.getTrollersAndTargets($scope.post.targets,'targetable_id');
 
       $('.ui.fluid.dropdown').dropdown('refresh');
-   
+
       setTimeout(function () {
-        $('[name=selection_trollers]').dropdown('set selected',selection_trollers);
-        $('[name=selection_targets]').dropdown('set selected',selection_targets);
+        $('[name=selection_trollers]').dropdown('set selected', selection_trollers);
+        $('[name=selection_targets]').dropdown('set selected', selection_targets);
       }, 1);
 
     $('#approvals-modal').modal({
@@ -49,7 +46,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
           $scope.canClear = true;
         }
       }).modal('show');
-    }, 500);
+    }, 1100);
   };
 
   $scope.openVideo = function(url) {
@@ -94,14 +91,18 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
   $scope.clearFilledData = function(){
     if ($scope.canClear) {
-      $scope.post = {};
+      $scope.post = { };
 
-      $('.ui.fluid.dropdown').dropdown('restore defaults');
+      $('.ui.checkbox').checkbox('uncheck');
+
+      $('[name=selection_trollers]').dropdown('clear');
+      $('[name=selection_targets]').dropdown('clear');
     }
   }
 
   $scope.approve = function(){
     $scope.post.status = 2;
+    $scope.canClear = true;
 
     $scope.micropostJson = {
       "micropost" :$scope.post
@@ -115,7 +116,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
         $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
         $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
     }
-    
+
     if($scope.clubs_selection_targets != ""){
         $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
         $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
@@ -123,27 +124,28 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
-   $('.ui.fluid.dropdown').dropdown('refresh');
-   
+    $('.ui.fluid.dropdown').dropdown('refresh');
+
     $scope.refreshTypePost($scope.typePost);
   };
 
   $scope.reprove = function(){
     $scope.post.status = 3;
+    $scope.canClear = true;
 
     $scope.micropostJson = {
       "micropost" :$scope.post
     };
 
-    Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
-
     $('#approvals-modal').modal('hide');
 
+    Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
     $scope.refreshTypePost($scope.typePost)
   };
 
   $scope.remove = function(){
     $scope.post.status = 1;
+    $scope.canClear = true;
 
     $scope.micropostJson = {
       "micropost" :$scope.post
@@ -151,35 +153,27 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
 
-    $('#approvals-modal').modal('hide');
-
     $scope.refreshTypePost($scope.typePost)
   };
 
   $scope.deletePost = function(typePost){
-
+    $scope.canClear = true;
     $scope.micropostJson = {
       "micropost": $scope.post
     };
 
     Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
 
-    $('#approvals-modal').modal('hide');
-
     $scope.refreshTypePost(typePost)
   };
 
-  $scope.deleteSources = function(post,source,typePost){
+  $scope.deleteSources = function(post, medium, typePost){
     $scope.post = post;
 
-    $scope.micropostJson = {
-      "micropost" :$scope.post
-    };
+    $scope.micropostJson = { "micropost": $scope.post };
+    $('#card-' + medium).remove();
 
-    Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
-
-    $('#approvals-modal').modal('hide');
-
+    Delete_Micropost.delete({ micropost_id: $scope.post.id, id_medium: medium }, $scope.micropostJson);
     $scope.refreshTypePost($scope.typePost)
   };
 

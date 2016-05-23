@@ -216,3 +216,11 @@ i.rs.icon {
   color: #ffffff;
   text-shadow: none;
 }
+
+.scrolling.undetached.dimmable.dimmed > .dimmer {
+    overflow: scroll !important;
+}
+
+.scrolling.undetached.dimmable.dimmed{
+    overflow: hidden !important;
+}

@@ -1,8 +1,8 @@
 <div class="content">
-  <a class="header" ng-show="post.title">{{ post.title }}</a>
-
-  <span class="ui sub header right floated grey" am-time-ago="post.updated_at"></span>
-  <br />
+  <h4 class="header" style="text-transform: uppercase;" ng-show="post.title">
+    {{ post.title }}
+    <span class="ui sub header right floated grey" style="font-size: 0.7em"  am-time-ago="post.updated_at"></span>
+  </h4>
   <div class="description" style="font-size: 1.59em">
     <a ng-show="post.provider_url" href="{{post.provider_url}}" target="_blank" style="color: rgba(0,0,0,.87)">
       <p>{{post.text}}</p>
