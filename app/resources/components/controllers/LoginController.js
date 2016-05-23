@@ -3,10 +3,7 @@ App.controller('LoginController', function($scope, $auth, $location, $rootScope,
 
   $scope.login = function() {
     if($('form').form('is valid')){
-      $auth.submitLogin($scope.form)
-        .then(function(resp) {
-          window.location.href = '/admin/#/approvals';
-        });
+      $auth.submitLogin($scope.form);
     }
   };
 
@@ -15,8 +12,11 @@ App.controller('LoginController', function($scope, $auth, $location, $rootScope,
       title: "Prepare-se, você vai entrar em campo!",
       text: "Está escutando a torcida, gritando teu nome?",
       type: "success",
+      timer: 2000,
       confirmButtonColor: "#21ba45",
       confirmButtonText: "Continuar"
+    }, function(){
+      window.location.href = '/admin/#/dash';
     });
   });
 

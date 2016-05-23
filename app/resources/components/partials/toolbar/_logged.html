@@ -7,7 +7,7 @@
 
     <div class="ui center aligned container text">
       <div class="justified content" style="padding-top: 20px; padding-bottom: 16px">
-        Sou
+        <!-- Sou
         <div class="ui inline search dropdown">
           <input type="hidden" id="troller_id" />
           <div class="text" id="club-name-1">.............</div>
@@ -32,7 +32,13 @@
               <div class="text">{{nick.plural}}</div>
             </div>
           </div>
-        </div>
+        </div -->
+      </div>
+    </div>
+
+    <div class="ui right floated">
+      <div class="justified content" style="padding-top: 20px; padding-bottom: 16px">
+        <a href="home/#/contato" data-content="Dúvidas? Problemas? Sugestões? me acompanhe por aqui..." class="ui tooltip header"><i class="call large icon"></i></a>
       </div>
     </div>
   </div>
@@ -48,6 +54,8 @@
     type: 'fixed',
     offset: 80
   });
+
+  $('.tooltip').popup();
 
   $('.main.menu .ui.dropdown').dropdown({
     on: 'hover',

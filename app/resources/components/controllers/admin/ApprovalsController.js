@@ -1,201 +1,187 @@
-App.factory('ZueiraAPI', function($http, Micropost, Api,$log) {
-  
-  var ZueiraAPI = function() {
-    this.items = new Array();
-    this.busy = false;
-    this.nextPageNumber = 1;
+App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropost, ZueiraAPI, MicropostParticipant, $http,$log , Micropost_Utils) {
+  // deleted: 0, banned: 1, active: 2, reproved: 3, pending: 4
+
+  $scope.api = new ZueiraAPI();
+  $scope.typePost = 'pending';
+  $scope.letterLimit = 85;
+  $scope.canClear = true;
+
+
+
+
+  $scope.open = function (post) {
+    $scope.post = post;
+
+      var selection_trollers = Micropost_Utils.getTrollersAndTargets($scope.post.trollers,'trollerable_id');
+      var selection_targets = Micropost_Utils.getTrollersAndTargets($scope.post.targets,'targetable_id');
+
+      $('.ui.fluid.dropdown').dropdown('refresh');
+   
+      setTimeout(function () {
+        $('[name=selection_trollers]').dropdown('set selected',selection_trollers);
+        $('[name=selection_targets]').dropdown('set selected',selection_targets);
+      }, 1);
+
+    $('#approvals-modal').modal({
+      detachable: false,
+      observeChanges: true,
+      onHidden: function(){
+        $scope.clearFilledData();
+      }
+    }).modal('show').modal('refresh');
+
+    setTimeout(function() {
+      $('.special.cards .image').dimmer({
+        on: 'hover'
+      });
+    }, 500);
   };
 
-  ZueiraAPI.prototype.nextPage = function(typePost) {
-    if (this.busy) return;
-    this.busy = true;
+  $scope.openImage = function(file) {
+    $scope.canClear = false;
 
-	if(typePost == 0){
+    $('#image-zoom').attr('src', file);
 
-	    Micropost.deleted({page: this.nextPageNumber}, function(data){
-	      items = data.microposts;
-	      for (var i = 0; i < items.length; i++) {
-	        this.items.push(items[i]);
-	      }
+    setTimeout(function(){
+      $('#modal-zoom').modal({
+        onHidden: function(){
+          $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+          $scope.canClear = true;
+        }
+      }).modal('show');
+    }, 500);
+  };
 
-	      this.nextPageNumber += 1;
-	      this.busy = false;
-	    }.bind(this));
-	};
+  $scope.openVideo = function(url) {
+    $scope.canClear = false;
 
+    var container = $('#video-container');
 
-	if(typePost == 1){
+    container.append("<div class=\"fb-video\" data-href=\""+ url
+      + "\" data-width=\"800\"><div class=\"fb-xfbml-parse-ignore\"></div></div>");
 
-	    Micropost.banned({page: this.nextPageNumber}, function(data){
-	      items = data.microposts;
-	      for (var i = 0; i < items.length; i++) {
-	        this.items.push(items[i]);
-	      }
+    FB.XFBML.parse();
 
-	      this.nextPageNumber += 1;
-	      this.busy = false;
-	    }.bind(this));
-	};
+    $('#see-video').modal({
+      observeChanges: true,
+      onHidden: function(){
+        container.empty();
+        $('#approvals-modal').modal({ detachable: false, observeChanges: true }).modal('show').modal('refresh');
+        $scope.canClear = true;
+      }
+    }).modal('show').modal('refresh');
+  };
 
-	if(typePost == 2){
+  $scope.refreshTypePost = function (typePost) {
+    $scope.typePost = typePost;
+    $scope.api = new ZueiraAPI();
+    $scope.api.nextPage($scope.typePost);
+  };
 
-	    Micropost.active({page: this.nextPageNumber}, function(data){
-	      items = data.microposts;
-	      for (var i = 0; i < items.length; i++) {
-	        this.items.push(items[i]);
-	      }
+  $scope.init = function(){
+    MicropostParticipant.query(function(data){
+      $scope.clubs = data.clubs;
+    });
 
-	      this.nextPageNumber += 1;
-	      this.busy = false;
-	    }.bind(this));
-	};
+    setTimeout(function() {
+      $('#approvals-modal').modal({
+        allowMultiple: true
+      }).modal();
+      $('.ui.dropdown').dropdown();
+      $('.ui.checkbox').checkbox();
+    }, 1000);
+  };
 
+  $scope.clearFilledData = function(){
+    if ($scope.canClear) {
+      $scope.post = {};
 
-	if(typePost == 3){
+      $('.ui.fluid.dropdown').dropdown('restore defaults');
+    }
+  }
 
-	    Micropost.reproved({page: this.nextPageNumber}, function(data){
-	      items = data.microposts;
-	      for (var i = 0; i < items.length; i++) {
-	        this.items.push(items[i]);
-	      }
+  $scope.approve = function(){
+    $scope.post.status = 2;
 
-	      this.nextPageNumber += 1;
-	      this.busy = false;
-	    }.bind(this));
-	};
+    $scope.micropostJson = {
+      "micropost" :$scope.post
+    };
 
-	if(typePost == 4){
-	    Micropost.pending({page: this.nextPageNumber}, function(data){
-	      var items = data.microposts;
+    $scope.clubs_selection_trollers = $('[name=selection_trollers]').dropdown('get value');
 
-	     
-	      for (var i = 0; i < items.length; i++) {
-	        this.items.push(items[i]);
-	      }
+    $scope.clubs_selection_targets = $('[name=selection_targets]').dropdown('get value');
 
-	      this.nextPageNumber += 1;
-	      this.busy = false;
-	    }.bind(this));
-	};
+    if($scope.clubs_selection_trollers != ""){
+        $scope.micropostJson.micropost.trollers_attributes = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+        $scope.clubs_selection_trollers,'Club','trollerable','trollers_attributes','trollers');
+    }
+    
+    if($scope.clubs_selection_targets != ""){
+        $scope.micropostJson.micropost.target_attributes  = Micropost_Utils.addTrollersAndTargets($scope.micropostJson.micropost,
+        $scope.clubs_selection_targets,'Club','targetable','targets_attributes','targets');
+    }
 
+    Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
-	};
+   $('.ui.fluid.dropdown').dropdown('refresh');
+   
+    $scope.refreshTypePost($scope.typePost);
+  };
 
-  return ZueiraAPI;
-});
+  $scope.reprove = function(){
+    $scope.post.status = 3;
 
+    $scope.micropostJson = {
+      "micropost" :$scope.post
+    };
 
-App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropost, ZueiraAPI, MicropostParticipant, $http,$log) {
-	// deleted: 0, banned: 1, active: 2, reproved: 3, pending: 4
+    Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
 
-	$scope.api = new ZueiraAPI();
-	$scope.typePost = 4;
+    $('#approvals-modal').modal('hide');
 
-	$scope.open = function (post) {
-		$scope.post = post;
+    $scope.refreshTypePost($scope.typePost)
+  };
 
-		$('.ui.modal').modal('show');
-	};
+  $scope.remove = function(){
+    $scope.post.status = 1;
 
-	$scope.refreshTypePost = function (typePost) {
-		$scope.typePost = typePost;
-		$scope.api = new ZueiraAPI();
-		$scope.api.nextPage($scope.typePost);
-	};
+    $scope.micropostJson = {
+      "micropost" :$scope.post
+    };
 
+    Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
 
-	$scope.init = function(){
-   		MicropostParticipant.query(function(data){
-      		$scope.clubs = data.clubs;
-   		});
+    $('#approvals-modal').modal('hide');
 
-		setTimeout(function() {
-			$('.ui.modal').modal({ blurring: true }).modal();
-			$('.ui.dropdown').dropdown();
-			$('.ui.checkbox').checkbox();
-		}, 3000);
-	};
+    $scope.refreshTypePost($scope.typePost)
+  };
 
-	$scope.approve = function(){
-		$scope.post.status = 2;
+  $scope.deletePost = function(typePost){
 
-		$scope.micropostJson = {
-    		"micropost" :$scope.post
-    	};
+    $scope.micropostJson = {
+      "micropost": $scope.post
+    };
 
-    	 var _timezueiro = $('.ui.fluid.multiple.search')
-  				.search('behavior show results');
+    Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
 
+    $('#approvals-modal').modal('hide');
 
-			$log.info(_timezueiro)
+    $scope.refreshTypePost(typePost)
+  };
 
+  $scope.deleteSources = function(post,source,typePost){
+    $scope.post = post;
 
-		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
+    $scope.micropostJson = {
+      "micropost" :$scope.post
+    };
 
-		$('.ui.modal').modal('hide');
-		$scope.refreshTypePost($scope.typePost);
-	};
+    Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
 
-	$scope.reprove = function(){
-		$scope.post.status = 3;
+    $('#approvals-modal').modal('hide');
 
-		$scope.micropostJson = {
-    		"micropost" :$scope.post
-    	};
+    $scope.refreshTypePost($scope.typePost)
+  };
 
-		Micropost.update({ id:$scope.post.id }, $scope.micropostJson);
-
-		$('.ui.modal').modal('hide');
-
-		$scope.refreshTypePost($scope.typePost)
-
-
-	};
-
-	$scope.remove = function(){
-		$scope.post.status = 1;
-
-		$scope.micropostJson = {
-    		"micropost" :$scope.post
-    	};
-    	
-		Micropost.update({ id: $scope.post.id}, $scope.micropostJson);
-
-		$('.ui.modal').modal('hide');
-
-		$scope.refreshTypePost($scope.typePost)
-	
-	};
-
-	$scope.deletePost = function(typePost){
-
-		$scope.micropostJson = {
-    		"micropost" :$scope.post
-    	};
-    	
-		Micropost.delete({ id: $scope.post.id}, $scope.micropostJson);
-
-		$('.ui.modal').modal('hide');
-
-		$scope.refreshTypePost(typePost)
-	
-	};
-
-	$scope.deleteSources = function(post,source,typePost){
-		$scope.post = post;
-
-		$scope.micropostJson = {
-    		"micropost" :$scope.post
-    	};
-    	
-		Delete_Micropost.delete({ micropost_id: $scope.post.id,id_medium :source }, $scope.micropostJson);
-
-		$('.ui.modal').modal('hide');
-
-		$scope.refreshTypePost($scope.typePost)
-	
-	};
-
-
-	$scope.init();
+  $scope.init();
 });
