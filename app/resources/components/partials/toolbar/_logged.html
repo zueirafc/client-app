@@ -59,6 +59,7 @@
 
   $('.main.menu .ui.dropdown').dropdown({
     on: 'hover',
+    fullTextSearch: true,
     preserveHTML: false,
     onChange: function(value, text, $choice){
       changeLabelView(text, $choice.context.parentElement.id);
