@@ -1,6 +1,7 @@
 <div class="ui middle aligned divided list" infinite-scroll="api.nextPage('active')" infinite-scroll-distance='2' infinite-scroll-disabled="scrollTrigger">
   <div class="ui segment">
-    <h3 class="ui header center aligned">As zueiras mais recentes!</h3>
+    <h1 class="ui header center aligned">As zueiras mais recentes!</h1>
+    <br />
     <div class="ui divided items">
       <!-- REPEATER -->
       <div class="item" ng-repeat="post in api.items" ng-init="length = post.media.length; kind = post.source.kind">
