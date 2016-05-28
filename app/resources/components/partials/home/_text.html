@@ -1,0 +1,24 @@
+<div class="content">
+  <h4 class="header" style="text-transform: uppercase;" ng-show="post.title">
+    {{ post.title }}
+    <span class="ui sub header right floated grey" style="font-size: 0.7em"  am-time-ago="post.updated_at"></span>
+  </h4>
+  <div class="description" style="font-size: 1.59em">
+    <a ng-show="post.provider_url" href="{{post.provider_url}}" target="_blank" style="color: rgba(0,0,0,.87)">
+      <p>{{post.text}}</p>
+    </a>
+    <p ng-hide="post.provider_url">{{post.text}}</p>
+  </div>
+  <div class="extra">
+    <div class="ui mini basic buttons">
+      <a class="ui button" href="https://{{post.source.root_url | sanitized_html }}" target="_blank">
+        <i class="facebook fb square icon" ng-show="kind == 1"></i>
+        <i class="twitter tw square icon" ng-show="kind == 2 || kind == 5"></i>
+        <i class="rss rs square icon" ng-show="kind == 3 || kind == 4"></i>
+
+        fonte</a>
+      <!-- <button class="ui button"><i class="share alternate icon"></i>188</button> -->
+      <button class="ui button tooltip" data-content="Compartilhar a Zueira" ng-click="openShareModal(post)"><i class="leaf icon green"></i>plantar</button>
+    </div>
+  </div>
+</div>

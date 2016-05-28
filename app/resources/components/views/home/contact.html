@@ -1,0 +1,43 @@
+<div class="ui container grid">
+  <div class="column">
+    <div class="ui sub header">
+      <h1>Contato</h1>
+      <br/>
+    </div>
+
+    <form class="ui form">
+      <div class="field">
+        <label>Nome</label>
+        <input type="text" ng-model="contact.name" placeholder="Zlatan Ibrahimović">
+      </div>
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" ng-model="contact.email" placeholder="zlatan_ibra@email.com">
+      </div>
+      <div class="field">
+        <label>Assunto</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="contact_category_id" id="contact_category_id">
+          <i class="dropdown icon"></i>
+          <div class="default text">Problemas Técnicos</div>
+
+          <div class="menu">
+            <div class="item" data-value="{{cat.id}}" ng-repeat="cat in categories">
+              {{cat.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Mensagem</label>
+        <textarea ng-model="contact.message"></textarea>
+      </div>
+      <button class="ui button dark-blue" type="submit" ng-click="save()">Enviar</button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  $('.ui.dropdown').dropdown();
+</script>

@@ -1,0 +1,109 @@
+/* Semantic UI - CSS used in menu */
+
+body {
+  /*background-color: #FFFFFF;*/
+  background: url("/images/bg-white.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+.main.menu {
+  margin-top: 1.5em;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition:
+    box-shadow 0.5s ease,
+    padding 0.5s ease
+  ;
+}
+.main.menu .item img.logo {
+  margin-right: 1.5em;
+}
+
+.overlay {
+  float: left;
+  margin: 0em 3em 1em 0em;
+}
+.overlay .menu {
+  position: relative;
+  left: 0;
+  transition: left 0.5s ease;
+}
+
+.main.menu.fixed {
+  background-color: #FFFFFF;
+  border: 1px solid #DDD;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.overlay.fixed .menu {
+  left: 800px;
+}
+
+.text.container .left.floated.image {
+  margin: 2em 2em 2em -4em;
+}
+.text.container .right.floated.image {
+  margin: 2em -4em 2em 2em;
+}
+
+.ui.footer.segment {
+  margin: 5em 0em 0em;
+  padding: 5em 0em;
+}
+/* Semantic UI - CSS used in menu */
+
+/* Notification Stylization!*/
+.ui.app-floating.label {
+  position: absolute;
+  z-index: 100;
+  top: -1em;
+  left: 20%;
+  /*margin: 0em 0em 0em -1.5em !important;*/
+  margin: 0.3em 0em 0em -1.2em !important
+}
+
+/* Blue color in logo */
+.ui.dark-blue.button {
+  background-color: #1F233D;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.tw.button {
+  background-color: #55ACEE;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+
+/* items dentro do menu de escolha dos alvos */
+.min-item{
+   min-width: 240px
+}
+
+/* cores dos botões */
+i.fb.icon {
+  color: #3B5998 !important;
+}
+
+i.tw.icon {
+  color: #55ACEE !important;
+}
+
+i.rs.icon {
+  color: #F26522 !important;
+}

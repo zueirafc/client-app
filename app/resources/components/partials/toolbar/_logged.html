@@ -1,0 +1,79 @@
+<div  class="ui borderless main menu">
+  <div class="ui container">
+    <a href="#/" class="header item">
+      <img class="logo" src="images/logo-min.png">
+      Zueira F.C.
+    </a>
+
+    <div class="ui center aligned container text">
+      <div class="justified content" style="padding-top: 20px; padding-bottom: 16px">
+        <!-- Sou
+        <div class="ui inline search dropdown">
+          <input type="hidden" id="troller_id" />
+          <div class="text" id="club-name-1">.............</div>
+          <i class="dropdown icon"></i>
+
+          <div class="menu" id="troller_drop">
+            <div class="item min-item" data-value="{{nick.club_id}}" ng-repeat="nick in nickname_fans">
+              <div class="description">{{nick.club_initials}}</div>
+              <div class="text">{{nick.name}}</div>
+            </div>
+          </div>
+        </div>
+        e quero zuar
+        <div class="ui inline search dropdown">
+          <input type="hidden" id="target_id" />
+          <div class="text" id="club-name-2">.............</div>
+          <i class="dropdown icon"></i>
+
+          <div class="menu" id="target_drop">
+            <div class="item min-item" data-value="{{nick.club_id}}" ng-repeat="nick in nickname_fans">
+              <div class="description">{{nick.club_initials}}</div>
+              <div class="text">{{nick.plural}}</div>
+            </div>
+          </div>
+        </div -->
+      </div>
+    </div>
+
+    <div class="ui right floated">
+      <div class="justified content" style="padding-top: 20px; padding-bottom: 16px">
+        <a href="home/#/contato" data-content="Dúvidas? Problemas? Sugestões? me acompanhe por aqui..." class="ui tooltip header"><i class="call large icon"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // fix main menu to page on passing
+  $('.main.menu').visibility({
+    type: 'fixed'
+  });
+
+  $('.overlay').visibility({
+    type: 'fixed',
+    offset: 80
+  });
+
+  $('.tooltip').popup();
+
+  $('.main.menu .ui.dropdown').dropdown({
+    on: 'hover',
+    fullTextSearch: true,
+    preserveHTML: false,
+    onChange: function(value, text, $choice){
+      changeLabelView(text, $choice.context.parentElement.id);
+    }
+  });
+
+  function changeLabelView(text, id){
+    toChange = '';
+    if (id == 'troller_drop')
+      toChange = '#club-name-1';
+    else if (id == 'target_drop')
+      toChange = '#club-name-2';
+
+    $(toChange).html(text.substring(3).trim());
+  }
+</script>
+

@@ -1,0 +1,28 @@
+<div class="ui inverted borderless main-admin menu" style="margin-bottom:2.5em">
+  <div class="ui container">
+    <a href="#/dash" class="header item">
+      <img class="logo" src="images/logo-min.png">
+      Zueira F.C. - ADM
+    </a>
+
+  <div class="ui right menu text">
+    <div class="ui floating item">
+      <a href="/#/"><i class="home icon"></i>Inicial</a>
+    </div>
+    <div class="ui floating item">
+      <a href="#/approvals" title="Mineração & Aprovação de Dados"><i class="check icon"></i>Aprovação</a>
+    </div>
+    <div class="ui floating item">
+      <a href="#/sources" title="Fontes de Dados"><i class="database icon"></i>Sources</a>
+    </div>
+    <div class="ui floating item">
+      <a style="cursor: pointer;" ng-click="signOut()"><i class="sign out icon"></i>Sair</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.main-admin.menu .ui.dropdown').dropdown({
+    on: 'hover'
+  });
+</script>

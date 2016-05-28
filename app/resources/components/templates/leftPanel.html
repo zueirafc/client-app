@@ -1,0 +1,17 @@
+<!-- Template responsavel por criar panel do lado esquerdo -->
+<div ng-controller="LeftPanelController">
+  <div>
+    <div class="ui segment">
+      <h2 style="font-size: 1.3em" class="ui header center aligned">Top zuados!</h2>
+      <div class="ui relaxed divided list">
+        <div class="item" ng-repeat="target in targets">
+          <img class="ui mini image centered aligned" ng-src="{{target.club.shield_url}}">
+          <div class="content">
+            <span class="header">{{target.club.short_name}}</span>
+            <div class="description"><b>{{target.club.quantity}}</b> novas zueiras</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+box: node
+build:
+  steps:
+    - npm-install
+
+deploy:
+  steps:
+    - heroku-deploy:
+        key-name: DEPLOYMENT_KEY
