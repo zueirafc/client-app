@@ -1,7 +1,7 @@
 {
   "name": "zueirafc-clientapp",
   "description": "The zueira never ends!",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/zueira/client-app",
   "license": "MIT",
   "dependencies": {
