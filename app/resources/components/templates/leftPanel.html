@@ -2,16 +2,15 @@
 <div ng-controller="LeftPanelController">
   <div>
     <div class="ui segment">
-      <div class="ui header center aligned">Top zuados!</div>
+      <h2 style="font-size: 1.3em" class="ui header center aligned">Top zuados!</h2>
       <div class="ui relaxed divided list">
         <div class="item" ng-repeat="target in targets">
-          <img class="ui mini image centered aligned" ng-src="{{target.club_shield}}">
+          <img class="ui mini image centered aligned" ng-src="{{target.club.shield_url}}">
           <div class="content">
-            <a class="header">{{target.club_name}}</a>
-            <!-- <div class="description"><a><b>xxx</b></a> novas zueiras</div> -->
+            <a class="header">{{target.club.short_name}}</a>
+            <div class="description"><a><b>{{target.quantity}}</b></a> novas zueiras</div>
           </div>
         </div>
       </div>
     </div>
-
 </div>
