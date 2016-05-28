@@ -4,8 +4,8 @@
 var App = angular.module('App', ['ngRoute', 'ngResource', 'ngSanitize', 'ngCookies', 'angularMoment',
                                  'infinite-scroll', 'ng-token-auth', 'oitozero.ngSweetAlert']);
 
-// App.constant("Api", 'http://localhost:3000/v1');
-App.constant("Api", 'https://api.zueirafc.com/v1');
+App.constant("Api", 'http://localhost:3000/v1');
+// App.constant("Api", 'https://api.zueirafc.com/v1');
 
 App
   .config(function($authProvider, Api) {
