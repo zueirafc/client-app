@@ -1,8 +1,13 @@
 {
   "name": "client-app",
   "private": false,
+<<<<<<< HEAD
   "version": "0.0.6",
   "description": "Zueira F.C. Client Application ",
+=======
+  "version": "0.0.2",
+  "description": "ZueiraFC Client Application ",
+>>>>>>> master
   "repository": "https://github.com/zueirafc/client-app",
   "license": "MIT",
   "dependencies": {
