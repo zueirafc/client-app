@@ -13,8 +13,9 @@
     "node": "5.5.0"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install --force",
     "prestart": "npm install",
     "start": "node server.js"
   }
 }
+
