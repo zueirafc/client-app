@@ -31,7 +31,7 @@
   </div>
   <div class="content">
     <div class="ui basic segment">
-      <img class="ui centered large image" ng-src="{{ medium.file }}" ng-repeat="medium in post.media">
+      <img class="ui centered large image" ng-src="{{ medium.file }}" ng-repeat="medium in post.media | orderBy:'$index':true">
       <br />
       <p ng-bind-html="post.text | sanitized_html"></p>
     </div>
