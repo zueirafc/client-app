@@ -4,7 +4,7 @@
     <span class="ui sub header right floated grey" style="font-size: 0.7em" am-time-ago="post.updated_at"></span>
   </h4>
   <div class="description" style="font-size: 1.09em">
-    <a href="{{post.provider_url}}" target="_blank" ng-repeat="medium in post.media.reverse()" title="Clique para ver essa zueira direto na fonte!">
+    <a href="{{post.provider_url}}" target="_blank" ng-repeat="medium in post.media | orderBy:'$index':true" title="Clique para ver essa zueira direto na fonte!">
       <div class="fb-video" ng-show="medium.kind == 1" data-href="{{medium.url}}" data-allowfullscreen="true" data-width="500"></div>
 
       <img class="ui centered fluid image" ng-show="medium.kind == 2" alt="{{post.text}}" ng-src="{{medium.file}}">
