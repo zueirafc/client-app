@@ -88,6 +88,7 @@ App.factory('Micropost_Utils', function(Micropost) {
       var _addGetType = addGetType;
       var _index =  micropost[_addGetType].length;
       var _newList = newList;
+      var _addValid = true;
 
       _newList = _newList.split(",");
 
@@ -95,13 +96,34 @@ App.factory('Micropost_Utils', function(Micropost) {
 
       angular.forEach(_newList, function(item,key){
 
-        _index += 1;
+        _addValid = true;
 
-        micropost[_addType][_index] = {
+        angular.forEach(micropost[_addGetType], function(item_aux,key_aux){
 
-          [varAdd + "_id"] : item,
-          [varAdd + "_type"]  : _type
+          if(_addValid) {
 
+            var id_aux = item_aux[varAdd + "_id"];
+
+            if(item == id_aux){
+
+              _addValid = false;
+
+            }
+          }
+
+        });
+
+
+        if(_addValid  == true){
+
+          _index += 1;
+
+          micropost[_addType][_index] = {
+
+            [varAdd + "_id"] : item,
+            [varAdd + "_type"]  : _type
+
+          }
         }
 
       });

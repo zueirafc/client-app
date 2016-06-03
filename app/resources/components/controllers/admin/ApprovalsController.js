@@ -17,6 +17,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
       setTimeout(function () {
         $('[name=selection_trollers]').dropdown('set selected', selection_trollers);
         $('[name=selection_targets]').dropdown('set selected', selection_targets);
+
       }, 1);
 
     $('#approvals-modal').modal({
@@ -102,7 +103,7 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
   $scope.approve = function(){
     $scope.post.status = 2;
-    $scope.canClear = true;
+    $scope.canClear = true;  
 
     $scope.micropostJson = {
       "micropost" :$scope.post
@@ -126,7 +127,12 @@ App.controller('ApprovalsController', function($scope, Micropost,Delete_Micropos
 
     $('.ui.fluid.dropdown').dropdown('refresh');
 
+    $('#approvals-modal').modal('hide');
+
+
     $scope.refreshTypePost($scope.typePost);
+
+
   };
 
   $scope.reprove = function(){
